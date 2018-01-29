@@ -1,0 +1,4 @@
+
+todolist:
+
+1.add x2xx series
