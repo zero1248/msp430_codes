@@ -1,0 +1,5 @@
+
+todolist:
+
+1.add ADC12
+2.add other series
