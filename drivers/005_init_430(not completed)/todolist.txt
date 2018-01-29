@@ -1,0 +1,4 @@
+
+todolist:
+
+1.increase the functions and some useful macros
