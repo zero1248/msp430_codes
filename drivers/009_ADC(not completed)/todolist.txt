@@ -3,3 +3,6 @@ todolist:
 
 1.add ADC12
 2.add other series
+
+
+add ADC12 single channel sample on 20180131
