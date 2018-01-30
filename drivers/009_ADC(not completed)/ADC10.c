@@ -64,7 +64,13 @@ static void ADC10_Function(void)
 	ADC_value = ADC10MEM;
 }
 
-
+/*******************************************
+函数名称：ADC10ISR
+功    能：ADC中断服务函数，
+参    数：无
+返回值  ：无
+说   明  ：
+********************************************/
 #pragma vector=ADC10_VECTOR
 __interrupt void ADC10_ISR_HOOK(void)
 {
