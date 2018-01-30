@@ -1,4 +1,4 @@
 
 todolist:
 
-1.add x2xx series
+1.add x2xx series(done£¬20180131)
