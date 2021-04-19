@@ -1,7 +1,7 @@
 /*
  * softI2C.h
  *
- *  Created on: 2016Äê5ÔÂ12ÈÕ
+ *  Created on: 2016-5-12
  *      Author: Isaac
  */
 

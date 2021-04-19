@@ -8,13 +8,13 @@
 #ifndef __SLOPE_H__
 #define __SLOPE_H__
 
-#define PORT_REF_LOW   P1DIR|=BIT3;P1OUT&=~BIT3  //²Î¿¼µç×èËù½ÓIOÊä³ö0
-#define PORT_REF_HIGH  P1DIR|=BIT3;P1OUT|=BIT3   //²Î¿¼µç×èËù½ÓIOÊä³ö1
-#define PORT_REF_HZ    P1DIR &= ~BIT3            //²Î¿¼µç×èËù½ÓIO¸ß×èÌ¬
-#define PORT_SENS_LOW  P2DIR|=BIT2;P2OUT&=~BIT2  //´«¸ÐÆ÷µç×èËù½ÓIOÊä³ö0
-#define PORT_SENS_HIGH P2DIR|=BIT2;P2OUT|=BIT2   //´«¸ÐÆ÷µç×èËù½ÓIOÊä³ö1
-#define PORT_SENS_HZ   P2DIR &= ~BIT2            //´«¸ÐÆ÷µç×èËù½ÓIO¸ß×èÌ¬
-#define TAR_CLEAR      TA0CTL |= TACLR           //Çå³ýTAÊ±ÖÓ¼ÆÊýÖµ
+#define PORT_REF_LOW   P1DIR|=BIT3;P1OUT&=~BIT3  //å‚è€ƒç”µé˜»æ‰€æŽ¥IOè¾“å‡º0
+#define PORT_REF_HIGH  P1DIR|=BIT3;P1OUT|=BIT3   //å‚è€ƒç”µé˜»æ‰€æŽ¥IOè¾“å‡º1
+#define PORT_REF_HZ    P1DIR &= ~BIT3            //å‚è€ƒç”µé˜»æ‰€æŽ¥IOé«˜é˜»æ€
+#define PORT_SENS_LOW  P2DIR|=BIT2;P2OUT&=~BIT2  //ä¼ æ„Ÿå™¨ç”µé˜»æ‰€æŽ¥IOè¾“å‡º0
+#define PORT_SENS_HIGH P2DIR|=BIT2;P2OUT|=BIT2   //ä¼ æ„Ÿå™¨ç”µé˜»æ‰€æŽ¥IOè¾“å‡º1
+#define PORT_SENS_HZ   P2DIR &= ~BIT2            //ä¼ æ„Ÿå™¨ç”µé˜»æ‰€æŽ¥IOé«˜é˜»æ€
+#define TAR_CLEAR      TA0CTL |= TACLR           //æ¸…é™¤TAæ—¶é’Ÿè®¡æ•°å€¼
 
 extern unsigned char slope_measure_flag;
 extern unsigned int r_REF;

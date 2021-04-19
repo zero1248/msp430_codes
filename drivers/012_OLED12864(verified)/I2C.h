@@ -9,7 +9,7 @@
 #define __I2C_H__
 #include<msp430g2553.h>
 
-//define HARD_I2C      //选择硬件或软件I2C
+//define HARD_I2C      //閫夋嫨纭欢鎴栬蒋浠禝2C
 #define SOFT_I2C
 
 extern void I2C_Init();

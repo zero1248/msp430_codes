@@ -1,9 +1,9 @@
 /*
-                     MSP430FX1XXϵ���������ʾͨ����������
-  ˵�������������������˳��õ�LCD��ʾ����,����ʾ���֡���ĸ��
-        ������Ϊ���ֳ���ĵײ�����ʹ�á�
-        Ҫʹ�øÿ⺯������Ҫ�����ļ�(LCD_Display.c)���ӽ����̣�����
-        ��Ҫ������ʾ�������ļ���ͷ������"NixieTube.h"*/
+                     MSP430FX1XX系列数码管显示通用驱动程序
+  说明：该驱动程序库包含了常用的LCD显示功能,如显示数字、字母等
+        可以作为各种程序的底层驱动使用。
+        要使用该库函数，需要将本文件(LCD_Display.c)添加进工程，并在
+        需要调用显示函数的文件开头处包含"NixieTube.h"*/
 #include "NixieTube.h"
 #include <msp430x16x.h>
 
@@ -15,7 +15,7 @@
 #define f             0x20             // E      C  ......
 #define g             0x40             // DDDDDDD  ......
 #define DOTSEG        0x80
-#define NEGSEG        0x40       //DOTSEG��С���� NEGSEG�Ǹ���
+#define NEGSEG        0x40       //DOTSEG是小数点 NEGSEG是负号
 unsigned char Segment_Tab[] = {
   a + b + c + d + e + f,                        // Displays "0"
   b + c,                                        // Displays "1"
@@ -37,7 +37,7 @@ unsigned char Segment_Tab[] = {
   b,                                            // Displays "'"
   0                                             // Displays " "
 };
-#undef a              //�ͷ�Ԥ����
+#undef a              //释放预定义
 #undef b
 #undef c
 #undef d
@@ -46,24 +46,24 @@ unsigned char Segment_Tab[] = {
 #undef g
 
 /****************************************************************************
-* ��    �ƣ�Nixie_Delay()
-* ��    �ܣ����ڿ��������ɨ���ٶ�
-* ��ڲ�������
-* ���ڲ�������
-* ˵    ��: delayԽСˢ��Խ��
+* 名    称：Nixie_Delay()
+* 功    能：用于控制数码管扫描速度
+* 入口参数：无
+* 出口参数：无
+* 说    明: delay越小刷新越快
 ****************************************************************************/
-void Nixie_Delay(void){      //��ͨ��ʱ��֤����
+void Nixie_Delay(void){      //普通延时保证不闪
     unsigned int delay;
     for ( delay = 1200 ; delay > 0 ; delay -- );
 }
 
 /****************************************************************************
-* ��    �ƣ�Nixie_Display()
-* ��    �ܣ���ĳһλ�������ʾһ�����ֻ���ĸ
-* ��ڲ�����bit  Ҫ��ʾ����ܵ�λ��
-                   segment  Ҫ��ʾ�����ֻ���ĸ
-* ���ڲ�������
-* ˵    ��: ����ֱ��д��ʮ���Ƽ��ɣ�����ܵ�˳�����������ʾ
+* 名    称：Nixie_Display()
+* 功    能：让某一位数码管显示一个数字或字母
+* 入口参数：bit  要显示数码管的位置
+                   segment  要显示的数字或字母
+* 出口参数：无
+* 说    明: 参数直接写成十进制即可，数码管的顺序从左往右显示
 ****************************************************************************/
 void Nixie_Display(unsigned char bit , unsigned char segment){
     switch( segment ){
@@ -100,12 +100,12 @@ void Nixie_Display(unsigned char bit , unsigned char segment){
 }
 
 /****************************************************************************
-* ��    �ƣ�Nixie_All_Delay()
-* ��    �ܣ�һ���������д�˸��̶������ֻ���ĸ
-* ��ڲ�������
-* ���ڲ�������
-* ˵    ��: ����ͷ�ļ����޸�Ҫ��ʾ�Ĳ������д��Ľ�
-               �Ľ���������ͨ�����ַ������� �ں����н��ַ��������ж�Ȼ����ʾ
+* 名    称：Nixie_All_Delay()
+* 功    能：一次向数码管写八个固定的数字或字母
+* 入口参数：无
+* 出口参数：无
+* 说    明: 需在头文件中修改要显示的参数，有待改进
+               改进方案：可通过以字符串输入 在函数中将字符串进行判断然后显示
 ****************************************************************************/
 void Nixie_All_Display(void){
     NIXIE_DISPLAY1;  BIT_SEL0;  Nixie_Delay();

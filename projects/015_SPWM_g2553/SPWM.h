@@ -8,9 +8,9 @@
 #ifndef __SPWM_H__
 #define __SPWM_H__
 
-#define CSMCLK  12000000  //SMCLKÎª12MHz
-#define SIN_F   200       //¶¨ÒåÊä³öÕıÏÒ²¨ÆµÂÊÎª200Hz
-#define SIN_NUM 16        //¶¨ÒåÕıÏÒ²¨²é±í²ÉÑùÊı¾İ
+#define CSMCLK  12000000  //SMCLKä¸º12MHz
+#define SIN_F   200       //å®šä¹‰è¾“å‡ºæ­£å¼¦æ³¢é¢‘ç‡ä¸º200Hz
+#define SIN_NUM 16        //å®šä¹‰æ­£å¼¦æ³¢æŸ¥è¡¨é‡‡æ ·æ•°æ®
 
 extern void ADC10_WaveSample(void);
 extern void Timer0_A_Init(void);

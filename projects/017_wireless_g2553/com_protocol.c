@@ -22,42 +22,42 @@ char temperature_temp[5] = {0,0,0,0,0};
 #define LOCAL_ADDRESS 0x40
 
 /********************************************************
-*Ãû        ³Æ£ºDisplay_FixedData()
-*¹¦        ÄÜ£ºÏÔÊ¾¹Ì¶¨ºº×ÖÍ¼Æ¬
-*Èë¿Ú²ÎÊı £ºÎŞ
-*³ö¿Ú²ÎÊı £ºÎå
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šDisplay_FixedData()
+*åŠŸ        èƒ½ï¼šæ˜¾ç¤ºå›ºå®šæ±‰å­—å›¾ç‰‡
+*å…¥å£å‚æ•° ï¼šæ— 
+*å‡ºå£å‚æ•° ï¼šäº”
+*è¯´        æ˜ï¼š
 ********************************************************/
 void Display_FixedData(void)
 {
-	OLED_Reset();//ÇåÆÁ
-	OLED_Display_16x16(0,0,1);      /*"ÎŞ"*/
-	OLED_Display_16x16(16,0,2);     /*"Ïß"*/
-	OLED_Display_16x16(32,0,3);     /*"»·"*/
-	OLED_Display_16x16(48,0,4);		/*"¾³"*/
-	OLED_Display_16x16(64,0,5);		/*"¼à"*/
-	OLED_Display_16x16(80,0,6);		/*"²â"*/
-	OLED_Display_16x16(96,0,7);		/*"ÒÇ"*/
-	OLED_Display_16x16(112,0,8);    /*µçÁ¿*/
-	OLED_Display_16x16(0,2,10);     /*"½Ú"*/
-	OLED_Display_16x16(16,2,11);    /*"µã"*/
+	OLED_Reset();//æ¸…å±
+	OLED_Display_16x16(0,0,1);      /*"æ— "*/
+	OLED_Display_16x16(16,0,2);     /*"çº¿"*/
+	OLED_Display_16x16(32,0,3);     /*"ç¯"*/
+	OLED_Display_16x16(48,0,4);		/*"å¢ƒ"*/
+	OLED_Display_16x16(64,0,5);		/*"ç›‘"*/
+	OLED_Display_16x16(80,0,6);		/*"æµ‹"*/
+	OLED_Display_16x16(96,0,7);		/*"ä»ª"*/
+	OLED_Display_16x16(112,0,8);    /*ç”µé‡*/
+	OLED_Display_16x16(0,2,10);     /*"èŠ‚"*/
+	OLED_Display_16x16(16,2,11);    /*"ç‚¹"*/
 	OLED_Display_8x16 (32,2,"1 ");  /*"1 "*/
-	OLED_Display_16x16(80,2,12);    /*"¡æ"*/
-	OLED_Display_16x16(111,2,13);   /*ÓĞ¹â*/
-	OLED_Display_16x16(0,4,10);     /*"½Ú"*/
-	OLED_Display_16x16(16,4,11);    /*"µã"*/
+	OLED_Display_16x16(80,2,12);    /*"â„ƒ"*/
+	OLED_Display_16x16(111,2,13);   /*æœ‰å…‰*/
+	OLED_Display_16x16(0,4,10);     /*"èŠ‚"*/
+	OLED_Display_16x16(16,4,11);    /*"ç‚¹"*/
 	OLED_Display_8x16 (32,4,"2 ");  /*"2 "*/
-	OLED_Display_16x16(80,4,12);    /*"¡æ"*/
-	OLED_Display_16x16(111,4,13);   /*ÓĞ¹â*/
+	OLED_Display_16x16(80,4,12);    /*"â„ƒ"*/
+	OLED_Display_16x16(111,4,13);   /*æœ‰å…‰*/
 	OLED_Display_8x16 (48,6,"XDU Lab423");
 }
 
 /********************************************************
-*Ãû       ³Æ£ºDisplay_Data()
-*¹¦       ÄÜ£ºÖ÷»úÏÔÊ¾ËùÓĞÊı¾İ
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºµ÷ÓÃ¸÷¸öÄ£¿é
+*å       ç§°ï¼šDisplay_Data()
+*åŠŸ       èƒ½ï¼šä¸»æœºæ˜¾ç¤ºæ‰€æœ‰æ•°æ®
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šè°ƒç”¨å„ä¸ªæ¨¡å—
 ********************************************************/
 void Display_Data(void)
 {
@@ -68,16 +68,16 @@ void Display_Data(void)
 	unsigned char node = 0;
 	float float_temp = 1.0;
 	unsigned char electric_data = 0;
-	//-------------»ñÈ¡½ÚµãĞÅÏ¢-------------
+	//-------------è·å–èŠ‚ç‚¹ä¿¡æ¯-------------
 	node = Rx_Data_Packet[1];
-	//-------------»ñÈ¡¹âÕÕĞÅÏ¢-------------
+	//-------------è·å–å…‰ç…§ä¿¡æ¯-------------
 	LDR_data = Rx_Data_Packet[3] & 0x80;
-	//-------------»ñÈ¡ÎÂ¶ÈĞÅÏ¢-------------
+	//-------------è·å–æ¸©åº¦ä¿¡æ¯-------------
 	temp_high = Rx_Data_Packet[3] & 0x07;
 	temp_low  = Rx_Data_Packet[4];
-	//-------------»ñÈ¡µçÁ¿ĞÅÏ¢-------------
+	//-------------è·å–ç”µé‡ä¿¡æ¯-------------
 	electric_data = Get_Electric();
-	//-------------×ª»»ÎÂ¶È-------------
+	//-------------è½¬æ¢æ¸©åº¦-------------
 	temperature_data = temp_high;
 	temperature_data = (temperature_data << 8) | temp_low;
 	float_temp = temperature_data * 0.0625;
@@ -88,8 +88,8 @@ void Display_Data(void)
 	temperature_temp[2] = '.';
 	temperature_temp[3] = '0'+ ( temperature_data %10 );
 	temperature_temp[4] = '\0';
-	//----------------ÏÔÊ¾Êı¾İ--------------------
-	if( electric_data ) //µçÁ¿×ã
+	//----------------æ˜¾ç¤ºæ•°æ®--------------------
+	if( electric_data ) //ç”µé‡è¶³
 		OLED_Display_16x16(112,0,8);
 	else
 		OLED_Display_16x16(112,0,9);
@@ -98,18 +98,18 @@ void Display_Data(void)
 		case NODE_1:
 		{
 			OLED_Display_8x16 (48,2,temperature_temp);
-			if( LDR_data )   //ÓĞ¹âÕÕ
+			if( LDR_data )   //æœ‰å…‰ç…§
 				OLED_Display_16x16 (111,2,13);
-			else             //ÎŞ¹âÕÕ
+			else             //æ— å…‰ç…§
 				OLED_Display_16x16 (111,2,14);
 		}
 		break;
 		case NODE_2:
 		{
 			OLED_Display_8x16 (48,4,temperature_temp);
-			if( LDR_data )   //ÓĞ¹âÕÕ
+			if( LDR_data )   //æœ‰å…‰ç…§
 				OLED_Display_16x16 (111,4,13);
-			else             //ÎŞ¹âÕÕ
+			else             //æ— å…‰ç…§
 				OLED_Display_16x16 (111,4,14);
 		}
 		break;
@@ -118,11 +118,11 @@ void Display_Data(void)
 }
 
 /********************************************************
-*Ãû        ³Æ£ºPacket_Data()
-*¹¦        ÄÜ£ºÖ÷»ú´ò°üÒª·¢ËÍµÄÊı¾İ
-*Èë¿Ú²ÎÊı£ºsource_address-Ô´µØÖ·£¨¼´Ö÷»úµØÖ·£©£¬target_address-Ä¿±êµØÖ·
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šPacket_Data()
+*åŠŸ        èƒ½ï¼šä¸»æœºæ‰“åŒ…è¦å‘é€çš„æ•°æ®
+*å…¥å£å‚æ•°ï¼šsource_address-æºåœ°å€ï¼ˆå³ä¸»æœºåœ°å€ï¼‰ï¼Œtarget_address-ç›®æ ‡åœ°å€
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜ï¼š
 ********************************************************/
 void Packet_Data( unsigned char source_address,unsigned char target_address )
 {
@@ -134,21 +134,21 @@ void Packet_Data( unsigned char source_address,unsigned char target_address )
 //	temp_data = DS18B20_ReadTempData();
 //	temp_low = (unsigned char)temp_data;
 //	temp_high = (unsigned char)(temp_data >> 8);
-//	temp_high |= LDR_data; //½«¹âÕÕĞÅÏ¢ÓëÎÂ¶ÈÊı¾İ¸ß×Ö½ÚºÏ²¢
-	Tx_Data_Packet[0] = MATCHING_CODE;   //Æ¥ÅäÂë
-	Tx_Data_Packet[1] = source_address;   //Êı¾İÔ´µØÖ·Âë£¬¿ÉÒÔÊÇ±¾»úµØÖ·£¬Ò²¿ÉÒÔÊÇÖĞ¼ÌÔ´µØÖ·
-	Tx_Data_Packet[2] = target_address;  //Ä¿±êµØÖ·Âë
-	Tx_Data_Packet[3] = 0xaa;            //Ó¦´ğ
+//	temp_high |= LDR_data; //å°†å…‰ç…§ä¿¡æ¯ä¸æ¸©åº¦æ•°æ®é«˜å­—èŠ‚åˆå¹¶
+	Tx_Data_Packet[0] = MATCHING_CODE;   //åŒ¹é…ç 
+	Tx_Data_Packet[1] = source_address;   //æ•°æ®æºåœ°å€ç ï¼Œå¯ä»¥æ˜¯æœ¬æœºåœ°å€ï¼Œä¹Ÿå¯ä»¥æ˜¯ä¸­ç»§æºåœ°å€
+	Tx_Data_Packet[2] = target_address;  //ç›®æ ‡åœ°å€ç 
+	Tx_Data_Packet[3] = 0xaa;            //åº”ç­”
 	Tx_Data_Packet[4] = 0xaa;
 	Tx_Data_Packet[5] = '\0';
 }
 
 /********************************************************
-*Ãû        ³Æ£ºExtract_Data()
-*¹¦        ÄÜ£ºÌáÈ¡½ÓÊÕµ½µÄÊı¾İÖ¡
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£º1-³É¹¦£¬0-Ê§°Ü
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šExtract_Data()
+*åŠŸ        èƒ½ï¼šæå–æ¥æ”¶åˆ°çš„æ•°æ®å¸§
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸï¼Œ0-å¤±è´¥
+*è¯´        æ˜ï¼š
 ********************************************************/
 unsigned char Extract_Data(void)
 {
@@ -161,10 +161,10 @@ unsigned char Extract_Data(void)
 		if(  temp_1 == 0x41 || temp_1 == 0x42 )
 		{
 			Rx_Data_Packet[0] = temp;
-			Rx_Data_Packet[1] = temp_1; //À´Ô´
-			Rx_Data_Packet[2] = Rx_FIFO_ReadChar(); //È¥Ïò
-			Rx_Data_Packet[3] = Rx_FIFO_ReadChar(); //¹âÕÕ+ÎÂ¶È¸ß
-			Rx_Data_Packet[4] = Rx_FIFO_ReadChar(); //ÎÂ¶ÈµÍ
+			Rx_Data_Packet[1] = temp_1; //æ¥æº
+			Rx_Data_Packet[2] = Rx_FIFO_ReadChar(); //å»å‘
+			Rx_Data_Packet[3] = Rx_FIFO_ReadChar(); //å…‰ç…§+æ¸©åº¦é«˜
+			Rx_Data_Packet[4] = Rx_FIFO_ReadChar(); //æ¸©åº¦ä½
 			Rx_Data_Packet[5] = Rx_FIFO_ReadChar(); // \0
 			return 1;
 		}
@@ -176,11 +176,11 @@ unsigned char Extract_Data(void)
 }
 
 /********************************************************
-*Ãû        ³Æ£ºAnalysis_Data()
-*¹¦        ÄÜ£º½âÎö½ÓÊÕµ½µÄÊı¾İÖ¡£¬ÅĞ¶ÏÊı¾İÀ´Ô´¼°È¥Ïò
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£º1-³É¹¦£¬0-Ê§°Ü
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šAnalysis_Data()
+*åŠŸ        èƒ½ï¼šè§£ææ¥æ”¶åˆ°çš„æ•°æ®å¸§ï¼Œåˆ¤æ–­æ•°æ®æ¥æºåŠå»å‘
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸï¼Œ0-å¤±è´¥
+*è¯´        æ˜ï¼š
 ********************************************************/
 void Analysis_Data(void)
 {
@@ -191,20 +191,20 @@ void Analysis_Data(void)
 	target_temp = Rx_Data_Packet[2];
 	temp_data = Rx_Data_Packet[3] & 0x03;
 	if( (target_temp == LOCAL_ADDRESS)&&(Rx_Data_Packet[4]!=MATCHING_CODE) )
-	{	                              //ÊÇ´Ó»ú·¢¸ø×Ô¼º,¶øÇÒÄ©Î»Î´¶ªÊ§
+	{	                              //æ˜¯ä»æœºå‘ç»™è‡ªå·±,è€Œä¸”æœ«ä½æœªä¸¢å¤±
 		if( (source_temp == NODE_1) || (source_temp == NODE_2) )
 		{
 			if( (temp_data==0x01) && (Rx_Data_Packet[4]>=0x40) )
 			{
-				Display_Data();//ÏÔÊ¾ÊÕµ½ÄÚÈİ
+				Display_Data();//æ˜¾ç¤ºæ”¶åˆ°å†…å®¹
 			}
 			else if( (temp_data==0x02) && (Rx_Data_Packet[4]<=0x50) )
 			{
-				Display_Data();//ÏÔÊ¾ÊÕµ½ÄÚÈİ
+				Display_Data();//æ˜¾ç¤ºæ”¶åˆ°å†…å®¹
 			}
 		}
 	}
-	else    //²»ÊÇ·¢¸ø×Ô¼º£¬²»×ö´¦Àí
+	else    //ä¸æ˜¯å‘ç»™è‡ªå·±ï¼Œä¸åšå¤„ç†
 	{
 		//UART_RX_OPEN();
 	}
@@ -216,15 +216,15 @@ void Analysis_Data(void)
 #ifdef MONITOR_NODE1
 #define LOCAL_ADDRESS 0x41
 
-void Display_Data(void){}      //ÎªÁË¼æÈİĞ´¿Õº¯Êı
+void Display_Data(void){}      //ä¸ºäº†å…¼å®¹å†™ç©ºå‡½æ•°
 void Display_FixedData(void){}
 /********************************************************
-*Ãû        ³Æ£ºPacket_Data()
-*¹¦        ÄÜ£º´Ó»ú´ò°üÒª·¢ËÍµÄÊı¾İ
-*Èë¿Ú²ÎÊı£ºsource_address-Ô´µØÖ·
-		  target_address-Ä¿±êµØÖ·
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šPacket_Data()
+*åŠŸ        èƒ½ï¼šä»æœºæ‰“åŒ…è¦å‘é€çš„æ•°æ®
+*å…¥å£å‚æ•°ï¼šsource_address-æºåœ°å€
+		  target_address-ç›®æ ‡åœ°å€
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜ï¼š
 ********************************************************/
 void Packet_Data( unsigned char source_address,unsigned char target_address )
 {
@@ -238,21 +238,21 @@ void Packet_Data( unsigned char source_address,unsigned char target_address )
 	temp_temp = temp_data;
 	temp_low = (unsigned char)temp_temp;
 	temp_high =(unsigned char) (temp_data>>8);
-	temp_high |= LDR_data; //½«¹âÕÕĞÅÏ¢ÓëÎÂ¶ÈÊı¾İ¸ß×Ö½ÚºÏ²¢
-	Tx_Data_Packet[0] = MATCHING_CODE;   //Æ¥ÅäÂë
-	Tx_Data_Packet[1] = source_address;   //Êı¾İÔ´µØÖ·Âë£¬¿ÉÒÔÊÇ±¾»úµØÖ·£¬Ò²¿ÉÒÔÊÇÖĞ¼ÌÔ´µØÖ·
-	Tx_Data_Packet[2] = target_address;  //Ä¿±êµØÖ·Âë
+	temp_high |= LDR_data; //å°†å…‰ç…§ä¿¡æ¯ä¸æ¸©åº¦æ•°æ®é«˜å­—èŠ‚åˆå¹¶
+	Tx_Data_Packet[0] = MATCHING_CODE;   //åŒ¹é…ç 
+	Tx_Data_Packet[1] = source_address;   //æ•°æ®æºåœ°å€ç ï¼Œå¯ä»¥æ˜¯æœ¬æœºåœ°å€ï¼Œä¹Ÿå¯ä»¥æ˜¯ä¸­ç»§æºåœ°å€
+	Tx_Data_Packet[2] = target_address;  //ç›®æ ‡åœ°å€ç 
 	Tx_Data_Packet[3] = temp_high;
 	Tx_Data_Packet[4] = temp_low;
 	Tx_Data_Packet[5] = '\0';
 }
 
 /********************************************************
-*Ãû        ³Æ£ºExtract_Data()
-*¹¦        ÄÜ£ºÌáÈ¡½ÓÊÕµ½µÄÊı¾İÖ¡
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£º1-³É¹¦£¬0-Ê§°Ü
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šExtract_Data()
+*åŠŸ        èƒ½ï¼šæå–æ¥æ”¶åˆ°çš„æ•°æ®å¸§
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸï¼Œ0-å¤±è´¥
+*è¯´        æ˜ï¼š
 ********************************************************/
 unsigned char Extract_Data(void)
 {
@@ -262,10 +262,10 @@ unsigned char Extract_Data(void)
 	{
 		UART_TX_OPEN();
 		Rx_Data_Packet[0] = temp;
-		Rx_Data_Packet[1] = Rx_FIFO_ReadChar(); //À´Ô´
-		Rx_Data_Packet[2] = Rx_FIFO_ReadChar(); //È¥Ïò
-		Rx_Data_Packet[3] = Rx_FIFO_ReadChar(); //¹âÕÕ+ÎÂ¶È¸ß
-		Rx_Data_Packet[4] = Rx_FIFO_ReadChar(); //ÎÂ¶ÈµÍ
+		Rx_Data_Packet[1] = Rx_FIFO_ReadChar(); //æ¥æº
+		Rx_Data_Packet[2] = Rx_FIFO_ReadChar(); //å»å‘
+		Rx_Data_Packet[3] = Rx_FIFO_ReadChar(); //å…‰ç…§+æ¸©åº¦é«˜
+		Rx_Data_Packet[4] = Rx_FIFO_ReadChar(); //æ¸©åº¦ä½
 		Rx_Data_Packet[5] = '\0'; // \0
 		return (1);
 	}
@@ -273,11 +273,11 @@ unsigned char Extract_Data(void)
 }
 
 /********************************************************
-*Ãû        ³Æ£ºAnalysis_Data()
-*¹¦        ÄÜ£º½âÎö½ÓÊÕµ½µÄÊı¾İÖ¡£¬ÅĞ¶ÏÊı¾İÀ´Ô´¼°È¥Ïò
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£º1-³É¹¦£¬0-Ê§°Ü
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šAnalysis_Data()
+*åŠŸ        èƒ½ï¼šè§£ææ¥æ”¶åˆ°çš„æ•°æ®å¸§ï¼Œåˆ¤æ–­æ•°æ®æ¥æºåŠå»å‘
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸï¼Œ0-å¤±è´¥
+*è¯´        æ˜ï¼š
 ********************************************************/
 void Analysis_Data(void)
 {
@@ -286,11 +286,11 @@ void Analysis_Data(void)
 	temp_data = Rx_Data_Packet[3] & 0x03;
 	target_temp = Rx_Data_Packet[2];
 	if( target_temp == LOCAL_ADDRESS )
-	{              //ÊÇÖ÷»ú·¢¸ø×Ô¼º£¨Ó¦´ğ£©£¬²»×ö´¦Àí
+	{              //æ˜¯ä¸»æœºå‘ç»™è‡ªå·±ï¼ˆåº”ç­”ï¼‰ï¼Œä¸åšå¤„ç†
 		//UART_RX_OPEN( );
 	}
 	else if(target_temp == NODE_2)
-	{             //²»ÊÇ·¢¸ø×Ô¼º£¬¼ÌĞø·¢ËÍ¸øÄ¿±êµØÖ·
+	{             //ä¸æ˜¯å‘ç»™è‡ªå·±ï¼Œç»§ç»­å‘é€ç»™ç›®æ ‡åœ°å€
 		if( (temp_data==0x01) || (temp_data==0x02) )
 		{
 			UART_TX_OPEN();
@@ -318,15 +318,15 @@ void Analysis_Data(void)
 #ifdef MONITOR_NODE2
 #define LOCAL_ADDRESS 0x42
 
-void Display_Data(void){}      //ÎªÁË¼æÈİĞ´¿Õº¯Êı
+void Display_Data(void){}      //ä¸ºäº†å…¼å®¹å†™ç©ºå‡½æ•°
 void Display_FixedData(void){}
 /********************************************************
-*Ãû        ³Æ£ºPacket_Data()
-*¹¦        ÄÜ£º´Ó»ú´ò°üÒª·¢ËÍµÄÊı¾İ
-*Èë¿Ú²ÎÊı£ºsource_address-Ô´µØÖ·
-		  target_address-Ä¿±êµØÖ·
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šPacket_Data()
+*åŠŸ        èƒ½ï¼šä»æœºæ‰“åŒ…è¦å‘é€çš„æ•°æ®
+*å…¥å£å‚æ•°ï¼šsource_address-æºåœ°å€
+		  target_address-ç›®æ ‡åœ°å€
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜ï¼š
 ********************************************************/
 void Packet_Data( unsigned char source_address,unsigned char target_address )
 {
@@ -340,21 +340,21 @@ void Packet_Data( unsigned char source_address,unsigned char target_address )
 	temp_temp = temp_data;
 	temp_low = (unsigned char)temp_temp;
 	temp_high =(unsigned char) (temp_data>>8);
-	temp_high |= LDR_data; //½«¹âÕÕĞÅÏ¢ÓëÎÂ¶ÈÊı¾İ¸ß×Ö½ÚºÏ²¢
-	Tx_Data_Packet[0] = MATCHING_CODE;   //Æ¥ÅäÂë
-	Tx_Data_Packet[1] = source_address;   //Êı¾İÔ´µØÖ·Âë£¬¿ÉÒÔÊÇ±¾»úµØÖ·£¬Ò²¿ÉÒÔÊÇÖĞ¼ÌÔ´µØÖ·
-	Tx_Data_Packet[2] = target_address;  //Ä¿±êµØÖ·Âë
+	temp_high |= LDR_data; //å°†å…‰ç…§ä¿¡æ¯ä¸æ¸©åº¦æ•°æ®é«˜å­—èŠ‚åˆå¹¶
+	Tx_Data_Packet[0] = MATCHING_CODE;   //åŒ¹é…ç 
+	Tx_Data_Packet[1] = source_address;   //æ•°æ®æºåœ°å€ç ï¼Œå¯ä»¥æ˜¯æœ¬æœºåœ°å€ï¼Œä¹Ÿå¯ä»¥æ˜¯ä¸­ç»§æºåœ°å€
+	Tx_Data_Packet[2] = target_address;  //ç›®æ ‡åœ°å€ç 
 	Tx_Data_Packet[3] = temp_high;
 	Tx_Data_Packet[4] = temp_low;
 	Tx_Data_Packet[5] = '\0';
 }
 
 /********************************************************
-*Ãû        ³Æ£ºExtract_Data()
-*¹¦        ÄÜ£ºÌáÈ¡½ÓÊÕµ½µÄÊı¾İÖ¡
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£º1-³É¹¦£¬0-Ê§°Ü
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šExtract_Data()
+*åŠŸ        èƒ½ï¼šæå–æ¥æ”¶åˆ°çš„æ•°æ®å¸§
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸï¼Œ0-å¤±è´¥
+*è¯´        æ˜ï¼š
 ********************************************************/
 unsigned char Extract_Data(void)
 {
@@ -363,10 +363,10 @@ unsigned char Extract_Data(void)
 	if( temp == MATCHING_CODE )
 	{
 		Rx_Data_Packet[0] = temp;
-		Rx_Data_Packet[1] = Rx_FIFO_ReadChar(); //À´Ô´
-		Rx_Data_Packet[2] = Rx_FIFO_ReadChar(); //È¥Ïò
-		Rx_Data_Packet[3] = Rx_FIFO_ReadChar(); //¹âÕÕ+ÎÂ¶È¸ß
-		Rx_Data_Packet[4] = Rx_FIFO_ReadChar(); //ÎÂ¶ÈµÍ
+		Rx_Data_Packet[1] = Rx_FIFO_ReadChar(); //æ¥æº
+		Rx_Data_Packet[2] = Rx_FIFO_ReadChar(); //å»å‘
+		Rx_Data_Packet[3] = Rx_FIFO_ReadChar(); //å…‰ç…§+æ¸©åº¦é«˜
+		Rx_Data_Packet[4] = Rx_FIFO_ReadChar(); //æ¸©åº¦ä½
 		Rx_Data_Packet[5] = Rx_FIFO_ReadChar(); // \0
 		return (1);
 	}
@@ -374,11 +374,11 @@ unsigned char Extract_Data(void)
 }
 
 /********************************************************
-*Ãû        ³Æ£ºAnalysis_Data()
-*¹¦        ÄÜ£º½âÎö½ÓÊÕµ½µÄÊı¾İÖ¡£¬ÅĞ¶ÏÊı¾İÀ´Ô´¼°È¥Ïò
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£º1-³É¹¦£¬0-Ê§°Ü
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šAnalysis_Data()
+*åŠŸ        èƒ½ï¼šè§£ææ¥æ”¶åˆ°çš„æ•°æ®å¸§ï¼Œåˆ¤æ–­æ•°æ®æ¥æºåŠå»å‘
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸï¼Œ0-å¤±è´¥
+*è¯´        æ˜ï¼š
 ********************************************************/
 void Analysis_Data(void)
 {
@@ -387,11 +387,11 @@ void Analysis_Data(void)
 	temp_data = Rx_Data_Packet[3] & 0x03;
 	target_temp = Rx_Data_Packet[2];
 	if( target_temp == LOCAL_ADDRESS )
-	{                //ÊÇÖ÷»ú·¢¸ø×Ô¼º£¨Ó¦´ğ£©£¬²»×ö´¦Àí
+	{                //æ˜¯ä¸»æœºå‘ç»™è‡ªå·±ï¼ˆåº”ç­”ï¼‰ï¼Œä¸åšå¤„ç†
 		//UART_RX_OPEN();
 	}
 	else if(target_temp == NODE_1)
-	{               //²»ÊÇ·¢¸ø×Ô¼º£¬¼ÌĞø·¢ËÍ¸øÄ¿±êµØÖ·
+	{               //ä¸æ˜¯å‘ç»™è‡ªå·±ï¼Œç»§ç»­å‘é€ç»™ç›®æ ‡åœ°å€
 		if( (temp_data==0x01) || (temp_data==0x02) )
 		{
 			UART_TX_OPEN();

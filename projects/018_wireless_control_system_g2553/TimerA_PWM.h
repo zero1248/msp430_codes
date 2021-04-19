@@ -8,7 +8,7 @@
 #ifndef __TIMERA_PWM_H__
 #define __TIMERA_PWM_H__
 
-#define DEADTIME 20  //ËÀÇøÊ±¼ä
+#define DEADTIME 20  //????
 #define TA01_SET P1SEL|=BIT6;P1DIR|=BIT6 //P1.6
 #define TA11_SET P2SEL|=BIT1;P2DIR|=BIT1 //P2.1
 #define TA12_SET P2SEL|=BIT4;P2DIR|=BIT4 //P2.4

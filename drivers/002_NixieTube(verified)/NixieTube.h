@@ -1,12 +1,12 @@
-/*****************¹²ÒõÊıÂë¹Ü**********************/
-/******74HC573OEÖ±½Ó½ÓµØ£¬LEÖ±½Ó½ÓVCC *******/
+/*****************å…±é˜´æ•°ç ç®¡**********************/
+/******74HC573OEç›´æ¥æ¥åœ°ï¼ŒLEç›´æ¥æ¥VCC *******/
 #ifndef   __NIXIETUBE_H__
 #define  __NIXIETUBE_H__
 
-//P3OUT¶ÎÑ¡Êı¾İ
-//P4OUTÎ»Ñ¡Êı¾İ
+//P3OUTæ®µé€‰æ•°æ®
+//P4OUTä½é€‰æ•°æ®
 extern unsigned char Segment_Tab[19];
-/**************ÊıÂë¹ÜÊä³öÊı¾İ*****************/
+/**************æ•°ç ç®¡è¾“å‡ºæ•°æ®*****************/
 #define  NIXIE_DISPLAY0  P3OUT = Segment_Tab[0]
 #define  NIXIE_DISPLAY1  P3OUT = Segment_Tab[1]
 #define  NIXIE_DISPLAY2  P3OUT = Segment_Tab[2]
@@ -23,17 +23,17 @@ extern unsigned char Segment_Tab[19];
 #define  NIXIE_DISPLAYD  P3OUT = Segment_Tab[13]
 #define  NIXIE_DISPLAYE  P3OUT = Segment_Tab[14]
 #define  NIXIE_DISPLAYF  P3OUT = Segment_Tab[15]
-/**************ÊıÂë¹ÜÊä³öÊı¾İ*****************/
+/**************æ•°ç ç®¡è¾“å‡ºæ•°æ®*****************/
 
-/*74HC573Î»Ñ¡¡¢¶ÎÑ¡µÄÍ¨¶Ï¿ØÖÆ*/
-#define SEG_SEL  P3OUT        //¶ÎÑ¡
-#define BIT_SEL  P4OUT        //Î»Ñ¡
-/*#define SEG_ON    PxOUT |= BITx    //¶ÎÑ¡¸ßµçÆ½Ñ¡Í¨  £¨74HC573£©
+/*74HC573ä½é€‰ã€æ®µé€‰çš„é€šæ–­æ§åˆ¶*/
+#define SEG_SEL  P3OUT        //æ®µé€‰
+#define BIT_SEL  P4OUT        //ä½é€‰
+/*#define SEG_ON    PxOUT |= BITx    //æ®µé€‰é«˜ç”µå¹³é€‰é€š  ï¼ˆ74HC573ï¼‰
 #define SEG_OFF    PxOUT &= ~BITx
-#define BIT_ON     PxOUT |= BITx   //Î»Ñ¡¸ßµçÆ½Ñ¡Í¨
+#define BIT_ON     PxOUT |= BITx   //ä½é€‰é«˜ç”µå¹³é€‰é€š
 #define BIT_OFF    PxOUT &= ~BITx   */
 
-/*ÊıÂë¹Ü¸÷Î»µÍµçÆ½Ñ¡Í¨*/
+/*æ•°ç ç®¡å„ä½ä½ç”µå¹³é€‰é€š*/
 #define  BIT_SEL0  P4OUT = 0xfe
 #define  BIT_SEL1  P4OUT = 0xfd
 #define  BIT_SEL2  P4OUT = 0xfb
@@ -43,10 +43,10 @@ extern unsigned char Segment_Tab[19];
 #define  BIT_SEL6  P4OUT = 0xbf
 #define  BIT_SEL7  P4OUT = 0x7f
 
-/*ÊıÂë¹ÜÊä³ö¸ßµçÆ½·ÀÖ¹»ìÂÒ,74HC OE¡¢LE¿ªÆôÊ±ÓÃ*/
+/*æ•°ç ç®¡è¾“å‡ºé«˜ç”µå¹³é˜²æ­¢æ··ä¹±,74HC OEã€LEå¼€å¯æ—¶ç”¨*/
 #define  NIXIE_DISPLAY_INIT  P3OUT |= 0xff
 
 void Nixie_Delay(void);
-void Nixie_Display(unsigned char bit , unsigned char segment );// Î»Êı¾İ ¶ÎÊı¾İ
+void Nixie_Display(unsigned char bit , unsigned char segment );// ä½æ•°æ® æ®µæ•°æ®
 void Nixie_All_Display(void);
 #endif // __NIXIETUBE_H__

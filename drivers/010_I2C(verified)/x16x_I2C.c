@@ -8,19 +8,19 @@
  #include"I2C.h"
 
 
-//-------Îª¼æÈÝÓ²¼þI2C±àÐ´µÄ¿Õº¯Êý-------
+//-------ä¸ºå…¼å®¹ç¡¬ä»¶I2Cç¼–å†™çš„ç©ºå‡½æ•°-------
 void I2C_Tx_Init(){}
 void I2C_Rx_Init(){}
 
 /***********************************************************
-*Ãû       ³Æ£ºI2C_delay_us()
-*¹¦       ÄÜ£ºus¾«È·ÑÓÊ±
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£ºÊµ¼ÊÑÓÊ±ÖµÓëCPUÊ±ÖÓÆµÂÊÓÐ¹Ø£¬ËùÒÔÓÃSI2C_MCLK_FREQÀ´×Ô¶¯µ÷Õû
-	             ²»Í¬µÄI2CÉè±¸ËÙ¶È²»Ò»Ñù£¬ÑÓÊ±²ÎÊýÊÓÇé¿ö¶ø¶¨
+*å       ç§°ï¼šI2C_delay_us()
+*åŠŸ       èƒ½ï¼šusç²¾ç¡®å»¶æ—¶
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼šå®žé™…å»¶æ—¶å€¼ä¸ŽCPUæ—¶é’Ÿé¢‘çŽ‡æœ‰å…³ï¼Œæ‰€ä»¥ç”¨SI2C_MCLK_FREQæ¥è‡ªåŠ¨è°ƒæ•´
+	             ä¸åŒçš„I2Cè®¾å¤‡é€Ÿåº¦ä¸ä¸€æ ·ï¼Œå»¶æ—¶å‚æ•°è§†æƒ…å†µè€Œå®š
 ***********************************************************/
-static void I2C_delay_us()//Ä¬ÈÏÈ¡¿Õº¯Êý
+static void I2C_delay_us()//é»˜è®¤å–ç©ºå‡½æ•°
 {
 	//__delay_cycles(I2C_MCLK_FREQ / 1000);    //1000us
 	//__delay_cycles(I2C_MCLK_FREQ / 10000);   //100us
@@ -29,12 +29,12 @@ static void I2C_delay_us()//Ä¬ÈÏÈ¡¿Õº¯Êý
 }
 
 /********************************************************
-*Ãû       ³Æ£ºI2C_Start()
-*¹¦       ÄÜ£ºÄ£ÄâI2CÆðÊ¼Î»
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£ºÔÚÊý¾Ý×ÜÏß±£³Ö¸ßµçÆ½Ê±£¬Êý¾Ý×ÜÏß²úÉúÏÂ½µÑØ
-                      ×ÜÏß¿ÕÏÐÊ±×ÜÊÇ¸ßµçÆ½
+*å       ç§°ï¼šI2C_Start()
+*åŠŸ       èƒ½ï¼šæ¨¡æ‹ŸI2Cèµ·å§‹ä½
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼šåœ¨æ•°æ®æ€»çº¿ä¿æŒé«˜ç”µå¹³æ—¶ï¼Œæ•°æ®æ€»çº¿äº§ç”Ÿä¸‹é™æ²¿
+                      æ€»çº¿ç©ºé—²æ—¶æ€»æ˜¯é«˜ç”µå¹³
 ********************************************************/
 void I2C_Start(void)
 {
@@ -49,12 +49,12 @@ void I2C_Start(void)
 }
 
 /********************************************************
-*Ãû       ³Æ£ºI2C_Stop()
-*¹¦       ÄÜ£ºÄ£ÄâI2CÍ£Ö¹Î»
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£ºÔÚÊý¾Ý×ÜÏß±£³Ö¸ßµçÆ½Ê±£¬Êý¾Ý×ÜÏß²úÉúÉÏÉýÑØ
-                      ×ÜÏß¿ÕÏÐÊ±×ÜÊÇ¸ßµçÆ½
+*å       ç§°ï¼šI2C_Stop()
+*åŠŸ       èƒ½ï¼šæ¨¡æ‹ŸI2Cåœæ­¢ä½
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼šåœ¨æ•°æ®æ€»çº¿ä¿æŒé«˜ç”µå¹³æ—¶ï¼Œæ•°æ®æ€»çº¿äº§ç”Ÿä¸Šå‡æ²¿
+                      æ€»çº¿ç©ºé—²æ—¶æ€»æ˜¯é«˜ç”µå¹³
 ********************************************************/
 void I2C_Stop(void)
 {
@@ -69,33 +69,33 @@ void I2C_Stop(void)
 }
 
 /********************************************************
-*Ãû       ³Æ£ºI2C_Init()
-*¹¦       ÄÜ£º¼æÈÝÓ²¼þI2CµÄ¸ñÊ½µÄ³õÊ¼»¯º¯Êý
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£ºI2CµÄ³õÊ¼×´Ì¬¾ÍÊÇ×ÜÏßÊÍ·Å×´Ì¬
+*å       ç§°ï¼šI2C_Init()
+*åŠŸ       èƒ½ï¼šå…¼å®¹ç¡¬ä»¶I2Cçš„æ ¼å¼çš„åˆå§‹åŒ–å‡½æ•°
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼šI2Cçš„åˆå§‹çŠ¶æ€å°±æ˜¯æ€»çº¿é‡Šæ”¾çŠ¶æ€
 ********************************************************/
 void I2C_Init(void)
 {
-	P1DIR |= BIT6;    //SCLÊä³ö
-	P1DIR &= ~BIT7;   //SDAÊäÈë
+	P1DIR |= BIT6;    //SCLè¾“å‡º
+	P1DIR &= ~BIT7;   //SDAè¾“å…¥
 	I2C_CLK_LOW;
 	I2C_STOP;
 }
 
 /********************************************************
-*Ãû       ³Æ£ºI2C_Send_Char()
-*¹¦       ÄÜ£ºÖ÷»úÏò´Ó»ú·¢ËÍ1¸ö×Ö½ÚÊý¾Ý
-*Èë¿Ú²ÎÊý£ºdata-´ý·¢ËÍÊý¾Ý
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£º·¢Íê8Î»´Ó»úÓÐÒ»¸öÓ¦´ðÎ»£¬²»½ÓÊÕ£¬µ«Ìá¹©Ò»¸öCLKÊ¼ÖÕ
+*å       ç§°ï¼šI2C_Send_Char()
+*åŠŸ       èƒ½ï¼šä¸»æœºå‘ä»Žæœºå‘é€1ä¸ªå­—èŠ‚æ•°æ®
+*å…¥å£å‚æ•°ï¼šdata-å¾…å‘é€æ•°æ®
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼šå‘å®Œ8ä½ä»Žæœºæœ‰ä¸€ä¸ªåº”ç­”ä½ï¼Œä¸æŽ¥æ”¶ï¼Œä½†æä¾›ä¸€ä¸ªCLKå§‹ç»ˆ
 ********************************************************/
 void I2C_Send_Char(unsigned char data)
 {
 	unsigned char i=0;
 	for( i=0 ; i<8 ; i++ )
 	{
-		if( (data<<i) & BIT7 )//ÏÈ·¢¸ßÎ»
+		if( (data<<i) & BIT7 )//å…ˆå‘é«˜ä½
 			I2C_DATA_HIGH;
 		else
 			I2C_DATA_LOW;
@@ -104,38 +104,38 @@ void I2C_Send_Char(unsigned char data)
 		I2C_CLK_LOW;
 		I2C_delay_us();
 	}
-	I2C_CLK_HIGH; //Ä£Äâ½ÓÊÕ´Ó»úÓ¦´ð
+	I2C_CLK_HIGH; //æ¨¡æ‹ŸæŽ¥æ”¶ä»Žæœºåº”ç­”
 	I2C_delay_us();
 	I2C_CLK_LOW;
 	I2C_delay_us();
 }
 
 /********************************************************
-*Ãû       ³Æ£ºI2C_Master_Ask()
-*¹¦       ÄÜ£ºÖ÷»ú½ÓÊÜÓ¦´ð
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£ºÖ÷»ú½ÓÊÜ8¸öbitÊý¾Ýºó£¬Òª¿ØÖÆÊý¾ÝÏß·¢³ö0Ó¦´ðÐÅºÅ£¬
-		     È»ºóÊÍ·Å×ÜÏß
+*å       ç§°ï¼šI2C_Master_Ask()
+*åŠŸ       èƒ½ï¼šä¸»æœºæŽ¥å—åº”ç­”
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼šä¸»æœºæŽ¥å—8ä¸ªbitæ•°æ®åŽï¼Œè¦æŽ§åˆ¶æ•°æ®çº¿å‘å‡º0åº”ç­”ä¿¡å·ï¼Œ
+		     ç„¶åŽé‡Šæ”¾æ€»çº¿
 ********************************************************/
 void I2C_Master_Ask(void)
 {
 	I2C_DATA_LOW;
 	I2C_delay_us();
-	I2C_CLK_HIGH;   //·¢³ö0Ó¦´ðÎ»
+	I2C_CLK_HIGH;   //å‘å‡º0åº”ç­”ä½
 	I2C_delay_us();
-	//----ÊÍ·Å×ÜÏß----
+	//----é‡Šæ”¾æ€»çº¿----
 	I2C_CLK_LOW;
 	I2C_delay_us();
 	I2C_DATA_HIGH;
 }
 
 /********************************************************
-*Ãû       ³Æ£ºI2C_Get_Char()
-*¹¦       ÄÜ£ºÖ÷»ú´Ó´Ó»ú½ÓÊÕ1¸ö×Ö½ÚÊý¾Ý
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºtemp-´ý·¢ËÍÊý¾Ý
-*Ëµ       Ã÷£º½ÓÊÕÍê8Î»Êý¾Ý£¬Ö÷»úÒª¸ø³öÓ¦´ðÎ»
+*å       ç§°ï¼šI2C_Get_Char()
+*åŠŸ       èƒ½ï¼šä¸»æœºä»Žä»ŽæœºæŽ¥æ”¶1ä¸ªå­—èŠ‚æ•°æ®
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼štemp-å¾…å‘é€æ•°æ®
+*è¯´       æ˜Žï¼šæŽ¥æ”¶å®Œ8ä½æ•°æ®ï¼Œä¸»æœºè¦ç»™å‡ºåº”ç­”ä½
 ********************************************************/
 unsigned char I2C_Get_Char(void)
 {
@@ -146,32 +146,32 @@ unsigned char I2C_Get_Char(void)
 	{
 		I2C_CLK_HIGH;
 		I2C_delay_us();
-		temp = temp <<1;   //Èô·ÅÔÚºóÃæÔòµ¼ÖÂ×î¸ßÎ»¶ªÊ§
+		temp = temp <<1;   //è‹¥æ”¾åœ¨åŽé¢åˆ™å¯¼è‡´æœ€é«˜ä½ä¸¢å¤±
 		if( I2C_DATA_IN == BIT7 )
 			temp |= BIT0;
 		I2C_delay_us();
 		I2C_CLK_LOW;
 		I2C_delay_us();
 	}
-	//----Ó¦´ðÎ»----
+	//----åº”ç­”ä½----
 	I2C_Master_Ask();
 	return (temp);
 }
 
 /********************************************************
-*Ãû       ³Æ£ºI2C_TxFrame()
-*¹¦       ÄÜ£ºÖ÷»ú·¢ËÍÈô¸É×Ö½ÚµÄÒ»Ö¡Êý¾Ý
-*Èë¿Ú²ÎÊý£º*p_TX-Ö¸Ïò´ý·¢ËÍÊý×é
-		  num-´ý·¢ËÍÊý¾Ý¸öÊý
-*³ö¿Ú²ÎÊý£º1-·¢ËÍÍê±Ï
-*Ëµ       Ã÷£ºÎÞ
+*å       ç§°ï¼šI2C_TxFrame()
+*åŠŸ       èƒ½ï¼šä¸»æœºå‘é€è‹¥å¹²å­—èŠ‚çš„ä¸€å¸§æ•°æ®
+*å…¥å£å‚æ•°ï¼š*p_TX-æŒ‡å‘å¾…å‘é€æ•°ç»„
+		  num-å¾…å‘é€æ•°æ®ä¸ªæ•°
+*å‡ºå£å‚æ•°ï¼š1-å‘é€å®Œæ¯•
+*è¯´       æ˜Žï¼šæ— 
 ********************************************************/
 unsigned char I2C_TxFrame(unsigned char *p_Tx , unsigned char num)
 {
 	_DINT();
 	unsigned char i=0;
 	I2C_START;
-	I2C_Send_Char( SLAVE_ADDR_W ); //·¢ËÍµØÖ·ºÍÐ´±êÖ¾
+	I2C_Send_Char( SLAVE_ADDR_W ); //å‘é€åœ°å€å’Œå†™æ ‡å¿—
 	for( i=num ; i>0 ; i-- )
 		I2C_Send_Char( *p_Tx++ );
 	I2C_STOP;
@@ -180,19 +180,19 @@ unsigned char I2C_TxFrame(unsigned char *p_Tx , unsigned char num)
 }
 
 /********************************************************
-*Ãû       ³Æ£ºI2C_RxFrame()
-*¹¦       ÄÜ£ºÖ÷»ú½ÓÊÕÈô¸É×Ö½ÚµÄÒ»Ö¡Êý¾Ý
-*Èë¿Ú²ÎÊý£º*p_Rx-Ö¸Ïò´æ·Å½ÓÊÕÊý¾ÝÊý×é
-		  num-´ý½ÓÊÕÊý¾Ý¸öÊý
-*³ö¿Ú²ÎÊý£º1-½ÓÊÕÍê±Ï
-*Ëµ       Ã÷£ºÎÞ
+*å       ç§°ï¼šI2C_RxFrame()
+*åŠŸ       èƒ½ï¼šä¸»æœºæŽ¥æ”¶è‹¥å¹²å­—èŠ‚çš„ä¸€å¸§æ•°æ®
+*å…¥å£å‚æ•°ï¼š*p_Rx-æŒ‡å‘å­˜æ”¾æŽ¥æ”¶æ•°æ®æ•°ç»„
+		  num-å¾…æŽ¥æ”¶æ•°æ®ä¸ªæ•°
+*å‡ºå£å‚æ•°ï¼š1-æŽ¥æ”¶å®Œæ¯•
+*è¯´       æ˜Žï¼šæ— 
 ********************************************************/
 unsigned char I2C_RxFrame(unsigned char *p_Rx , unsigned char num )
 {
 	unsigned char i = 0;
 	_DINT();
 	I2C_START;
-	I2C_Send_Char( SLAVE_ADDR_R );//ÏÈ·¢ËÍÆ÷¼þµØÖ·ºÍ¶Á±êÖ¾
+	I2C_Send_Char( SLAVE_ADDR_R );//å…ˆå‘é€å™¨ä»¶åœ°å€å’Œè¯»æ ‡å¿—
 	for( i=num ; i>0 ; i-- )
 		*p_Rx++ = I2C_Get_Char();
 	I2C_STOP;

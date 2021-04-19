@@ -4,18 +4,18 @@
  *  Created on: 2015-5-14
  *      Author: Isaac
  */
-/*ÕâÀï²ÉÓÃTLC5615
- *4bitĞéÄâÎ»£¨¼¶ÁªÊ±ĞèÒª£©£¬10bitÊı¾İÎ»£¬2bitÌî³äÎ»
+/*è¿™é‡Œé‡‡ç”¨TLC5615
+ *4bitè™šæ‹Ÿä½ï¼ˆçº§è”æ—¶éœ€è¦ï¼‰ï¼Œ10bitæ•°æ®ä½ï¼Œ2bitå¡«å……ä½
  * */
 #ifndef __DAC10_H__
 #define __DAC10_H__
 #define DAC_IO_INIT   P1DIR |= BIT0+BIT1
 #define DAC_SCLK_INIT P2DIR |= BIT2
-#define CS_HIGH     P1OUT |= BIT0  //Æ¬Ñ¡
+#define CS_HIGH     P1OUT |= BIT0  //ç‰‡é€‰
 #define CS_LOW      P1OUT &=~BIT0
-#define SCLK_HIGH     P2OUT |= BIT2 //Ê±ÖÓ
+#define SCLK_HIGH     P2OUT |= BIT2 //æ—¶é’Ÿ
 #define SCLK_LOW      P2OUT &=~BIT2
-#define DIN_HIGH      P1OUT |= BIT1 //Êı¾İ
+#define DIN_HIGH      P1OUT |= BIT1 //æ•°æ®
 #define DIN_LOW      P1OUT &=~BIT1
 
 extern void DAC10_Init(void);

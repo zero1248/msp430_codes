@@ -9,14 +9,14 @@
 #include"I2C.h"
 
 /***********************************************************
-*Ãû       ³Æ£ºEEPROM_delay_ms()
-*¹¦       ÄÜ£º10ms¾«È·ÑÓÊ±
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºÊµ¼ÊÑÓÊ±ÖµÓëCPUÊ±ÖÓÆµÂÊÓĞ¹Ø£¬ËùÒÔÓÃSI2C_MCLK_FREQÀ´×Ô¶¯µ÷Õû
-	             ²»Í¬µÄI2CÉè±¸ËÙ¶È²»Ò»Ñù£¬ÑÓÊ±²ÎÊıÊÓÇé¿ö¶ø¶¨
+*å       ç§°ï¼šEEPROM_delay_ms()
+*åŠŸ       èƒ½ï¼š10msç²¾ç¡®å»¶æ—¶
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šå®é™…å»¶æ—¶å€¼ä¸CPUæ—¶é’Ÿé¢‘ç‡æœ‰å…³ï¼Œæ‰€ä»¥ç”¨SI2C_MCLK_FREQæ¥è‡ªåŠ¨è°ƒæ•´
+	             ä¸åŒçš„I2Cè®¾å¤‡é€Ÿåº¦ä¸ä¸€æ ·ï¼Œå»¶æ—¶å‚æ•°è§†æƒ…å†µè€Œå®š
 ***********************************************************/
-void EEPROM_delay_ms(void){//Ä¬ÈÏÈ¡¿Õº¯Êı
+void EEPROM_delay_ms(void){//é»˜è®¤å–ç©ºå‡½æ•°
 	__delay_cycles(80000);
 	//__delay_cycles(I2C_MCLK_FREQ / 10000);   //100us
 	//__delay_cycles(I2C_MCLK_FREQ / 100000);  //10us
@@ -24,26 +24,26 @@ void EEPROM_delay_ms(void){//Ä¬ÈÏÈ¡¿Õº¯Êı
 }
 
 /********************************************************
-*Ãû       ³Æ£ºEEPROM_Init()
-*¹¦       ÄÜ£ºEEPROMµÄ³õÊ¼»¯º¯Êı
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºÖ±½Óµ÷ÓÃI2C_Init()º¯Êı
+*å       ç§°ï¼šEEPROM_Init()
+*åŠŸ       èƒ½ï¼šEEPROMçš„åˆå§‹åŒ–å‡½æ•°
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šç›´æ¥è°ƒç”¨I2C_Init()å‡½æ•°
 ********************************************************/
 void EEPROM_Init(void){
 	I2C_Init();
 }
 
 /********************************************************
-*Ãû       ³Æ£ºEEPROM_WriteData()
-*¹¦       ÄÜ£ºÏòEEPROMĞ´ÈëÊı¾İ(8bit)
-*Èë¿Ú²ÎÊı£ºaddress £¨0x00-0xff£©£¬ data
-*³ö¿Ú²ÎÊı£º1
-*Ëµ       Ã÷£ºÖ÷»ú·¢ËÍºóµÈ´ı´Ó»úÓ¦´ğ¼´¿É£¬ÕâÀïÓÃÖ÷¶¯²éÑ¯Ó¦´ğ´úÌæµÈ´ı
+*å       ç§°ï¼šEEPROM_WriteData()
+*åŠŸ       èƒ½ï¼šå‘EEPROMå†™å…¥æ•°æ®(8bit)
+*å…¥å£å‚æ•°ï¼šaddress ï¼ˆ0x00-0xffï¼‰ï¼Œ data
+*å‡ºå£å‚æ•°ï¼š1
+*è¯´       æ˜ï¼šä¸»æœºå‘é€åç­‰å¾…ä»æœºåº”ç­”å³å¯ï¼Œè¿™é‡Œç”¨ä¸»åŠ¨æŸ¥è¯¢åº”ç­”ä»£æ›¿ç­‰å¾…
 ********************************************************/
 unsigned char EEPROM_WriteData(unsigned char address , unsigned char data){
 	I2C_Start();
-	I2C_Send_Char( WRITE_24C02 );//Ğ´Ö¸Áî
+	I2C_Send_Char( WRITE_24C02 );//å†™æŒ‡ä»¤
 	if( I2C_Check_SlaveAsk() )
 		I2C_Send_Char( address );
 	else
@@ -56,22 +56,22 @@ unsigned char EEPROM_WriteData(unsigned char address , unsigned char data){
 		I2C_Stop();
 	else
 		return 0;
-	EEPROM_delay_ms();//µÈ´ıÍê³ÉÄÚ²¿Ğ´Èë
+	EEPROM_delay_ms();//ç­‰å¾…å®Œæˆå†…éƒ¨å†™å…¥
 	return 1;
 }
 
 /********************************************************
-*Ãû       ³Æ£ºEEPROM_ReadCurrChar()
-*¹¦       ÄÜ£º´ÓEEPROM¶Á³öµ±Ç°µØÖ·×Ö½Ú
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£ºdata
-*Ëµ       Ã÷£ºÖ÷»ú·¢ËÍºóµÈ´ı´Ó»úÓ¦´ğ¼´¿É£¬ÕâÀïÓÃÖ÷¶¯²éÑ¯Ó¦´ğ´úÌæµÈ´ı
-		  ĞèÒª¸Ä±ä´«ËÍ·½ÏòÊ±£¬Ğè½«ÆäÊµĞÅºÅºÍ´Ó»úµØÖ·¸÷ÖØ¸´²úÉúÒ»±é
+*å       ç§°ï¼šEEPROM_ReadCurrChar()
+*åŠŸ       èƒ½ï¼šä»EEPROMè¯»å‡ºå½“å‰åœ°å€å­—èŠ‚
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šdata
+*è¯´       æ˜ï¼šä¸»æœºå‘é€åç­‰å¾…ä»æœºåº”ç­”å³å¯ï¼Œè¿™é‡Œç”¨ä¸»åŠ¨æŸ¥è¯¢åº”ç­”ä»£æ›¿ç­‰å¾…
+		  éœ€è¦æ”¹å˜ä¼ é€æ–¹å‘æ—¶ï¼Œéœ€å°†å…¶å®ä¿¡å·å’Œä»æœºåœ°å€å„é‡å¤äº§ç”Ÿä¸€é
 ********************************************************/
 unsigned char EEPROM_ReadCurrChar( void ){
 	unsigned char data;
 	I2C_Start();
-	I2C_Send_Char( WRITE_24C02 );//Ğ´Ö¸Áî
+	I2C_Send_Char( WRITE_24C02 );//å†™æŒ‡ä»¤
 	if( I2C_Check_SlaveAsk() )
 		data = I2C_Get_Char();
 	else
@@ -82,17 +82,17 @@ unsigned char EEPROM_ReadCurrChar( void ){
 }
 
 /********************************************************
-*Ãû       ³Æ£ºEEPROM_ReadCurrData()
-*¹¦       ÄÜ£º´ÓEEPROM¶Á³öµ±Ç°µØÖ·N¸ö×Ö½Ú
-*Èë¿Ú²ÎÊı£º*Tx_-´æ·ÅµÄÊı×é
-		  n-Êı¾İ³¤¶È
-*³ö¿Ú²ÎÊı£ºdata
-*Ëµ       Ã÷£ºÖ÷»ú·¢ËÍºóµÈ´ı´Ó»úÓ¦´ğ¼´¿É£¬ÕâÀïÓÃÖ÷¶¯²éÑ¯Ó¦´ğ´úÌæµÈ´ı
-		  ĞèÒª¸Ä±ä´«ËÍ·½ÏòÊ±£¬Ğè½«ÆäÊµĞÅºÅºÍ´Ó»úµØÖ·¸÷ÖØ¸´²úÉúÒ»±é
+*å       ç§°ï¼šEEPROM_ReadCurrData()
+*åŠŸ       èƒ½ï¼šä»EEPROMè¯»å‡ºå½“å‰åœ°å€Nä¸ªå­—èŠ‚
+*å…¥å£å‚æ•°ï¼š*Tx_-å­˜æ”¾çš„æ•°ç»„
+		  n-æ•°æ®é•¿åº¦
+*å‡ºå£å‚æ•°ï¼šdata
+*è¯´       æ˜ï¼šä¸»æœºå‘é€åç­‰å¾…ä»æœºåº”ç­”å³å¯ï¼Œè¿™é‡Œç”¨ä¸»åŠ¨æŸ¥è¯¢åº”ç­”ä»£æ›¿ç­‰å¾…
+		  éœ€è¦æ”¹å˜ä¼ é€æ–¹å‘æ—¶ï¼Œéœ€å°†å…¶å®ä¿¡å·å’Œä»æœºåœ°å€å„é‡å¤äº§ç”Ÿä¸€é
 ********************************************************/
 unsigned char EEPROM_ReadCurrData( unsigned char *Tx_ , unsigned char n ){
 	I2C_Start();
-	I2C_Send_Char( WRITE_24C02 );//Ğ´Ö¸Áî
+	I2C_Send_Char( WRITE_24C02 );//å†™æŒ‡ä»¤
 	if( I2C_Check_SlaveAsk() )
 		I2C_RxFrame( Tx_ , n );
 	else
@@ -101,17 +101,17 @@ unsigned char EEPROM_ReadCurrData( unsigned char *Tx_ , unsigned char n ){
 }
 
 /********************************************************
-*Ãû       ³Æ£ºEEPROM_ReadSpecChar()
-*¹¦       ÄÜ£º´ÓEEPROM¶Á³öÖ¸¶¨µØÖ·×Ö½Ú
-*Èë¿Ú²ÎÊı£ºaddress £¨0x00-0xff£©
-*³ö¿Ú²ÎÊı£ºdata
-*Ëµ       Ã÷£ºÖ÷»ú·¢ËÍºóµÈ´ı´Ó»úÓ¦´ğ¼´¿É£¬ÕâÀïÓÃÖ÷¶¯²éÑ¯Ó¦´ğ´úÌæµÈ´ı
-		  ĞèÒª¸Ä±ä´«ËÍ·½ÏòÊ±£¬Ğè½«ÆäÊµĞÅºÅºÍ´Ó»úµØÖ·¸÷ÖØ¸´²úÉúÒ»±é
+*å       ç§°ï¼šEEPROM_ReadSpecChar()
+*åŠŸ       èƒ½ï¼šä»EEPROMè¯»å‡ºæŒ‡å®šåœ°å€å­—èŠ‚
+*å…¥å£å‚æ•°ï¼šaddress ï¼ˆ0x00-0xffï¼‰
+*å‡ºå£å‚æ•°ï¼šdata
+*è¯´       æ˜ï¼šä¸»æœºå‘é€åç­‰å¾…ä»æœºåº”ç­”å³å¯ï¼Œè¿™é‡Œç”¨ä¸»åŠ¨æŸ¥è¯¢åº”ç­”ä»£æ›¿ç­‰å¾…
+		  éœ€è¦æ”¹å˜ä¼ é€æ–¹å‘æ—¶ï¼Œéœ€å°†å…¶å®ä¿¡å·å’Œä»æœºåœ°å€å„é‡å¤äº§ç”Ÿä¸€é
 ********************************************************/
 unsigned char EEPROM_ReadSpecChar( unsigned char address ){
 	unsigned char data;
 	I2C_Start();
-	I2C_Send_Char( WRITE_24C02 );//Ğ´Ö¸Áî
+	I2C_Send_Char( WRITE_24C02 );//å†™æŒ‡ä»¤
 	if( I2C_Check_SlaveAsk() )
 	{
 		I2C_Send_Char( address );
@@ -121,7 +121,7 @@ unsigned char EEPROM_ReadSpecChar( unsigned char address ){
 	if( I2C_Check_SlaveAsk() )
 	{
 		I2C_Start();
-		I2C_Send_Char( READ_24C02 );//¶ÁÖ¸Áî
+		I2C_Send_Char( READ_24C02 );//è¯»æŒ‡ä»¤
 	}
 	else
 		return 0;
@@ -137,19 +137,19 @@ unsigned char EEPROM_ReadSpecChar( unsigned char address ){
 }
 
 /********************************************************
-*Ãû       ³Æ£ºEEPROM_ReadSpecData()
-*¹¦       ÄÜ£º´ÓEEPROM¶Á³öÖ¸¶¨µØÖ·N¸ö×Ö½Ú
-*Èë¿Ú²ÎÊı£ºaddress £¨0x00-0xff£©
-*         *Tx_-´æ·ÅÊı¾İµÄÊı×é
-*         n-Êı¾İ³¤¶È
-*Èë¿Ú²ÎÊı£ºaddress
-*³ö¿Ú²ÎÊı£ºdata
-*Ëµ       Ã÷£ºÖ÷»ú·¢ËÍºóµÈ´ı´Ó»úÓ¦´ğ¼´¿É£¬ÕâÀïÓÃÖ÷¶¯²éÑ¯Ó¦´ğ´úÌæµÈ´ı
-		  ĞèÒª¸Ä±ä´«ËÍ·½ÏòÊ±£¬Ğè½«ÆäÊµĞÅºÅºÍ´Ó»úµØÖ·¸÷ÖØ¸´²úÉúÒ»±é
+*å       ç§°ï¼šEEPROM_ReadSpecData()
+*åŠŸ       èƒ½ï¼šä»EEPROMè¯»å‡ºæŒ‡å®šåœ°å€Nä¸ªå­—èŠ‚
+*å…¥å£å‚æ•°ï¼šaddress ï¼ˆ0x00-0xffï¼‰
+*         *Tx_-å­˜æ”¾æ•°æ®çš„æ•°ç»„
+*         n-æ•°æ®é•¿åº¦
+*å…¥å£å‚æ•°ï¼šaddress
+*å‡ºå£å‚æ•°ï¼šdata
+*è¯´       æ˜ï¼šä¸»æœºå‘é€åç­‰å¾…ä»æœºåº”ç­”å³å¯ï¼Œè¿™é‡Œç”¨ä¸»åŠ¨æŸ¥è¯¢åº”ç­”ä»£æ›¿ç­‰å¾…
+		  éœ€è¦æ”¹å˜ä¼ é€æ–¹å‘æ—¶ï¼Œéœ€å°†å…¶å®ä¿¡å·å’Œä»æœºåœ°å€å„é‡å¤äº§ç”Ÿä¸€é
 ********************************************************/
 unsigned char EEPROM_ReadSpecData(unsigned char address,unsigned char *Tx_,unsigned char n  ){
 	I2C_Start();
-	I2C_Send_Char( WRITE_24C02 );//Ğ´Ö¸Áî
+	I2C_Send_Char( WRITE_24C02 );//å†™æŒ‡ä»¤
 	if( I2C_Check_SlaveAsk() )
 	{
 		I2C_Send_Char( address );
@@ -158,8 +158,8 @@ unsigned char EEPROM_ReadSpecData(unsigned char address,unsigned char *Tx_,unsig
 		return 0;
 	if( I2C_Check_SlaveAsk() )
 	{
-		I2C_Start();//ÖØĞÂ¿ªÊ¼
-		I2C_Send_Char( READ_24C02 );//¶ÁÖ¸Áî
+		I2C_Start();//é‡æ–°å¼€å§‹
+		I2C_Send_Char( READ_24C02 );//è¯»æŒ‡ä»¤
 	}
 	else
 		return 0;
@@ -173,27 +173,27 @@ unsigned char EEPROM_ReadSpecData(unsigned char address,unsigned char *Tx_,unsig
 }
 
 /********************************************************
-*Ãû       ³Æ£ºEEPROM_Clear()
-*¹¦       ÄÜ£ºEEPROMÇå¿ÕÊı¾İ
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºÍ¨¹ıĞ´0ÊµÏÖ£¨Ò³Ğ´Èë£¬·ÀÖ¹¡°ÉÏ¾í¡±£©£¬Ä£Äâ²éÑ¯Ó¦´ğ
+*å       ç§°ï¼šEEPROM_Clear()
+*åŠŸ       èƒ½ï¼šEEPROMæ¸…ç©ºæ•°æ®
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šé€šè¿‡å†™0å®ç°ï¼ˆé¡µå†™å…¥ï¼Œé˜²æ­¢â€œä¸Šå·â€ï¼‰ï¼Œæ¨¡æ‹ŸæŸ¥è¯¢åº”ç­”
 ********************************************************/
 unsigned char EEPROM_Clear(void){
 	unsigned char address = 0;
 	unsigned char i = 0 , j = 0;
 	I2C_Start();
-	I2C_Send_Char( WRITE_24C02 );//Ğ´Ö¸Áî
+	I2C_Send_Char( WRITE_24C02 );//å†™æŒ‡ä»¤
 	for( i=0 ;i<32 ; i++)
 	{
 		I2C_Start();
-		I2C_Send_Char( WRITE_24C02 );//Ğ´Ö¸Áî
+		I2C_Send_Char( WRITE_24C02 );//å†™æŒ‡ä»¤
 		address = address + i*8;
 		I2C_Send_Char( address );
 		for( j=0 ; j<8 ; j++ )
 		{
 			I2C_Send_Char(0x00);
-			I2C_CLK_HIGH; //Ä£Äâ½ÓÊÕ´Ó»úÓ¦´ğ
+			I2C_CLK_HIGH; //æ¨¡æ‹Ÿæ¥æ”¶ä»æœºåº”ç­”
 			EEPROM_delay_ms();
 			I2C_CLK_LOW;
 			EEPROM_delay_ms();

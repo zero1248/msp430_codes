@@ -1,179 +1,179 @@
 #include"TimerA.h"
 
 /****************************************************************************
-* Ãû    ³Æ£ºTimerA_init()
-* ¹¦    ÄÜ£º³õÊ¼»¯TimerA
-* Èë¿Ú²ÎÊý£ºÎÞ
-* ³ö¿Ú²ÎÊý£ºÎÞ
+* å    ç§°ï¼šTimerA_init()
+* åŠŸ    èƒ½ï¼šåˆå§‹åŒ–TimerA
+* å…¥å£å‚æ•°ï¼šæ— 
+* å‡ºå£å‚æ•°ï¼šæ— 
 ****************************************************************************/
 void TimerA_init(void){
-    TACTL = MC_0 + TACLR;//ÔÝÍ£¶¨Ê±Æ÷ ²¢ÇåÁã¼ÆÊýÆ÷
-	TACTL = TASSEL_2+TACLR+ID_3+MC_1; //ÉèÖÃ¼ÆÊ±Æ÷AÊ¹ÓÃ×ÓÏµÍ³Ê±ÖÓ
-	//TA0CCTL0 = CCIE + CM_1 + SCS + CAP+CCIS_0;     //¶ÔÓ¦CCR1Ê¹ÄÜ£¬ÉÏÉýÑØÍ¬²½²¶»ñP1.1ÊäÈë
+    TACTL = MC_0 + TACLR;//æš‚åœå®šæ—¶å™¨ å¹¶æ¸…é›¶è®¡æ•°å™¨
+	TACTL = TASSEL_2+TACLR+ID_3+MC_1; //è®¾ç½®è®¡æ—¶å™¨Aä½¿ç”¨å­ç³»ç»Ÿæ—¶é’Ÿ
+	//TA0CCTL0 = CCIE + CM_1 + SCS + CAP+CCIS_0;     //å¯¹åº”CCR1ä½¿èƒ½ï¼Œä¸Šå‡æ²¿åŒæ­¥æ•èŽ·P1.1è¾“å…¥
 	CCR0 = CCR0_VALUE;
-	CCTL0 |= CCIE;//ÉèÖÃ¼ÆÊ±Æ÷ÖÐ¶ÏÊ¹ÄÜ    8·ÖÆµ upÄ£Ê½
+	CCTL0 |= CCIE;//è®¾ç½®è®¡æ—¶å™¨ä¸­æ–­ä½¿èƒ½    8åˆ†é¢‘ upæ¨¡å¼
 }
 
 /****************************************************************************
-* Ãû    ³Æ£ºTA_capture0_init()
-* ¹¦    ÄÜ£º³õÊ¼»¯TimerA_Capture0
-* Èë¿Ú²ÎÊý£ºÎÞ
-* ³ö¿Ú²ÎÊý£ºÎÞ
+* å    ç§°ï¼šTA_capture0_init()
+* åŠŸ    èƒ½ï¼šåˆå§‹åŒ–TimerA_Capture0
+* å…¥å£å‚æ•°ï¼šæ— 
+* å‡ºå£å‚æ•°ï¼šæ— 
 ****************************************************************************/
 void TA_capture0_init( void ){
     P1SEL |= BIT1;
     P1DIR &= ~BIT1;
     P1IN &= ~BIT1;
-    TACTL |= MC_0 + TACLR;//¶¨Ê±Æ÷ÔÝÍ££¬¼ÆÊýÆ÷ÇåÁã
-    TACTL |= TASSEL_2 + ID_0 + MC_1  ; //×ÓÏµÍ³Ê±ÖÓ+²»·ÖÆµ
-                                                                     //ÉÏÉý¼ÆÊý£¨ÉÏÉýµ½CCR0£©
-    TACCTL0 |= CAP + SCS + CCIS_0 + CM_1; //²¶»ñÄ£Ê½+Í¬²½²¶»ñ+
-                                                                   //²¶»ñÊäÈëÑ¡ÔñP1.1+²¶»ñ±ßÑØÑ¡Ôñ
-    TACCTL0 |= CCIE; //²¶»ñÖÐ¶ÏÊ¹ÄÜ
+    TACTL |= MC_0 + TACLR;//å®šæ—¶å™¨æš‚åœï¼Œè®¡æ•°å™¨æ¸…é›¶
+    TACTL |= TASSEL_2 + ID_0 + MC_1  ; //å­ç³»ç»Ÿæ—¶é’Ÿ+ä¸åˆ†é¢‘
+                                                                     //ä¸Šå‡è®¡æ•°ï¼ˆä¸Šå‡åˆ°CCR0ï¼‰
+    TACCTL0 |= CAP + SCS + CCIS_0 + CM_1; //æ•èŽ·æ¨¡å¼+åŒæ­¥æ•èŽ·+
+                                                                   //æ•èŽ·è¾“å…¥é€‰æ‹©P1.1+æ•èŽ·è¾¹æ²¿é€‰æ‹©
+    TACCTL0 |= CCIE; //æ•èŽ·ä¸­æ–­ä½¿èƒ½
 }
 
 /****************************************************************************
-* Ãû    ³Æ£ºTA_capture1_init()
-* ¹¦    ÄÜ£º³õÊ¼»¯TimerA_Capture1
-* Èë¿Ú²ÎÊý£ºÎÞ
-* ³ö¿Ú²ÎÊý£ºÎÞ
+* å    ç§°ï¼šTA_capture1_init()
+* åŠŸ    èƒ½ï¼šåˆå§‹åŒ–TimerA_Capture1
+* å…¥å£å‚æ•°ï¼šæ— 
+* å‡ºå£å‚æ•°ï¼šæ— 
 ****************************************************************************/
 void TA_capture1_init( void ){
     P1SEL |= BIT2;
     P1DIR &= ~BIT2;
     P1IN &= ~BIT2;
-    TACTL |= MC_0 + TACLR;//¶¨Ê±Æ÷ÔÝÍ££¬¼ÆÊýÆ÷ÇåÁã
-    TACTL |= TASSEL_2 + ID_0 + MC_1  ; //×ÓÏµÍ³Ê±ÖÓ+²»·ÖÆµ
-                                                                     //ÉÏÉý¼ÆÊý£¨ÉÏÉýµ½CCR0£©
-    TACCTL1 |= CAP + SCS + CCIS_0 + CM_1; //²¶»ñÄ£Ê½+Í¬²½²¶»ñ+
-                                                                   //²¶»ñÊäÈëÑ¡ÔñP1.2+²¶»ñ±ßÑØÑ¡Ôñ
-    TACCTL1 |= CCIE; //²¶»ñÖÐ¶ÏÊ¹ÄÜ
+    TACTL |= MC_0 + TACLR;//å®šæ—¶å™¨æš‚åœï¼Œè®¡æ•°å™¨æ¸…é›¶
+    TACTL |= TASSEL_2 + ID_0 + MC_1  ; //å­ç³»ç»Ÿæ—¶é’Ÿ+ä¸åˆ†é¢‘
+                                                                     //ä¸Šå‡è®¡æ•°ï¼ˆä¸Šå‡åˆ°CCR0ï¼‰
+    TACCTL1 |= CAP + SCS + CCIS_0 + CM_1; //æ•èŽ·æ¨¡å¼+åŒæ­¥æ•èŽ·+
+                                                                   //æ•èŽ·è¾“å…¥é€‰æ‹©P1.2+æ•èŽ·è¾¹æ²¿é€‰æ‹©
+    TACCTL1 |= CCIE; //æ•èŽ·ä¸­æ–­ä½¿èƒ½
 }
 
 /****************************************************************************
-* Ãû    ³Æ£ºTA_capture2_init()
-* ¹¦    ÄÜ£º³õÊ¼»¯TimerA_Capture2
-* Èë¿Ú²ÎÊý£ºÎÞ
-* ³ö¿Ú²ÎÊý£ºÎÞ
+* å    ç§°ï¼šTA_capture2_init()
+* åŠŸ    èƒ½ï¼šåˆå§‹åŒ–TimerA_Capture2
+* å…¥å£å‚æ•°ï¼šæ— 
+* å‡ºå£å‚æ•°ï¼šæ— 
 ****************************************************************************/
 void TA_capture2_init( void ){
     P1SEL |= BIT3;
     P1DIR &= ~BIT3;
     P1IN &= ~BIT3;
-    TACTL |= MC_0 + TACLR;//¶¨Ê±Æ÷ÔÝÍ££¬¼ÆÊýÆ÷ÇåÁã
-    TACTL |= TASSEL_2 + ID_0 + MC_1  ; //×ÓÏµÍ³Ê±ÖÓ+²»·ÖÆµ
-                                                                     //ÉÏÉý¼ÆÊý£¨ÉÏÉýµ½CCR0£©
-    TACCTL2 |= CAP + SCS + CCIS_0 + CM_1; //²¶»ñÄ£Ê½+Í¬²½²¶»ñ+
-                                                                   //²¶»ñÊäÈëÑ¡ÔñP1.3+²¶»ñ±ßÑØÑ¡Ôñ
-    TACCTL2 |= CCIE; //²¶»ñÖÐ¶ÏÊ¹ÄÜ
+    TACTL |= MC_0 + TACLR;//å®šæ—¶å™¨æš‚åœï¼Œè®¡æ•°å™¨æ¸…é›¶
+    TACTL |= TASSEL_2 + ID_0 + MC_1  ; //å­ç³»ç»Ÿæ—¶é’Ÿ+ä¸åˆ†é¢‘
+                                                                     //ä¸Šå‡è®¡æ•°ï¼ˆä¸Šå‡åˆ°CCR0ï¼‰
+    TACCTL2 |= CAP + SCS + CCIS_0 + CM_1; //æ•èŽ·æ¨¡å¼+åŒæ­¥æ•èŽ·+
+                                                                   //æ•èŽ·è¾“å…¥é€‰æ‹©P1.3+æ•èŽ·è¾¹æ²¿é€‰æ‹©
+    TACCTL2 |= CCIE; //æ•èŽ·ä¸­æ–­ä½¿èƒ½
 }
 
 /****************************************************************************
-* Ãû    ³Æ£ºTA_PWM_mode1()
-* ¹¦    ÄÜ£º³õÊ¼»¯PWM·¢ÉúÄ£Ê½1
-* Èë¿Ú²ÎÊý£ºÎÞ
-* ³ö¿Ú²ÎÊý£ºÎÞ
-* ËµÃ÷ : µÍµçÆ½µ¥Âö³å
+* å    ç§°ï¼šTA_PWM_mode1()
+* åŠŸ    èƒ½ï¼šåˆå§‹åŒ–PWMå‘ç”Ÿæ¨¡å¼1
+* å…¥å£å‚æ•°ï¼šæ— 
+* å‡ºå£å‚æ•°ï¼šæ— 
+* è¯´æ˜Ž : ä½Žç”µå¹³å•è„‰å†²
 ****************************************************************************/
 void TA_PWM_mode1(void){
-    P1SEL &=  BIT7 ;  //P1.6 1.7 ·Ö±ðÊÇTAµÄOUT1ºÍOUT2
+    P1SEL &=  BIT7 ;  //P1.6 1.7 åˆ†åˆ«æ˜¯TAçš„OUT1å’ŒOUT2
     P1DIR |= BIT7;
-    TACTL |= MC_2 + TASSEL_2 + ID_0 + TACLR; //¶¨Ê±Æ÷TAÓÃACLK£¬Á¬Ðø¼ÆÊýÄ£Ê½
-    TACCTL2 &= ~OUT;     //TA2Êä³öÉèÎªµÍµçÆ½
-    TACCR2 = PWM_MODE1_CCR2;  //TA2µÍµçÆ½³ÖÐøCCR2¸öACLKÖÜÆÚºó×Ô¶¯±ä¸ß
-    TACCTL2 = OUTMOD_1;  //ÉèÎªÄ£Ê½1£¬ÑÓ³ÙÖÃÎ»
+    TACTL |= MC_2 + TASSEL_2 + ID_0 + TACLR; //å®šæ—¶å™¨TAç”¨ACLKï¼Œè¿žç»­è®¡æ•°æ¨¡å¼
+    TACCTL2 &= ~OUT;     //TA2è¾“å‡ºè®¾ä¸ºä½Žç”µå¹³
+    TACCR2 = PWM_MODE1_CCR2;  //TA2ä½Žç”µå¹³æŒç»­CCR2ä¸ªACLKå‘¨æœŸåŽè‡ªåŠ¨å˜é«˜
+    TACCTL2 = OUTMOD_1;  //è®¾ä¸ºæ¨¡å¼1ï¼Œå»¶è¿Ÿç½®ä½
 }
 
 /****************************************************************************
-* Ãû    ³Æ£ºTA_PWM_mode2_6()
-* ¹¦    ÄÜ£º³õÊ¼»¯PWM·¢ÉúÄ£Ê½2/6
-* Èë¿Ú²ÎÊý£ºÎÞ
-* ³ö¿Ú²ÎÊý£ºÎÞ
-* ËµÃ÷ : ´øËÀÇøµÄË«Â·PWM
+* å    ç§°ï¼šTA_PWM_mode2_6()
+* åŠŸ    èƒ½ï¼šåˆå§‹åŒ–PWMå‘ç”Ÿæ¨¡å¼2/6
+* å…¥å£å‚æ•°ï¼šæ— 
+* å‡ºå£å‚æ•°ï¼šæ— 
+* è¯´æ˜Ž : å¸¦æ­»åŒºçš„åŒè·¯PWM
 ****************************************************************************/
 void TA_PWM_mode2_6(void){
-    P1SEL &= BIT6 + BIT7 ;  //P1.6 1.7 ·Ö±ðÊÇTAµÄOUT1ºÍOUT2
+    P1SEL &= BIT6 + BIT7 ;  //P1.6 1.7 åˆ†åˆ«æ˜¯TAçš„OUT1å’ŒOUT2
     P1DIR |= BIT6 + BIT7;
-    TACTL |= MC_3 + TASSEL_2 + ID_0 + TACLR; //¶¨Ê±Æ÷TAÓÃACLK£¬Ôö¼õ¼ÆÊýÄ£Ê½
-    TACCTL1 = OUTMOD_6;  //TA1ÉèÎªÄ£Ê½6(¸ßµçÆ½ËÀÇøPWMÊä³ö)
-    TACCTL2 = OUTMOD_2;  //TA2ÉèÎªÄ£Ê½2(µÍµçÆ½ËÀÇøPWMÊä³ö)
-    TACCR0 = PWM_MODE2_CCR0;  //PWMÖÜÆÚ=CCR0¸öACLKÖÜÆÚ
-    TACCR1 = PWM_MODE2_CCR1;  //µÚÒ»Â·¸ßµçÆ½³ÖÐøCCR1¸öACLKÖÜÆÚ
-    TACCR2 = PWM_MODE2_CCR2;  //µÚ¶þÂ·¸ßµçÆ½³ÖÐøCCR2¸öACLKÖÜÆÚ
-                        //ËÀÇøÊ±¼ä=20000¸öACLKÖÜÆÚ
+    TACTL |= MC_3 + TASSEL_2 + ID_0 + TACLR; //å®šæ—¶å™¨TAç”¨ACLKï¼Œå¢žå‡è®¡æ•°æ¨¡å¼
+    TACCTL1 = OUTMOD_6;  //TA1è®¾ä¸ºæ¨¡å¼6(é«˜ç”µå¹³æ­»åŒºPWMè¾“å‡º)
+    TACCTL2 = OUTMOD_2;  //TA2è®¾ä¸ºæ¨¡å¼2(ä½Žç”µå¹³æ­»åŒºPWMè¾“å‡º)
+    TACCR0 = PWM_MODE2_CCR0;  //PWMå‘¨æœŸ=CCR0ä¸ªACLKå‘¨æœŸ
+    TACCR1 = PWM_MODE2_CCR1;  //ç¬¬ä¸€è·¯é«˜ç”µå¹³æŒç»­CCR1ä¸ªACLKå‘¨æœŸ
+    TACCR2 = PWM_MODE2_CCR2;  //ç¬¬äºŒè·¯é«˜ç”µå¹³æŒç»­CCR2ä¸ªACLKå‘¨æœŸ
+                        //æ­»åŒºæ—¶é—´=20000ä¸ªACLKå‘¨æœŸ
 }
 
 /****************************************************************************
-* Ãû    ³Æ£ºTA_PWM_mode3()
-* ¹¦    ÄÜ£º³õÊ¼»¯PWM·¢ÉúÄ£Ê½3
-* Èë¿Ú²ÎÊý£ºÎÞ
-* ³ö¿Ú²ÎÊý£ºÎÞ
-* ËµÃ÷ : µÍµçÆ½PWM
+* å    ç§°ï¼šTA_PWM_mode3()
+* åŠŸ    èƒ½ï¼šåˆå§‹åŒ–PWMå‘ç”Ÿæ¨¡å¼3
+* å…¥å£å‚æ•°ï¼šæ— 
+* å‡ºå£å‚æ•°ï¼šæ— 
+* è¯´æ˜Ž : ä½Žç”µå¹³PWM
 ****************************************************************************/
 void TA_PWM_mode3(void){
-    P1SEL &= BIT7 ;  //P1.6 1.7 ·Ö±ðÊÇTAµÄOUT1ºÍOUT2
+    P1SEL &= BIT7 ;  //P1.6 1.7 åˆ†åˆ«æ˜¯TAçš„OUT1å’ŒOUT2
     P1DIR |= BIT7;
-    TACTL |= MC_1 + TASSEL_2 + ID_0; //¶¨Ê±Æ÷TAÉèÎªÔöÁ¿¼ÆÊýÄ£Ê½,ACLK
-    TACCTL2 = OUTMOD_3;  //Ä£Ê½3= µÍµçÆ½PWMÊä³ö
-    TACCR0 = PWM_MODE3_CCR0;   //PWM×ÜÖÜÆÚ =CCR0¸öACLKÖÜÆÚ
-    TACCR2 = PWM_MODE3_CCR2;   //µÍµçÆ½Ê±¼ä= CCR2¸öACLKÖÜÆÚ
+    TACTL |= MC_1 + TASSEL_2 + ID_0; //å®šæ—¶å™¨TAè®¾ä¸ºå¢žé‡è®¡æ•°æ¨¡å¼,ACLK
+    TACCTL2 = OUTMOD_3;  //æ¨¡å¼3= ä½Žç”µå¹³PWMè¾“å‡º
+    TACCR0 = PWM_MODE3_CCR0;   //PWMæ€»å‘¨æœŸ =CCR0ä¸ªACLKå‘¨æœŸ
+    TACCR2 = PWM_MODE3_CCR2;   //ä½Žç”µå¹³æ—¶é—´= CCR2ä¸ªACLKå‘¨æœŸ
 }
 
 /****************************************************************************
-* Ãû    ³Æ£ºTA_PWM_mode4()
-* ¹¦    ÄÜ£º³õÊ¼»¯PWM·¢ÉúÄ£Ê½4
-* Èë¿Ú²ÎÊý£ºÎÞ
-* ³ö¿Ú²ÎÊý£ºÎÞ
-* ËµÃ÷ : ¿É±äÆµÂÊÊä³ö
+* å    ç§°ï¼šTA_PWM_mode4()
+* åŠŸ    èƒ½ï¼šåˆå§‹åŒ–PWMå‘ç”Ÿæ¨¡å¼4
+* å…¥å£å‚æ•°ï¼šæ— 
+* å‡ºå£å‚æ•°ï¼šæ— 
+* è¯´æ˜Ž : å¯å˜é¢‘çŽ‡è¾“å‡º
 ****************************************************************************/
 void TA_PWM_mode4(void){
-    P1SEL &= BIT7 ;  //P1.6 1.7 ·Ö±ðÊÇTAµÄOUT1ºÍOUT2
+    P1SEL &= BIT7 ;  //P1.6 1.7 åˆ†åˆ«æ˜¯TAçš„OUT1å’ŒOUT2
     P1DIR |= BIT7;
-    TACTL |= MC_1 + TASSEL_2 + ID_0; //¶¨Ê±Æ÷TAÉèÎªÔöÁ¿¼ÆÊýÄ£Ê½,ACLK
-    TACCTL2 = OUTMOD_4; //Ä£Ê½4= ¿É±äÆµÂÊÊä³ö
-    TACCR0 = PWM_MODE4_CCR0;       //Êä³ö·½²¨ÖÜÆÚ =CCR0¸öACLKÖÜÆÚ
+    TACTL |= MC_1 + TASSEL_2 + ID_0; //å®šæ—¶å™¨TAè®¾ä¸ºå¢žé‡è®¡æ•°æ¨¡å¼,ACLK
+    TACCTL2 = OUTMOD_4; //æ¨¡å¼4= å¯å˜é¢‘çŽ‡è¾“å‡º
+    TACCR0 = PWM_MODE4_CCR0;       //è¾“å‡ºæ–¹æ³¢å‘¨æœŸ =CCR0ä¸ªACLKå‘¨æœŸ
 }
 
 /****************************************************************************
-* Ãû    ³Æ£ºTA_PWM_mode5()
-* ¹¦    ÄÜ£º³õÊ¼»¯PWM·¢ÉúÄ£Ê½5
-* Èë¿Ú²ÎÊý£ºÎÞ
-* ³ö¿Ú²ÎÊý£ºÎÞ
-* ËµÃ÷ : ¸ßµçÆ½µ¥Âö³å
+* å    ç§°ï¼šTA_PWM_mode5()
+* åŠŸ    èƒ½ï¼šåˆå§‹åŒ–PWMå‘ç”Ÿæ¨¡å¼5
+* å…¥å£å‚æ•°ï¼šæ— 
+* å‡ºå£å‚æ•°ï¼šæ— 
+* è¯´æ˜Ž : é«˜ç”µå¹³å•è„‰å†²
 ****************************************************************************/
 void TA_PWM_mode5(void){
-    P1SEL &= BIT7 ;  //P1.6 1.7 ·Ö±ðÊÇTAµÄOUT1ºÍOUT2
+    P1SEL &= BIT7 ;  //P1.6 1.7 åˆ†åˆ«æ˜¯TAçš„OUT1å’ŒOUT2
     P1DIR |= BIT7;
-    TACTL |= MC_2 + TASSEL_2 + ID_0 + TACLR; //¶¨Ê±Æ÷TAÓÃACLK£¬Á¬Ðø¼ÆÊýÄ£Ê½
-    TACCTL2 |= OUT;      //TA2Êä³öÉèÎª¸ßµçÆ½
-    TACCR2 = PWM_MODE5_CCR2;        //TA2¸ßµçÆ½³ÖÐøCCR2¸öACLKÖÜÆÚºó×Ô¶¯±äµÍ
-    TACCTL2 = OUTMOD_5;  //ÉèÎªÄ£Ê½5£¬ÑÓ³ÙÇåÁã
+    TACTL |= MC_2 + TASSEL_2 + ID_0 + TACLR; //å®šæ—¶å™¨TAç”¨ACLKï¼Œè¿žç»­è®¡æ•°æ¨¡å¼
+    TACCTL2 |= OUT;      //TA2è¾“å‡ºè®¾ä¸ºé«˜ç”µå¹³
+    TACCR2 = PWM_MODE5_CCR2;        //TA2é«˜ç”µå¹³æŒç»­CCR2ä¸ªACLKå‘¨æœŸåŽè‡ªåŠ¨å˜ä½Ž
+    TACCTL2 = OUTMOD_5;  //è®¾ä¸ºæ¨¡å¼5ï¼Œå»¶è¿Ÿæ¸…é›¶
 }
 
 /****************************************************************************
-* Ãû    ³Æ£ºTA_PWM_mode7()
-* ¹¦    ÄÜ£º³õÊ¼»¯PWM·¢ÉúÄ£Ê½7
-* Èë¿Ú²ÎÊý£ºÎÞ
-* ³ö¿Ú²ÎÊý£ºÎÞ
-* ËµÃ÷ : ¸ßµçÆ½PWM
+* å    ç§°ï¼šTA_PWM_mode7()
+* åŠŸ    èƒ½ï¼šåˆå§‹åŒ–PWMå‘ç”Ÿæ¨¡å¼7
+* å…¥å£å‚æ•°ï¼šæ— 
+* å‡ºå£å‚æ•°ï¼šæ— 
+* è¯´æ˜Ž : é«˜ç”µå¹³PWM
 ****************************************************************************/
 void TA_PWM_mode7(void){
-    P1SEL &= BIT6 + BIT7 ;  //P1.6 1.7 ·Ö±ðÊÇTAµÄOUT1ºÍOUT2
+    P1SEL &= BIT6 + BIT7 ;  //P1.6 1.7 åˆ†åˆ«æ˜¯TAçš„OUT1å’ŒOUT2
     P1DIR |= BIT6 +BIT7;
-    TACTL |= MC_1 + TASSEL_2 + ID_0; //¶¨Ê±Æ÷TAÉèÎªÔöÁ¿¼ÆÊýÄ£Ê½,ACLK
-    TACCTL2 = OUTMOD_7; //Ä£Ê½7= ¸ßµçÆ½PWMÊä³ö
-    TACCR0 = PWM_MODE7_CCR0;      //PWM×ÜÖÜÆÚ =10000¸öACLKÖÜÆÚ
-    TACCR2 = PWM_MODE7_CCR2;       //¸ßµçÆ½Ê±¼ä= 1000¸öACLKÖÜÆÚ
+    TACTL |= MC_1 + TASSEL_2 + ID_0; //å®šæ—¶å™¨TAè®¾ä¸ºå¢žé‡è®¡æ•°æ¨¡å¼,ACLK
+    TACCTL2 = OUTMOD_7; //æ¨¡å¼7= é«˜ç”µå¹³PWMè¾“å‡º
+    TACCR0 = PWM_MODE7_CCR0;      //PWMæ€»å‘¨æœŸ =10000ä¸ªACLKå‘¨æœŸ
+    TACCR2 = PWM_MODE7_CCR2;       //é«˜ç”µå¹³æ—¶é—´= 1000ä¸ªACLKå‘¨æœŸ
 }
 
 // Timer A0 interrupt service routine
 #pragma vector=TIMERA0_VECTOR
 __interrupt void Timer_A0 (void){
-	//ÖÐ¶Ïº¯ÊýÄÚÈÝ
+	//ä¸­æ–­å‡½æ•°å†…å®¹
 
-	/*²¶»ñÄ£Ê½
-	Á½´Î¶ÁÈ¡CCRx²¢×÷²î£¨µÚ¶þ´ÎµÄÒª¼ÓÉÏ65535*Òç³ö´ÎÊý£©£»
-	µÚ¶þ´ÎºóTACCTLx &= ~COV;
+	/*æ•èŽ·æ¨¡å¼
+	ä¸¤æ¬¡è¯»å–CCRxå¹¶ä½œå·®ï¼ˆç¬¬äºŒæ¬¡çš„è¦åŠ ä¸Š65535*æº¢å‡ºæ¬¡æ•°ï¼‰ï¼›
+	ç¬¬äºŒæ¬¡åŽTACCTLx &= ~COV;
 	*/
 }
 

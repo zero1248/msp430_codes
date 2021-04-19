@@ -7,27 +7,27 @@
 #ifndef __UART_H__
 #define __UART_H__
 
-//-----------´Ó»ú-----------
+//-----------ä»æœº-----------
 #define RX_FIFO_SIZE 128
 #define TX_FIFO_SIZE 128
-//-----------Ö÷»ú-----------
+//-----------ä¸»æœº-----------
 //#define RX_FIFO_SIZE 64
 //#define TX_FIFO_SIZE 16
 
 extern unsigned char Rx_FIFO[RX_FIFO_SIZE];
 extern unsigned char Tx_FIFO[TX_FIFO_SIZE];
-//------------------³õÊ¼»¯²Ù×÷-------------------
+//------------------åˆå§‹åŒ–æ“ä½œ-------------------
 extern void UART_TX_OPEN(void);
 extern void UART_RX_OPEN(void);
 extern void UART_TXRX_OPEN(void);
 extern void UART_TXRX_CLOSE(void);
-//------------------RXDÏà¹Ø²Ù×÷------------------
+//------------------RXDç›¸å…³æ“ä½œ------------------
 extern unsigned char Rx_FIFO_ReadChar(void);
 extern void Rx_FIFO_Clear(void);
-//------------------TXDÏà¹Ø²Ù×÷------------------
+//------------------TXDç›¸å…³æ“ä½œ------------------
 extern unsigned char Tx_FIFO_WriteChar(unsigned char Data);
 extern void Tx_FIFO_Clear(void);
-//-----------------´®¿Ú´«Êä×Ö·û´®-----------------
+//-----------------ä¸²å£ä¼ è¾“å­—ç¬¦ä¸²-----------------
 extern void UART_SendString(unsigned char *Ptr);
 
 #endif /* UART_H_ */

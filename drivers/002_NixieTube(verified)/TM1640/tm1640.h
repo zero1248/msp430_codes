@@ -8,7 +8,7 @@
 #ifndef __NIXIE_TUBE_H__
 #define __NIXIE_TUBE_H__
 
-//TM1640CLK¡¢DINÊäÈëÒı½ÅÉèÖÃ
+//TM1640CLKã€DINè¾“å…¥å¼•è„šè®¾ç½®
 #define TM1640_SCLK_INIT P2DIR |= BIT1;P2OUT |= BIT1
 #define TM1640_DIN_INIT  P2DIR |= BIT2;P2OUT |= BIT2
 #define TM1640_SCLK_HIGH P2OUT |= BIT1
@@ -18,10 +18,10 @@
 
 
 
-//TM1640Êı¾İÃüÁî
+//TM1640æ•°æ®å‘½ä»¤
 #define TM1640_ADD1_MODE    0x40
 #define TM1640_FIXED_MODE   0x44
-//TM1640µØÖ·ÃüÁî
+//TM1640åœ°å€å‘½ä»¤
 #define TM1640_ADDRESS_0    0xC0
 #define TM1640_ADDRESS_1    0xC1
 #define TM1640_ADDRESS_2    0xC2
@@ -38,7 +38,7 @@
 #define TM1640_ADDRESS_D	0xCD
 #define TM1640_ADDRESS_E	0xCE
 #define TM1640_ADDRESS_F	0xCF
-//TM1640¿ØÖÆÏÔÊ¾ÃüÁî
+//TM1640æ§åˆ¶æ˜¾ç¤ºå‘½ä»¤
 #define TM1640_OFF	        0x80
 #define TM1640_BRIGHTNESS_0 0x88
 #define TM1640_BRIGHTNESS_1 0x89
@@ -57,7 +57,7 @@
 #define f_             0x20             // E      C  ...
 #define g_             0x40             // DDDDDDDD  ...
 #define DOTSEG         0x80
-#define NEGSEG         0x40       //DOTSEGÊÇĞ¡Êıµã NEGSEGÊÇ¸ººÅ
+#define NEGSEG         0x40       //DOTSEGæ˜¯å°æ•°ç‚¹ NEGSEGæ˜¯è´Ÿå·
 
 extern void Start_Tm1640(void);
 extern void Stop_Tm1640(void);

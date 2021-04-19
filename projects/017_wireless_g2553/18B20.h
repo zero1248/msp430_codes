@@ -8,13 +8,13 @@
 #ifndef __18B20_H__
 #define __18B20_H__
 
-#define DS18B20_WRITE_SET  P1DIR |= BIT4   //ÉèÖÃÎªĞ´Ä£Ê½,Ã¿´Î²Ù×÷ÍêÉèÖÃÎªĞ´Ä£Ê½
-#define DS18B20_WRITE_HIGH P1OUT |= BIT4   //Ïò18B20Êä³ö¸ßµçÆ½
-#define DS18B20_WRITE_LOW  P1OUT &= ~BIT4//Êä³öµÍµçÆ½
-#define DS18B20_READ_SET   P1DIR &= ~BIT4  //ÉèÖÃÎª¶ÁÄ£Ê½
-#define DS18B20_READ_DATA  P1IN & BIT4     //¶ÁÈ¡ÏàÓ¦IO¿ÚÊı¾İ
+#define DS18B20_WRITE_SET  P1DIR |= BIT4   //è®¾ç½®ä¸ºå†™æ¨¡å¼,æ¯æ¬¡æ“ä½œå®Œè®¾ç½®ä¸ºå†™æ¨¡å¼
+#define DS18B20_WRITE_HIGH P1OUT |= BIT4   //å‘18B20è¾“å‡ºé«˜ç”µå¹³
+#define DS18B20_WRITE_LOW  P1OUT &= ~BIT4//è¾“å‡ºä½ç”µå¹³
+#define DS18B20_READ_SET   P1DIR &= ~BIT4  //è®¾ç½®ä¸ºè¯»æ¨¡å¼
+#define DS18B20_READ_DATA  P1IN & BIT4     //è¯»å–ç›¸åº”IOå£æ•°æ®
 
-#define DS18B20_MCLK_FREQ  8000000   //Ö÷ÏµÍ³Ê±ÖÓ
+#define DS18B20_MCLK_FREQ  8000000   //ä¸»ç³»ç»Ÿæ—¶é’Ÿ
 #define COMMAND_LSB 0x01
 #define COMMAND_MSB 0x80
 
@@ -24,8 +24,8 @@ extern void DS18B20_Init(void);
 extern void DS18B20_TADelay_us(unsigned int n);
 extern void DS18B20_WriteChar(unsigned char command);
 extern unsigned char DS18B20_ReadChar(void);
-extern unsigned int DS18B20_ReadTemp(void);//µÃµ½ÎÂ¶ÈÊıÖµ
-extern unsigned int DS18B20_ReadTempData(void);//µÃµ½ÎÂ¶ÈÊı¾İ
+extern unsigned int DS18B20_ReadTemp(void);//å¾—åˆ°æ¸©åº¦æ•°å€¼
+extern unsigned int DS18B20_ReadTempData(void);//å¾—åˆ°æ¸©åº¦æ•°æ®
 
 
 #endif /* 18B20_H_ */

@@ -8,14 +8,14 @@
 #ifndef __FILTER_CONTROL_H__
 #define __FILTER_CONTROL_H__
 
-#define LOAD_74HC573   P2OUT |= BIT2  //74HC573Ê¹ÄÜ¶Ë£¨³õÊ¼»¯Ê¹ÓÃÒ»´Î¼´¿É£©
-#define LOAD_FILTER    P2OUT &=~BIT0  //MAX261ÔØÈëÊý¾Ý
-#define UNLOAD_FILTER  P2OUT |= BIT0//MAX261²»ÔØÈëÊý¾Ý
-#define FILTER_MODE1  0x00  //µÍÍ¨¡¢´øÍ¨¡¢´ø×è
-#define FILTER_MODE2  0x01  //µÍÍ¨¡¢´øÍ¨¡¢´ø×è
-#define FILTER_MODE3  0x02  //µÍÍ¨¡¢´øÍ¨¡¢¸ßÍ¨
-#define FILTER_MODE3A 0x02  //µÍÍ¨¡¢´øÍ¨¡¢¸ßÍ¨¡¢´ø×è
-#define FILTER_MODE4  0x03  //µÍÍ¨¡¢¸ßÍ¨¡¢È«Í¨
+#define LOAD_74HC573   P2OUT |= BIT2  //74HC573ä½¿èƒ½ç«¯ï¼ˆåˆå§‹åŒ–ä½¿ç”¨ä¸€æ¬¡å³å¯ï¼‰
+#define LOAD_FILTER    P2OUT &=~BIT0  //MAX261è½½å…¥æ•°æ®
+#define UNLOAD_FILTER  P2OUT |= BIT0//MAX261ä¸è½½å…¥æ•°æ®
+#define FILTER_MODE1  0x00  //ä½Žé€šã€å¸¦é€šã€å¸¦é˜»
+#define FILTER_MODE2  0x01  //ä½Žé€šã€å¸¦é€šã€å¸¦é˜»
+#define FILTER_MODE3  0x02  //ä½Žé€šã€å¸¦é€šã€é«˜é€š
+#define FILTER_MODE3A 0x02  //ä½Žé€šã€å¸¦é€šã€é«˜é€šã€å¸¦é˜»
+#define FILTER_MODE4  0x03  //ä½Žé€šã€é«˜é€šã€å…¨é€š
 #define FILTER_F01    0x04
 #define FILTER_F23    0x08
 #define FILTER_F45    0x0c

@@ -1,7 +1,7 @@
 /*
  * softI2C.c
  *
- *  Created on: 2016Äê5ÔÂ12ÈÕ
+ *  Created on: 2016å¹´5æœˆ12æ—¥
  *      Author: Isaac
  */
 
@@ -23,7 +23,7 @@ bool Slave_Get_Start(void){
 	return true;
 }
 
-bool Slave_Get_Stop(void){//ifÓï¾äµ÷ÓÃ£¬Òª·µ»Øtrue£¬whileÓï¾äµ÷ÓÃ£¬Òª·µ»Øfalse
+bool Slave_Get_Stop(void){//ifè¯­å¥è°ƒç”¨ï¼Œè¦è¿”å›trueï¼Œwhileè¯­å¥è°ƒç”¨ï¼Œè¦è¿”å›false
 	//unsigned int time_out = 100;
 	I2C_SDA_HIGH;
 	while(!I2C_SCL_IN){//wait for SDA turn to high level

@@ -1,6 +1,6 @@
 //***************************************//
-//*       DS18B20²âÁ¿ÎÂ¶ÈÊµÑé
-//*    ²â³öÀ´µÄÎÂ¶ÈÔÚLCD1602ÉÏÏÔÊ¾
+//*       DS18B20æµ‹é‡æ¸©åº¦å®éªŒ
+//*    æµ‹å‡ºæ¥çš„æ¸©åº¦åœ¨LCD1602ä¸Šæ˜¾ç¤º
 //***************************************//
 #include<msp430x14x.h>
 
@@ -22,7 +22,7 @@ uchar table0[]="temperture is   ";
 uchar table1[]="       .   C    ";
 uint bit[5]={0,0,0,0,0};
 uint t;
-void delay(uint x)  //ÑÓÊ±º¯Êı
+void delay(uint x)  //å»¶æ—¶å‡½æ•°
 {
   uint i;
   uchar j;
@@ -30,16 +30,16 @@ void delay(uint x)  //ÑÓÊ±º¯Êı
     for(j=110;j>0;j--);
 }
 
-void delayus(uint n)//ÑÓÊ±º¯Êı£¨us¼¶£©
+void delayus(uint n)//å»¶æ—¶å‡½æ•°ï¼ˆusçº§ï¼‰
 {
-    CCR0 = n;    // ÉèÖÃÒªÑÓÊ±µÄÊ±¼ä
-    TACTL |= MC_1;  //Ôö¼ÆÊıÄ£Ê½         
+    CCR0 = n;    // è®¾ç½®è¦å»¶æ—¶çš„æ—¶é—´
+    TACTL |= MC_1;  //å¢è®¡æ•°æ¨¡å¼         
     while(!(TACTL & BIT0));      
     TACTL &= ~MC_1;          
     TACTL &= ~BIT0;       
 }
 
-void write_com(uchar com)//ÏòLCD1602ÖĞĞ´Ö¸Áî
+void write_com(uchar com)//å‘LCD1602ä¸­å†™æŒ‡ä»¤
 {
   clr_rs;
   clr_rw;
@@ -51,7 +51,7 @@ void write_com(uchar com)//ÏòLCD1602ÖĞĞ´Ö¸Áî
   clr_en;
 }
 
-void write_data(uchar data)//ÏòLCD1602ÖĞĞ´Êı¾İ
+void write_data(uchar data)//å‘LCD1602ä¸­å†™æ•°æ®
 {
   set_rs;
   clr_rw;
@@ -63,7 +63,7 @@ void write_data(uchar data)//ÏòLCD1602ÖĞĞ´Êı¾İ
   clr_en;
 }
 
-void display_string(uchar *p,uchar com)//Ğ´×Ö·û´®º¯Êı
+void display_string(uchar *p,uchar com)//å†™å­—ç¬¦ä¸²å‡½æ•°
 {
   uchar i;
   write_com(com);
@@ -73,7 +73,7 @@ void display_string(uchar *p,uchar com)//Ğ´×Ö·û´®º¯Êı
   }
 }
 
-void lcd_init() //LCD1602Òº¾§ÆÁ³õÊ¼»¯
+void lcd_init() //LCD1602æ¶²æ™¶å±åˆå§‹åŒ–
 {
   clr_rs;
   clr_rw;
@@ -87,20 +87,20 @@ void lcd_init() //LCD1602Òº¾§ÆÁ³õÊ¼»¯
   display_string(table1,0xc0);   
 }
 
-void clk_init() //Ê±ÖÓ³õÊ¼»¯
+void clk_init() //æ—¶é’Ÿåˆå§‹åŒ–
 {
   uint i;
-  BCSCTL1&=~XT2OFF; //´ò¿ª¸ßÆµ¾§ÌåÕñµ´Æ÷
+  BCSCTL1&=~XT2OFF; //æ‰“å¼€é«˜é¢‘æ™¶ä½“æŒ¯è¡å™¨
   do
   {
-    IFG1&=~OFIFG; //Çå³ıÖĞ¶Ï±êÖ¾Î»
-    for(i=0xff;i>0;i--);//ÑÓÊ±µÈ´ı
+    IFG1&=~OFIFG; //æ¸…é™¤ä¸­æ–­æ ‡å¿—ä½
+    for(i=0xff;i>0;i--);//å»¶æ—¶ç­‰å¾…
   }
-  while(IFG1&OFIFG);  //ÅĞ¶ÏÖĞ¶Ï±êÖ¾Î»ÊÇ·ñ±»Çå³ı
-  BCSCTL2|=SELM_2+SELS; //Ö÷ÏµÍ³Ê±ÖÓºÍ¸¨ÖúÏµÍ³Ê±ÖÓ¶¼Ñ¡Ôñ¸ßÆµ¾§ÌåÕñµ´Æ÷
+  while(IFG1&OFIFG);  //åˆ¤æ–­ä¸­æ–­æ ‡å¿—ä½æ˜¯å¦è¢«æ¸…é™¤
+  BCSCTL2|=SELM_2+SELS; //ä¸»ç³»ç»Ÿæ—¶é’Ÿå’Œè¾…åŠ©ç³»ç»Ÿæ—¶é’Ÿéƒ½é€‰æ‹©é«˜é¢‘æ™¶ä½“æŒ¯è¡å™¨
 }
 
-void DS18B20_init() //DS18B20³õÊ¼»¯
+void DS18B20_init() //DS18B20åˆå§‹åŒ–
 {
   DQ_set;
   delayus(10);
@@ -111,7 +111,7 @@ void DS18B20_init() //DS18B20³õÊ¼»¯
   DQ_set;
 }
 
-uchar Read_18B20()  //´ÓDS18B20ÖĞ¶ÁÈ¡Ò»¸ö×Ö½ÚµÄÊı¾İ
+uchar Read_18B20()  //ä»DS18B20ä¸­è¯»å–ä¸€ä¸ªå­—èŠ‚çš„æ•°æ®
 {
     uchar i;
     uchar temp = 0;
@@ -135,7 +135,7 @@ uchar Read_18B20()  //´ÓDS18B20ÖĞ¶ÁÈ¡Ò»¸ö×Ö½ÚµÄÊı¾İ
     return  temp;
 }
 
-void Write_18B20(uchar data)   //ÏòDS18B20ÖĞĞ´Ò»¸ö×Ö½ÚµÄÊı¾İ
+void Write_18B20(uchar data)   //å‘DS18B20ä¸­å†™ä¸€ä¸ªå­—èŠ‚çš„æ•°æ®
 {
     uchar i;
     P1DIR |= BIT6;
@@ -158,7 +158,7 @@ void Write_18B20(uchar data)   //ÏòDS18B20ÖĞĞ´Ò»¸ö×Ö½ÚµÄÊı¾İ
     }
 }
 
-uint Read_Temperature() //¶ÁÈ¡ÎÂ¶ÈµÄÖµ
+uint Read_Temperature() //è¯»å–æ¸©åº¦çš„å€¼
 {
   uint temp_low,temp;
   DS18B20_init();
@@ -175,7 +175,7 @@ uint Read_Temperature() //¶ÁÈ¡ÎÂ¶ÈµÄÖµ
   return t;
 }
 
-void display()  //ÏÔÊ¾º¯Êı
+void display()  //æ˜¾ç¤ºå‡½æ•°
 {
   t=Read_Temperature(); 
   bit[0]=t/10000;
@@ -196,7 +196,7 @@ void display()  //ÏÔÊ¾º¯Êı
 
 void main()
 {
-  WDTCTL=WDTPW+WDTHOLD; //¹Ø±Õ¿´ÃÅ¹·¶¨Ê±Æ÷
+  WDTCTL=WDTPW+WDTHOLD; //å…³é—­çœ‹é—¨ç‹—å®šæ—¶å™¨
   P6DIR |= BIT3;
   P6OUT |= BIT3;
   data_dir=0xff;
@@ -204,8 +204,8 @@ void main()
   ctrl_dir|=(BIT0+BIT1+BIT2);
   lcd_init();
   clk_init();
-  TACTL |= TASSEL_2 + ID_3; //¶¨Ê±Æ÷AÊ±ÖÓÔ´Ñ¡ÔñÖ÷ÏµÍ³Ê±ÖÓ
-  while(1)  //Ñ­»·ÏÔÊ¾
+  TACTL |= TASSEL_2 + ID_3; //å®šæ—¶å™¨Aæ—¶é’Ÿæºé€‰æ‹©ä¸»ç³»ç»Ÿæ—¶é’Ÿ
+  while(1)  //å¾ªç¯æ˜¾ç¤º
   {
     display();
   }

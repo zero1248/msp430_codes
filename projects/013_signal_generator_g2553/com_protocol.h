@@ -8,8 +8,8 @@
 #ifndef __COM_PROTOCOL_H__
 #define __COM_PROTOCOL_H__
 
-//----------通信配置-----------
-#define MATCHING_CODE  0x55    //匹配码（起始码）
+//----------閫氫俊閰嶇疆-----------
+#define MATCHING_CODE  0x55    //鍖归厤鐮侊紙璧峰鐮侊級
 
 
 extern unsigned char Tx_Data_Packet[];

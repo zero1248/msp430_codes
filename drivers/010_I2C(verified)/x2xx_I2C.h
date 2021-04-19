@@ -9,19 +9,19 @@
 #define __I2C_H__
 #include<msp430g2553.h>
 
-//define HARD_I2C      //Ñ¡ÔñÓ²¼ş»òÈí¼şI2C
+//define HARD_I2C      //é€‰æ‹©ç¡¬ä»¶æˆ–è½¯ä»¶I2C
 #define SOFT_I2C
 
-//-----------------------³õÊ¼»¯-----------------------
+//-----------------------åˆå§‹åŒ–-----------------------
 static void I2C_delay_us(void);
 extern void I2C_Init(void);
 extern void I2C_Tx_Init(void);
 extern void I2C_Rx_Init(void);
-//----------------------Ó¦´ğ--------------------------
+//----------------------åº”ç­”--------------------------
 extern void I2C_Master_Ask(void);
 extern void I2C_Master_NoAsk(void);
 extern unsigned char I2C_Check_SlaveAsk(void);
-//---------------------Êı¾İ´«Êä------------------------
+//---------------------æ•°æ®ä¼ è¾“------------------------
 void I2C_Write1(void);
 void I2C_Write0(void);
 void I2C_Send_Char(unsigned char);

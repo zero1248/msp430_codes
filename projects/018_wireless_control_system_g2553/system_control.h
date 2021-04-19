@@ -6,7 +6,7 @@
  */
 #ifndef __SYSTEM_CONTROL_H__
 #define __SYSTEM_CONTROL_H__
-//----条件编译选择发射/接收----
+//----鏉′欢缂栬瘧閫夋嫨鍙戝皠/鎺ユ敹----
 #define  LAUNCH
 //#define  RECEIVE
 extern void Wireless_IO_Init(void);

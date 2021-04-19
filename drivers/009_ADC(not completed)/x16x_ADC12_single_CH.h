@@ -7,7 +7,7 @@
 
 #ifndef __ADC12_H__
 #define __ADC12_H__
-//--------------ADC12MEM0¼Ä´æÆ÷Öµ---------------
+
 extern unsigned int ADC12_value0;
 
 extern void Init_ADC(void);

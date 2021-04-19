@@ -7,32 +7,32 @@
 #include"data_transform.h"
 #include"system_control.h"
 
-//----×ª»»ºóÊı¾İ----
-unsigned int  Simu_Data[7] = {0};  //ÄêÔÂÈÕÊ±·ÖÃë
-unsigned char Trans_Data[20] = {0};//ÕûÀíºóµÄÊı¾İ
-char Display_Data[11] = {0};   //´æ·ÅÄêÔÂÈÕÏÔÊ¾Êı¾İ
-char Display_Data2[9] = {0};   //´æ·ÅÊ±·ÖÃëÏÔÊ¾Êı¾İ
-//----½ÓÊÜÊı¾İ£¨Ö»ÉùÃ÷£©----
+//----è½¬æ¢åæ•°æ®----
+unsigned int  Simu_Data[7] = {0};  //å¹´æœˆæ—¥æ—¶åˆ†ç§’
+unsigned char Trans_Data[20] = {0};//æ•´ç†åçš„æ•°æ®
+char Display_Data[11] = {0};   //å­˜æ”¾å¹´æœˆæ—¥æ˜¾ç¤ºæ•°æ®
+char Display_Data2[9] = {0};   //å­˜æ”¾æ—¶åˆ†ç§’æ˜¾ç¤ºæ•°æ®
+//----æ¥å—æ•°æ®ï¼ˆåªå£°æ˜ï¼‰----
 //unsigned char rec_foot;
-//unsigned char intsec_flag;//Õû0¡¢20¡¢40Ãë±êÊ¶
-//unsigned char Receive_Data[20]; //½ÓÊÕµ½Ê±ÖÓÊı¾İ
+//unsigned char intsec_flag;//æ•´0ã€20ã€40ç§’æ ‡è¯†
+//unsigned char Receive_Data[20]; //æ¥æ”¶åˆ°æ—¶é’Ÿæ•°æ®
 
 /********************************************************
-*Ãû        ³Æ£ºDisplay_TransData()
-*¹¦        ÄÜ£º½«Ê±¼äÊı¾İ×ª»»³ÉÏÔÊ¾µÄÊı¾İ
-*Èë¿Ú²ÎÊı £ºÎŞ
-*³ö¿Ú²ÎÊı £ºÎŞ
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šDisplay_TransData()
+*åŠŸ        èƒ½ï¼šå°†æ—¶é—´æ•°æ®è½¬æ¢æˆæ˜¾ç¤ºçš„æ•°æ®
+*å…¥å£å‚æ•° ï¼šæ— 
+*å‡ºå£å‚æ•° ï¼šæ— 
+*è¯´        æ˜ï¼š
 ********************************************************/
 void Display_TransData(void)
 {
-	//----Äê----
+	//----å¹´----
 	Display_Data[0] = (Simu_Data[0]/1000)+'0';
 	Display_Data[1] = (Simu_Data[0]%1000)/100+'0';
 	Display_Data[2] = (Simu_Data[0]%100)/10+'0';
 	Display_Data[3] = (Simu_Data[0]%10)+'0';
 	Display_Data[4] = '/';
-	//----ÔÂ----
+	//----æœˆ----
 	if(Simu_Data[1] >= 10)
 	{
 		Display_Data[5] = (Simu_Data[1]/10)+'0';
@@ -44,7 +44,7 @@ void Display_TransData(void)
 		Display_Data[6] = Simu_Data[1]+'0';
 	}
 	Display_Data[7] = '/';
-	//----ÈÕ----
+	//----æ—¥----
 	if(Simu_Data[2] >= 10)
 	{
 		Display_Data[8] = (Simu_Data[2]/10)+'0';
@@ -56,7 +56,7 @@ void Display_TransData(void)
 		Display_Data[9] = Simu_Data[2]+'0';
 	}
 	Display_Data[10] = '\0';
-	//----Ê±----
+	//----æ—¶----
 	if(Simu_Data[3] >= 10)
 		{
 			Display_Data2[0] = (Simu_Data[3]/10)+'0';
@@ -68,7 +68,7 @@ void Display_TransData(void)
 			Display_Data2[1] = Simu_Data[3]+'0';
 		}
 	Display_Data2[2] = ':';
-	//----·Ö----
+	//----åˆ†----
 	if(Simu_Data[4] >= 10)
 	{
 		Display_Data2[3] = (Simu_Data[4]/10)+'0';
@@ -80,7 +80,7 @@ void Display_TransData(void)
 		Display_Data2[4] = Simu_Data[4]+'0';
 	}
 	Display_Data2[5] = ':';
-	//----Ãë----
+	//----ç§’----
 	if(Simu_Data[5] >= 10)
 	{
 		Display_Data2[6] = (Simu_Data[5]/10)+'0';
@@ -95,11 +95,11 @@ void Display_TransData(void)
 }
 
 /********************************************************
-*Ãû        ³Æ£ºTransform_Data()
-*¹¦        ÄÜ£º½«½ÓÊÕµÄÊı¾İ×ª»»³ÉÊ±¼äÊı¾İ²¢´æ´¢
-*Èë¿Ú²ÎÊı £ºÎŞ
-*³ö¿Ú²ÎÊı £ºÎŞ
-*Ëµ        Ã÷£ºÏÈ½«Êı¾İ°´Ë³ĞòÅÅÁĞ£¬ÔÙ·Ö±ğ×ª»»£¬×îºó×ª»¯³ÉÒªÏÔÊ¾µÄÊı¾İ
+*å        ç§°ï¼šTransform_Data()
+*åŠŸ        èƒ½ï¼šå°†æ¥æ”¶çš„æ•°æ®è½¬æ¢æˆæ—¶é—´æ•°æ®å¹¶å­˜å‚¨
+*å…¥å£å‚æ•° ï¼šæ— 
+*å‡ºå£å‚æ•° ï¼šæ— 
+*è¯´        æ˜ï¼šå…ˆå°†æ•°æ®æŒ‰é¡ºåºæ’åˆ—ï¼Œå†åˆ†åˆ«è½¬æ¢ï¼Œæœ€åè½¬åŒ–æˆè¦æ˜¾ç¤ºçš„æ•°æ®
 ********************************************************/
 void Transform_Data(void)
 {
@@ -115,15 +115,15 @@ void Transform_Data(void)
 		Trans_Data[i] = Receive_Data[n];
 		i++;
 	}
-	Simu_Data[6] = Trans_Data[7]*4+Trans_Data[8]; //ĞÇÆÚ
-	Simu_Data[5] = Trans_Data[0]*20+1+19-intsec_flag-1;//Ãë
-	Simu_Data[4] = Trans_Data[4]*16+Trans_Data[5]*4+Trans_Data[6];//·Ö
-	if(Trans_Data[4]&0x02)  //Ê±
+	Simu_Data[6] = Trans_Data[7]*4+Trans_Data[8]; //æ˜ŸæœŸ
+	Simu_Data[5] = Trans_Data[0]*20+1+19-intsec_flag-1;//ç§’
+	Simu_Data[4] = Trans_Data[4]*16+Trans_Data[5]*4+Trans_Data[6];//åˆ†
+	if(Trans_Data[4]&0x02)  //æ—¶
 		Simu_Data[3] = 12+Trans_Data[2]*4+Trans_Data[3];
 	else Simu_Data[3] = Trans_Data[2]*4+Trans_Data[3];
-	Simu_Data[2] = Trans_Data[10]*16+Trans_Data[11]*4+Trans_Data[12];//ÈÕ
-	Simu_Data[1] = Trans_Data[13]*4+Trans_Data[14];  //ÔÂ
-	Simu_Data[0] = Trans_Data[15]*16+Trans_Data[16]*4+Trans_Data[17]; //Äê
+	Simu_Data[2] = Trans_Data[10]*16+Trans_Data[11]*4+Trans_Data[12];//æ—¥
+	Simu_Data[1] = Trans_Data[13]*4+Trans_Data[14];  //æœˆ
+	Simu_Data[0] = Trans_Data[15]*16+Trans_Data[16]*4+Trans_Data[17]; //å¹´
 }
 
 

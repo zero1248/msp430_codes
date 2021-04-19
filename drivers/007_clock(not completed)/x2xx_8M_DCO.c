@@ -5,13 +5,13 @@
  *      Author: Isaac
  */
 #include<msp430g2553.h>
-#include"BCL.h"
+#include"x2xx_8M_DCO.h"
 /********************************************************
-*Ãû        ³Æ£ºBCS_Init()
-*¹¦        ÄÜ£ºÊ±ÖÓ³õÊ¼»¯
-*Èë¿Ú²ÎÊý £ºÎÞ
-*³ö¿Ú²ÎÊý £ºÎÞ
-*Ëµ        Ã÷£ºSMCLK=MCLK=8MHz,ACLK=32.768kHz
+*å        ç§°ï¼šBCS_Init()
+*åŠŸ        èƒ½ï¼šæ—¶é’Ÿåˆå§‹åŒ–
+*å…¥å£å‚æ•° ï¼šæ— 
+*å‡ºå£å‚æ•° ï¼šæ— 
+*è¯´        æ˜Žï¼šSMCLK=MCLK=8MHz,ACLK=32.768kHz
 ********************************************************/
 void BCS_Init(void)
 {

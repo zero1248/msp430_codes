@@ -9,23 +9,23 @@
 typedef unsigned char uchar;
 //unsigned char num[128]={0};
 
-/*void Clk_Init(){       //³õÊ¼»¯Ê±ÖÓ
+/*void Clk_Init(){       //åˆå§‹åŒ–æ—¶é’Ÿ
     unsigned int i;
     BCSCTL1 &=~XT2OFF;//Basic Clock System Control 1,Enable XT2CLK
-                       //¼´´ò¿ªXT2
+                       //å³æ‰“å¼€XT2
     do {
-        IFG1 &= ~OFIFG;        // IFG1:Interrupt Flag 1                                                // Çå³ýÕñµ´Æ÷Ê§Ð§±êÖ¾
-        for(i=0xFF;i>0;i--);// ÑÓÊ±£¬µÈ´ýXT2ÆðÕñ
+        IFG1 &= ~OFIFG;        // IFG1:Interrupt Flag 1    // æ¸…é™¤æŒ¯è¡å™¨å¤±æ•ˆæ ‡å¿—
+        for(i=0xFF;i>0;i--);// å»¶æ—¶ï¼Œç­‰å¾…XT2èµ·æŒ¯
     }
-    while((IFG1 & OFIFG) != 0);// ÅÐ¶ÏXT2ÊÇ·ñÆðÕñ,OFIFG=0ÔòÆðÕñ
-    BCSCTL2 =SELM1+SELS;       //MCLK£¨SELM1£©,SMCLKÊ±ÖÓÎªXT2,¶¼Îª8MHZ
+    while((IFG1 & OFIFG) != 0);// åˆ¤æ–­XT2æ˜¯å¦èµ·æŒ¯,OFIFG=0åˆ™èµ·æŒ¯
+    BCSCTL2 =SELM1+SELS;       //MCLKï¼ˆSELM1ï¼‰,SMCLKæ—¶é’Ÿä¸ºXT2,éƒ½ä¸º8MHZ
 }*/
 
 /*******************************************
-º¯ÊýÃû³Æ£ºInitUART
-¹¦    ÄÜ£º³õÊ¼»¯UART¶Ë¿Ú
-²Î    Êý£ºÎÞ
-·µ»ØÖµ  £ºÎÞ
+å‡½æ•°åç§°ï¼šInitUART
+åŠŸ    èƒ½ï¼šåˆå§‹åŒ–UARTç«¯å£
+å‚    æ•°ï¼šæ— 
+è¿”å›žå€¼  ï¼šæ— 
 ********************************************/
 void InitUART(void)
 {
@@ -39,56 +39,56 @@ void InitUART(void)
     UCTL0 &= ~SWRST;                          // Initialize USART state machine
 }
 /*******************************************
-º¯ÊýÃû³Æ£ºSend1Char
-¹¦    ÄÜ£ºÏòPC»ú·¢ËÍÒ»¸ö×Ö·û
-²Î    Êý£ºsendchar--Òª·¢ËÍµÄ×Ö·û
-·µ»ØÖµ  £ºÎÞ
+å‡½æ•°åç§°ï¼šSend1Char
+åŠŸ    èƒ½ï¼šå‘PCæœºå‘é€ä¸€ä¸ªå­—ç¬¦
+å‚    æ•°ï¼šsendchar--è¦å‘é€çš„å­—ç¬¦
+è¿”å›žå€¼  ï¼šæ— 
 ********************************************/
 void Send1Char(uchar sendchar)
 {
-      while (!(IFG1 & UTXIFG0));    //µÈ´ý·¢ËÍ¼Ä´æÆ÷Îª¿Õ
+      while (!(IFG1 & UTXIFG0));    //ç­‰å¾…å‘é€å¯„å­˜å™¨ä¸ºç©º
       TXBUF0 = sendchar;
 
 }
 /*******************************************
-º¯ÊýÃû³Æ£ºPutSting
-¹¦    ÄÜ£ºÏòPC»ú·¢ËÍ×Ö·û´®
-²Î    Êý£ºptr--Ö¸Ïò·¢ËÍ×Ö·û´®µÄÖ¸Õë
-·µ»ØÖµ  £ºÎÞ
+å‡½æ•°åç§°ï¼šPutSting
+åŠŸ    èƒ½ï¼šå‘PCæœºå‘é€å­—ç¬¦ä¸²
+å‚    æ•°ï¼šptr--æŒ‡å‘å‘é€å­—ç¬¦ä¸²çš„æŒ‡é’ˆ
+è¿”å›žå€¼  ï¼šæ— 
 ********************************************/
 void PutString(uchar *ptr)
 {
       while(*ptr != '\0')
       {
-            Send1Char(*ptr++);                     // ·¢ËÍÊý¾Ý
+            Send1Char(*ptr++);                     // å‘é€æ•°æ®
       }
       while (!(IFG1 & UTXIFG0));
-      TXBUF0 = '\n';                              //·¢ËÍ»»ÐÐÖ¸Áî
+      TXBUF0 = '\n';                              //å‘é€æ¢è¡ŒæŒ‡ä»¤
 }
 /*******************************************
-º¯ÊýÃû³Æ£ºGet1Char
-¹¦    ÄÜ£º½ÓÊÕÒ»¸öÀ´×ÔPC»úµÄ×Ö·û
-²Î    Êý£ºÎÞ
-·µ»ØÖµ  £º½ÓÊÕµ½µÄ×Ö·û
+å‡½æ•°åç§°ï¼šGet1Char
+åŠŸ    èƒ½ï¼šæŽ¥æ”¶ä¸€ä¸ªæ¥è‡ªPCæœºçš„å­—ç¬¦
+å‚    æ•°ï¼šæ— 
+è¿”å›žå€¼  ï¼šæŽ¥æ”¶åˆ°çš„å­—ç¬¦
 ********************************************/
 uchar Get1Char(void)
 {
-    while (!(IFG1 & URXIFG0));    //µÈ´ý½ÓÊÕµ½×Ö·û
+    while (!(IFG1 & URXIFG0));    //ç­‰å¾…æŽ¥æ”¶åˆ°å­—ç¬¦
     return  RXBUF0;
 }
 
 /*void main(void)
 {
     unsigned char i;
-    //ÏÂÃæÁùÐÐ³ÌÐò¹Ø±ÕËùÓÐµÄIO¿Ú
+    //ä¸‹é¢å…­è¡Œç¨‹åºå…³é—­æ‰€æœ‰çš„IOå£
     P1DIR = 0XFF;P1OUT = 0XFF;
     P2DIR = 0XFF;P2OUT = 0XFF;
     P3DIR = 0XFF;P3OUT = 0XFF;
     P4DIR = 0XFF;P4OUT = 0XFF;
     P5DIR = 0XFF;P5OUT = 0XFF;
     P6DIR = 0XFF;P6OUT = 0XFF;
-    WDTCTL = WDTPW + WDTHOLD;   //Í£Ö¹¿´ÃÅ¹·
-    InitUART();                 //³õÊ¼»¯UART¶Ë¿Ú
+    WDTCTL = WDTPW + WDTHOLD;   //åœæ­¢çœ‹é—¨ç‹—
+    InitUART();                 //åˆå§‹åŒ–UARTç«¯å£
 	Clk_Init();
 	while(1)
 	{

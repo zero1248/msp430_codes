@@ -11,8 +11,8 @@
 
 void Timer0_A3_Init(void)
 {
-	//-----------²¶»ñÄ£Ê½-----------
-	TA0CTL = TASSEL_2 + ID_0 + MC_2; //Á¬Ðø¼ÆÊý¿ªÊ¼
+	//-----------æ•èŽ·æ¨¡å¼-----------
+	TA0CTL = TASSEL_2 + ID_0 + MC_2; //è¿žç»­è®¡æ•°å¼€å§‹
 	TA0CCTL1 = CM_1 +CCIS_1 + SCS + CAP + OUTMOD_0 + CCIE;
 }
 

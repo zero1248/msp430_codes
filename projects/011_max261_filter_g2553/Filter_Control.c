@@ -10,14 +10,14 @@
 
 
 /********************************************************
-*Ãû       ³Æ£ºFilter_IO_Init()
-*¹¦       ÄÜ£º³õÊ¼»¯³Ì¿ØÂË²¨Æ÷ËùĞèIO¿Ú
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºP1.0~1.1---D0~D1    P1.2~1.5-----A0~A3
+*å       ç§°ï¼šFilter_IO_Init()
+*åŠŸ       èƒ½ï¼šåˆå§‹åŒ–ç¨‹æ§æ»¤æ³¢å™¨æ‰€éœ€IOå£
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šP1.0~1.1---D0~D1    P1.2~1.5-----A0~A3
           P2.0---------PWM(MAX261clock)
-          P2.1---------MAX261_WRµÍµçÆ½ÓĞĞ§
-          P2.2---------74HC573(LE)¸ßµçÆ½ÓĞĞ§
+          P2.1---------MAX261_WRä½ç”µå¹³æœ‰æ•ˆ
+          P2.2---------74HC573(LE)é«˜ç”µå¹³æœ‰æ•ˆ
 ********************************************************/
 void Filter_IO_Init(void)
 {
@@ -29,15 +29,15 @@ void Filter_IO_Init(void)
 }
 
 /********************************************************
-*Ãû       ³Æ£ºFilterA_Mode_Set()
-*¹¦       ÄÜ£ºÉèÖÃ³Ì¿ØÂË²¨Æ÷AµÄ¹¤×÷Ä£Ê½
-*Èë¿Ú²ÎÊı£ºmode-È¡ÖµÎª1/2/3/4/5
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºMode1(00)  µÍÍ¨¡¢´øÍ¨¡¢´ø×è(Ò»°ãÓÃ×÷´øÍ¨¡¢µÍÍ¨)
-		  Mode2(01)  µÍÍ¨¡¢´øÍ¨¡¢´ø×è()
-          Mode3(10)  µÍÍ¨¡¢´øÍ¨¡¢¸ßÍ¨(ÍÖÔ²´øÍ¨¡¢µÍÍ¨¡¢¸ßÍ¨)
-          Mode3A(10) µÍÍ¨¡¢´øÍ¨¡¢¸ßÍ¨¡¢´ø×è(ÓëMode3ÅäÖÃÏàÍ¬£¬µ«ÊÇÊ¹ÓÃÆ¬ÉÏµÄOP¡ªAMP)
-          Mode4(11)  µÍÍ¨¡¢¸ßÍ¨¡¢È«Í¨(È«Í¨)
+*å       ç§°ï¼šFilterA_Mode_Set()
+*åŠŸ       èƒ½ï¼šè®¾ç½®ç¨‹æ§æ»¤æ³¢å™¨Açš„å·¥ä½œæ¨¡å¼
+*å…¥å£å‚æ•°ï¼šmode-å–å€¼ä¸º1/2/3/4/5
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šMode1(00)  ä½é€šã€å¸¦é€šã€å¸¦é˜»(ä¸€èˆ¬ç”¨ä½œå¸¦é€šã€ä½é€š)
+		  Mode2(01)  ä½é€šã€å¸¦é€šã€å¸¦é˜»()
+          Mode3(10)  ä½é€šã€å¸¦é€šã€é«˜é€š(æ¤­åœ†å¸¦é€šã€ä½é€šã€é«˜é€š)
+          Mode3A(10) ä½é€šã€å¸¦é€šã€é«˜é€šã€å¸¦é˜»(ä¸Mode3é…ç½®ç›¸åŒï¼Œä½†æ˜¯ä½¿ç”¨ç‰‡ä¸Šçš„OPâ€”AMP)
+          Mode4(11)  ä½é€šã€é«˜é€šã€å…¨é€š(å…¨é€š)
 ********************************************************/
 void FilterA_Mode_Set(unsigned char mode)
 {
@@ -59,18 +59,18 @@ void FilterA_Mode_Set(unsigned char mode)
 }
 
 /********************************************************
-*Ãû       ³Æ£ºFilterA_F0_Set()
-*¹¦       ÄÜ£ºÉèÖÃ³Ì¿ØÂË²¨Æ÷AµÄÖĞĞÄÆµÂÊ
-*Èë¿Ú²ÎÊı£ºf_data-ÖĞĞÄÆµÂÊ¶ÔÓ¦µÄÁùÎ»Êı¾İ
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºµÍÁ½Î»±íÊ¾Êı¾İ£¬BIT2~BIT5±íÊ¾µØÖ·
+*å       ç§°ï¼šFilterA_F0_Set()
+*åŠŸ       èƒ½ï¼šè®¾ç½®ç¨‹æ§æ»¤æ³¢å™¨Açš„ä¸­å¿ƒé¢‘ç‡
+*å…¥å£å‚æ•°ï¼šf_data-ä¸­å¿ƒé¢‘ç‡å¯¹åº”çš„å…­ä½æ•°æ®
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šä½ä¸¤ä½è¡¨ç¤ºæ•°æ®ï¼ŒBIT2~BIT5è¡¨ç¤ºåœ°å€
 ********************************************************/
 void FilterA_F0_Set(unsigned int f_data)
 {
 	unsigned char frequency = 0;
 	unsigned char f_temp = 0;
 	frequency = f_data;
-	//----ÔØÈëf0¡¢f1----
+	//----è½½å…¥f0ã€f1----
 	f_temp = (frequency & 0x03) + FILTER_F01;
 	P1OUT = f_temp;
 	UNLOAD_FILTER;
@@ -79,7 +79,7 @@ void FilterA_F0_Set(unsigned int f_data)
 	__delay_cycles(80);
 	UNLOAD_FILTER;
 	__delay_cycles(80);
-	//----ÔØÈëf2¡¢f3----
+	//----è½½å…¥f2ã€f3----
 	f_temp = frequency>>2;
 	f_temp = (f_temp & 0x03) + FILTER_F23;
 	P1OUT = f_temp;
@@ -87,7 +87,7 @@ void FilterA_F0_Set(unsigned int f_data)
 	__delay_cycles(80);
 	UNLOAD_FILTER;
 	__delay_cycles(80);
-	//----ÔØÈëf4¡¢f5----
+	//----è½½å…¥f4ã€f5----
 	f_temp = frequency>>4;
 	f_temp = (f_temp & 0x03) + FILTER_F45;
 	P1OUT = f_temp;
@@ -98,18 +98,18 @@ void FilterA_F0_Set(unsigned int f_data)
 }
 
 /********************************************************
-*Ãû       ³Æ£ºFilterA_Qvalue_Set()
-*¹¦       ÄÜ£ºÉèÖÃ³Ì¿ØÂË²¨Æ÷AµÄQÖµ
-*Èë¿Ú²ÎÊı£ºQ_value-QÖµ¶ÔÓ¦µÄÆßÎ»Êı¾İ
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºµÍÁ½Î»±íÊ¾Êı¾İ£¬BIT2~BIT5±íÊ¾µØÖ·
+*å       ç§°ï¼šFilterA_Qvalue_Set()
+*åŠŸ       èƒ½ï¼šè®¾ç½®ç¨‹æ§æ»¤æ³¢å™¨Açš„Qå€¼
+*å…¥å£å‚æ•°ï¼šQ_value-Qå€¼å¯¹åº”çš„ä¸ƒä½æ•°æ®
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šä½ä¸¤ä½è¡¨ç¤ºæ•°æ®ï¼ŒBIT2~BIT5è¡¨ç¤ºåœ°å€
 ********************************************************/
 void FilterA_Qvalue_Set(unsigned char Q_value)
 {
 	unsigned char Q_data = 0;
 	unsigned char Q_temp = 0;
 	Q_data = Q_value;
-	//----ÔØÈëQ0¡¢Q1----
+	//----è½½å…¥Q0ã€Q1----
 	Q_temp = (Q_data & 0x03) + FILTER_Q01;
 	P1OUT = Q_temp;
 	UNLOAD_FILTER;
@@ -118,7 +118,7 @@ void FilterA_Qvalue_Set(unsigned char Q_value)
 	__delay_cycles(80);
 	UNLOAD_FILTER;
 	__delay_cycles(80);
-	//----ÔØÈëQ2¡¢Q3----
+	//----è½½å…¥Q2ã€Q3----
 	Q_temp = Q_data>>2;
 	Q_temp = (Q_temp & 0x03) + FILTER_Q23;
 	P1OUT = Q_temp;
@@ -126,7 +126,7 @@ void FilterA_Qvalue_Set(unsigned char Q_value)
 	__delay_cycles(80);
 	UNLOAD_FILTER;
 	__delay_cycles(80);
-	//----ÔØÈëQ4¡¢Q5----
+	//----è½½å…¥Q4ã€Q5----
 	Q_temp = Q_data>>4;
 	Q_temp = (Q_temp & 0x03) + FILTER_Q45;
 	P1OUT = Q_temp;
@@ -134,7 +134,7 @@ void FilterA_Qvalue_Set(unsigned char Q_value)
 	__delay_cycles(80);
 	UNLOAD_FILTER;
 	__delay_cycles(80);
-	//----ÔØÈëQ6----
+	//----è½½å…¥Q6----
 	Q_temp = Q_data>>6;
 	Q_temp = (Q_temp & 0x01) + FILTER_Q6;
 	P1OUT = Q_temp;
@@ -145,16 +145,16 @@ void FilterA_Qvalue_Set(unsigned char Q_value)
 }
 
 /********************************************************
-*Ãû       ³Æ£ºFilterB_Mode_Set()
-*¹¦       ÄÜ£ºÉèÖÃ³Ì¿ØÂË²¨Æ÷BµÄ¹¤×÷Ä£Ê½
-*Èë¿Ú²ÎÊı£ºmode-È¡ÖµÎª1/2/3/4/5
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºMode1(00)  µÍÍ¨¡¢´øÍ¨¡¢´ø×è(Ò»°ãÓÃ×÷´øÍ¨¡¢µÍÍ¨)
-		  Mode2(01)  µÍÍ¨¡¢´øÍ¨¡¢´ø×è()
-          Mode3(10)  µÍÍ¨¡¢´øÍ¨¡¢¸ßÍ¨(ÍÖÔ²´øÍ¨¡¢µÍÍ¨¡¢¸ßÍ¨)
-          Mode3A(10) µÍÍ¨¡¢´øÍ¨¡¢¸ßÍ¨¡¢´ø×è(ÓëMode3ÅäÖÃÏàÍ¬£¬µ«ÊÇÊ¹ÓÃÆ¬ÉÏµÄOP¡ªAMP)
-          Mode4(11)  µÍÍ¨¡¢¸ßÍ¨¡¢È«Í¨(È«Í¨)
-                  µØÖ·Î»±ÈÂË²¨Æ÷A¶ÔÓ¦¶à0x20
+*å       ç§°ï¼šFilterB_Mode_Set()
+*åŠŸ       èƒ½ï¼šè®¾ç½®ç¨‹æ§æ»¤æ³¢å™¨Bçš„å·¥ä½œæ¨¡å¼
+*å…¥å£å‚æ•°ï¼šmode-å–å€¼ä¸º1/2/3/4/5
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šMode1(00)  ä½é€šã€å¸¦é€šã€å¸¦é˜»(ä¸€èˆ¬ç”¨ä½œå¸¦é€šã€ä½é€š)
+		  Mode2(01)  ä½é€šã€å¸¦é€šã€å¸¦é˜»()
+          Mode3(10)  ä½é€šã€å¸¦é€šã€é«˜é€š(æ¤­åœ†å¸¦é€šã€ä½é€šã€é«˜é€š)
+          Mode3A(10) ä½é€šã€å¸¦é€šã€é«˜é€šã€å¸¦é˜»(ä¸Mode3é…ç½®ç›¸åŒï¼Œä½†æ˜¯ä½¿ç”¨ç‰‡ä¸Šçš„OPâ€”AMP)
+          Mode4(11)  ä½é€šã€é«˜é€šã€å…¨é€š(å…¨é€š)
+                  åœ°å€ä½æ¯”æ»¤æ³¢å™¨Aå¯¹åº”å¤š0x20
 ********************************************************/
 void FilterB_Mode_Set(unsigned char mode)
 {
@@ -176,19 +176,19 @@ void FilterB_Mode_Set(unsigned char mode)
 }
 
 /********************************************************
-*Ãû       ³Æ£ºFilterB_F0_Set()
-*¹¦       ÄÜ£ºÉèÖÃ³Ì¿ØÂË²¨Æ÷BµÄÖĞĞÄÆµÂÊ
-*Èë¿Ú²ÎÊı£ºf_data-ÖĞĞÄÆµÂÊ¶ÔÓ¦µÄÁùÎ»Êı¾İ
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºµÍÁ½Î»±íÊ¾Êı¾İ£¬BIT2~BIT5±íÊ¾µØÖ·
-		     µØÖ·Î»±ÈÂË²¨Æ÷A¶ÔÓ¦¶à0x20
+*å       ç§°ï¼šFilterB_F0_Set()
+*åŠŸ       èƒ½ï¼šè®¾ç½®ç¨‹æ§æ»¤æ³¢å™¨Bçš„ä¸­å¿ƒé¢‘ç‡
+*å…¥å£å‚æ•°ï¼šf_data-ä¸­å¿ƒé¢‘ç‡å¯¹åº”çš„å…­ä½æ•°æ®
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šä½ä¸¤ä½è¡¨ç¤ºæ•°æ®ï¼ŒBIT2~BIT5è¡¨ç¤ºåœ°å€
+		     åœ°å€ä½æ¯”æ»¤æ³¢å™¨Aå¯¹åº”å¤š0x20
 ********************************************************/
 void FilterB_F0_Set(unsigned int f_data)
 {
 	unsigned char frequency = 0;
 	unsigned char f_temp = 0;
 	frequency = f_data;
-	//----ÔØÈëf0¡¢f1----
+	//----è½½å…¥f0ã€f1----
 	f_temp = (frequency & 0x03) + FILTER_F01;
 	P1OUT = f_temp + BIT5;
 	UNLOAD_FILTER;
@@ -197,7 +197,7 @@ void FilterB_F0_Set(unsigned int f_data)
 	__delay_cycles(80);
 	UNLOAD_FILTER;
 	__delay_cycles(80);
-	//----ÔØÈëf2¡¢f3----
+	//----è½½å…¥f2ã€f3----
 	f_temp = frequency>>2;
 	f_temp = (f_temp & 0x03) + FILTER_F23;
 	P1OUT = f_temp + BIT5;
@@ -205,7 +205,7 @@ void FilterB_F0_Set(unsigned int f_data)
 	__delay_cycles(80);
 	UNLOAD_FILTER;
 	__delay_cycles(80);
-	//----ÔØÈëf4¡¢f5----
+	//----è½½å…¥f4ã€f5----
 	f_temp = frequency>>4;
 	f_temp = (f_temp & 0x03) + FILTER_F45;
 	P1OUT = f_temp + BIT5;
@@ -216,19 +216,19 @@ void FilterB_F0_Set(unsigned int f_data)
 }
 
 /********************************************************
-*Ãû       ³Æ£ºFilterB_Qvalue_Set()
-*¹¦       ÄÜ£ºÉèÖÃ³Ì¿ØÂË²¨Æ÷BµÄQÖµ
-*Èë¿Ú²ÎÊı£ºQ_value-QÖµ¶ÔÓ¦µÄÆßÎ»Êı¾İ
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºµÍÁ½Î»±íÊ¾Êı¾İ£¬BIT2~BIT5±íÊ¾µØÖ·
-		    µØÖ·Î»±ÈÂË²¨Æ÷A¶ÔÓ¦¶à0x20
+*å       ç§°ï¼šFilterB_Qvalue_Set()
+*åŠŸ       èƒ½ï¼šè®¾ç½®ç¨‹æ§æ»¤æ³¢å™¨Bçš„Qå€¼
+*å…¥å£å‚æ•°ï¼šQ_value-Qå€¼å¯¹åº”çš„ä¸ƒä½æ•°æ®
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šä½ä¸¤ä½è¡¨ç¤ºæ•°æ®ï¼ŒBIT2~BIT5è¡¨ç¤ºåœ°å€
+		    åœ°å€ä½æ¯”æ»¤æ³¢å™¨Aå¯¹åº”å¤š0x20
 ********************************************************/
 void FilterB_Qvalue_Set(unsigned char Q_value)
 {
 	unsigned char Q_data = 0;
 	unsigned char Q_temp = 0;
 	Q_data = Q_value;
-	//----ÔØÈëQ0¡¢Q1----
+	//----è½½å…¥Q0ã€Q1----
 	Q_temp = (Q_data & 0x03) + FILTER_Q01;
 	P1OUT = Q_temp + BIT5;
 	UNLOAD_FILTER;
@@ -237,7 +237,7 @@ void FilterB_Qvalue_Set(unsigned char Q_value)
 	__delay_cycles(80);
 	UNLOAD_FILTER;
 	__delay_cycles(80);
-	//----ÔØÈëQ2¡¢Q3----
+	//----è½½å…¥Q2ã€Q3----
 	Q_temp = Q_data>>2;
 	Q_temp = (Q_temp & 0x03) + FILTER_Q23;
 	P1OUT = Q_temp + BIT5;
@@ -245,7 +245,7 @@ void FilterB_Qvalue_Set(unsigned char Q_value)
 	__delay_cycles(80);
 	UNLOAD_FILTER;
 	__delay_cycles(80);
-	//----ÔØÈëQ4¡¢Q5----
+	//----è½½å…¥Q4ã€Q5----
 	Q_temp = Q_data>>4;
 	Q_temp = (Q_temp & 0x03) + FILTER_Q45;
 	P1OUT = Q_temp + BIT5;
@@ -253,7 +253,7 @@ void FilterB_Qvalue_Set(unsigned char Q_value)
 	__delay_cycles(80);
 	UNLOAD_FILTER;
 	__delay_cycles(80);
-	//----ÔØÈëQ6----
+	//----è½½å…¥Q6----
 	Q_temp = Q_data>>6;
 	Q_temp = (Q_temp & 0x01) + FILTER_Q6;
 	P1OUT = Q_temp + BIT5;
@@ -264,11 +264,11 @@ void FilterB_Qvalue_Set(unsigned char Q_value)
 }
 
 /********************************************************
-*Ãû       ³Æ£ºFilterB_Clock_Set()
-*¹¦       ÄÜ£ºÉèÖÃ³Ì¿ØÂË²¨Æ÷µÄÊ±ÖÓ
-*Èë¿Ú²ÎÊı£ºclock_data-Ê±ÖÓÖµ
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºÊ¹ÓÃP2.0µÄTA1.0Êä³öPWM²¨£¬Õ¼¿Õ±È50%
+*å       ç§°ï¼šFilterB_Clock_Set()
+*åŠŸ       èƒ½ï¼šè®¾ç½®ç¨‹æ§æ»¤æ³¢å™¨çš„æ—¶é’Ÿ
+*å…¥å£å‚æ•°ï¼šclock_data-æ—¶é’Ÿå€¼
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šä½¿ç”¨P2.0çš„TA1.0è¾“å‡ºPWMæ³¢ï¼Œå ç©ºæ¯”50%
 ********************************************************/
 void Filter_Clock_Set(void)
 {

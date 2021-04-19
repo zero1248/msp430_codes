@@ -11,15 +11,15 @@ void main(void) {
     WDTCTL = WDTPW | WDTHOLD;	// Stop watchdog timer
 	BCSCTL1 = CALBC1_12MHZ;     //Set range
 	DCOCTL = CALDCO_12MHZ;      //Set DCO step+modulation
-	DCOCTL = DCOCTL&0xE0;       //¹Ø±Õ»ìÆµÆ÷£¬µÃµ½´¿¾»ÆµÂÊ
-	P1DIR |= BIT6;              //P1.6½«À´×÷ÎªÊ¾²¨Æ÷µÄÍ¬²½ÐÅºÅ
-	//-----³õÊ¼»¯TA1µÄPWMÊä³ö-----
-	TA1_PWM_Init('S',1,'F',0);  //TAÊ±ÖÓÉèÎªSMCLK£¬Í¨µÀ1³¬Ç°PWMÊä³ö£¬Í¨µÀ2²»×÷TAÓÃ
-	TA1_PWM_SetPeriod(128);     //PWMµÄÖÜÆÚÎª128¸öÊ±ÖÓ
-	//--------ADC10³õÊ¼»¯--------
+	DCOCTL = DCOCTL&0xE0;       //å…³é—­æ··é¢‘å™¨ï¼Œå¾—åˆ°çº¯å‡€é¢‘çŽ‡
+	P1DIR |= BIT6;              //P1.6å°†æ¥ä½œä¸ºç¤ºæ³¢å™¨çš„åŒæ­¥ä¿¡å·
+	//-----åˆå§‹åŒ–TA1çš„PWMè¾“å‡º-----
+	TA1_PWM_Init('S',1,'F',0);  //TAæ—¶é’Ÿè®¾ä¸ºSMCLKï¼Œé€šé“1è¶…å‰PWMè¾“å‡ºï¼Œé€šé“2ä¸ä½œTAç”¨
+	TA1_PWM_SetPeriod(128);     //PWMçš„å‘¨æœŸä¸º128ä¸ªæ—¶é’Ÿ
+	//--------ADC10åˆå§‹åŒ–--------
 	ADC10CTL0 = SREF_1+ADC10SHT_3+REF2_5V+REFON+REFOUT+ADC10ON;
 	ADC10CTL1 = INCH_0+CONSEQ_0;
-	//--------¶¨Ê±Æ÷³õÊ¼»¯---------
+	//--------å®šæ—¶å™¨åˆå§‹åŒ–---------
 	Timer0_A_Init();
 	_EINT();
 	while(1)

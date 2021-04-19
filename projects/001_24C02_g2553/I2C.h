@@ -9,11 +9,11 @@
 #define __I2C_H__
 #include<msp430g2553.h>
 
-//define HARD_I2C      //Ñ¡ÔñÓ²¼ş»òÈí¼şI2C
+//define HARD_I2C      //é€‰æ‹©ç¡¬ä»¶æˆ–è½¯ä»¶I2C
 #define SOFT_I2C
 
-#define I2C_MCLK_FREQ 8000000  //Êµ¼ÊÊ±ÖÓÆµÂÊ
-//-----ÆÁ±ÎÓ²¼ş²îÒì£¬¶ÔIO½øĞĞºê¶¨Òå-----
+#define I2C_MCLK_FREQ 8000000  //å®é™…æ—¶é’Ÿé¢‘ç‡
+//-----å±è”½ç¡¬ä»¶å·®å¼‚ï¼Œå¯¹IOè¿›è¡Œå®å®šä¹‰-----
 #define I2C_CLK_HIGH  P1DIR &= ~BIT6
 #define I2C_CLK_LOW   P1DIR |= BIT6;P1OUT &= ~BIT6
 #define I2C_DATA_HIGH P1DIR &= ~BIT7
@@ -23,25 +23,25 @@
 #define I2C_SDA_OUT   P1DIR |= BIT7
 #define I2C_START I2C_Start()
 #define I2C_STOP  I2C_Stop()
-//-----´Ó»úµØÖ·ºê¼°¶ÁĞ´²Ù×÷Î»µÄºê¶¨Òå-----
-#define SLAVE_ADDR  0xa0  //Êµ¼Ê´Ó»úµØÖ·(24C02)
-#define SLAVE_ADDR_W  SLAVE_ADDR|0x00  //Êµ¼Ê´Ó»úµØÖ·+Ğ´±êÖ¾¡£²»ÓÃĞŞ¸Ä
-#define SLAVE_ADDR_R  SLAVE_ADDR|0x01//Êµ¼Ê´Ó»úµØÖ·+¶Á±êÖ¾¡£²»ÓÃĞŞ¸Ä
-//--------------·µ»Ø²ÎÊıºê¶¨Òå--------------
+//-----ä»æœºåœ°å€å®åŠè¯»å†™æ“ä½œä½çš„å®å®šä¹‰-----
+#define SLAVE_ADDR  0xa0  //å®é™…ä»æœºåœ°å€(24C02)
+#define SLAVE_ADDR_W  SLAVE_ADDR|0x00  //å®é™…ä»æœºåœ°å€+å†™æ ‡å¿—ã€‚ä¸ç”¨ä¿®æ”¹
+#define SLAVE_ADDR_R  SLAVE_ADDR|0x01//å®é™…ä»æœºåœ°å€+è¯»æ ‡å¿—ã€‚ä¸ç”¨ä¿®æ”¹
+//--------------è¿”å›å‚æ•°å®å®šä¹‰--------------
 #define TRUE  1
 #define FALSE 0
-//-----------------ÑÓÊ±ºê¶¨Òå----------------------
+//-----------------å»¶æ—¶å®å®šä¹‰----------------------
 #define DELAY_2US  __delay_cycles(8);__delay_cycles(8)
-//-----------------------³õÊ¼»¯-----------------------
+//-----------------------åˆå§‹åŒ–-----------------------
 static void I2C_delay_us(void);
 extern void I2C_Init(void);
 extern void I2C_Tx_Init(void);
 extern void I2C_Rx_Init(void);
-//----------------------Ó¦´ğ--------------------------
+//----------------------åº”ç­”--------------------------
 extern void I2C_Master_Ask(void);
 extern void I2C_Master_NoAsk(void);
 extern unsigned char I2C_Check_SlaveAsk(void);
-//---------------------Êı¾İ´«Êä------------------------
+//---------------------æ•°æ®ä¼ è¾“------------------------
 void I2C_Write1(void);
 void I2C_Write0(void);
 void I2C_Send_Char(unsigned char);

@@ -23,23 +23,23 @@ void main(void)
 	unsigned char i = 0;
 	WDT_OUT;
 	TACTL |= TASSEL_2 + ID_3;
-	Port_Init();    		//Òı½Å³õÊ¼»¯
-	BCS_Init();     		//Ê±ÖÓ³õÊ¼»¯
-	OLED_I2C_Init();		//ÕâÀïÖ±½Óµ÷ÓÃI2C_Init()
-	OLED_Init();    		//OLED³õÊ¼»¯
-					//LDR_Init();     		//¹âÃôµç×è³õÊ¼»¯
-					//DS18B20_Init(); 		//18B20³õÊ¼»¯
-	Electric_Monitor_Init();//Ö÷»úµçÁ¿³õÊ¼»¯
-	UART_RX_OPEN();         //´®¿Ú½ÓÊÕ×´Ì¬
-	Display_FixedData();    //ÏÔÊ¾¹Ì¶¨²¿·Ö
+	Port_Init();    		//å¼•è„šåˆå§‹åŒ–
+	BCS_Init();     		//æ—¶é’Ÿåˆå§‹åŒ–
+	OLED_I2C_Init();		//è¿™é‡Œç›´æ¥è°ƒç”¨I2C_Init()
+	OLED_Init();    		//OLEDåˆå§‹åŒ–
+					//LDR_Init();     		//å…‰æ•ç”µé˜»åˆå§‹åŒ–
+					//DS18B20_Init(); 		//18B20åˆå§‹åŒ–
+	Electric_Monitor_Init();//ä¸»æœºç”µé‡åˆå§‹åŒ–
+	UART_RX_OPEN();         //ä¸²å£æ¥æ”¶çŠ¶æ€
+	Display_FixedData();    //æ˜¾ç¤ºå›ºå®šéƒ¨åˆ†
 	_EINT();
 	while(1)
 	{
 		for( j=15 ; j>0 ; j-- )
 			DS18B20_TADelay_us(5000);
 		i = Extract_Data();
-		if( i )         //ÌáÈ¡Êı¾İ
-			Analysis_Data();        //½âÎöÊı¾İ
+		if( i )         //æå–æ•°æ®
+			Analysis_Data();        //è§£ææ•°æ®
 		DS18B20_TADelay_us(8000);
 		DS18B20_TADelay_us(8000);
 	}
@@ -52,30 +52,30 @@ void main(void)
 	unsigned char i;
 	unsigned char j;
 	WDT_OUT;
-	Port_Init();    		//Òı½Å³õÊ¼»¯
-	BCS_Init();     		//Ê±ÖÓ³õÊ¼»¯
-	             //OLED_I2C_Init();		//ÕâÀïÖ±½Óµ÷ÓÃI2C_Init()
-	             //OLED_Init();    		//OLED³õÊ¼»¯
+	Port_Init();    		//å¼•è„šåˆå§‹åŒ–
+	BCS_Init();     		//æ—¶é’Ÿåˆå§‹åŒ–
+	             //OLED_I2C_Init();		//è¿™é‡Œç›´æ¥è°ƒç”¨I2C_Init()
+	             //OLED_Init();    		//OLEDåˆå§‹åŒ–
 	TACTL |= TASSEL_2 + ID_3;
 	_EINT();
-	DS18B20_Init(); 		//18B20³õÊ¼»¯
-	LDR_Init();     		//¹âÃôµç×è³õÊ¼»¯
-	             //Electric_Monitor_Init();//Ö÷»úµçÁ¿³õÊ¼»¯
-	//UART_TXRX_OPEN();         //´®¿Ú½ÓÊÕ×´Ì¬
+	DS18B20_Init(); 		//18B20åˆå§‹åŒ–
+	LDR_Init();     		//å…‰æ•ç”µé˜»åˆå§‹åŒ–
+	             //Electric_Monitor_Init();//ä¸»æœºç”µé‡åˆå§‹åŒ–
+	//UART_TXRX_OPEN();         //ä¸²å£æ¥æ”¶çŠ¶æ€
 	//UART_TX_OPEN();
 	UART_RX_OPEN();
 	P1SEL |= BIT0;
 	while(1)
 	{
-		Packet_Data( NODE_1 , HOST_ADDRESS );//·¢ËÍÊı¾İ
+		Packet_Data( NODE_1 , HOST_ADDRESS );//å‘é€æ•°æ®
 		UART_TX_OPEN();
 		UART_SendString(Tx_Data_Packet);
 		UART_RX_OPEN();
 		for( j=10 ; j>0 ; j-- )
 			DS18B20_TADelay_us(5000);
 		i = Extract_Data();
-		if( i )         //ÌáÈ¡Êı¾İ
-			Analysis_Data();        //½âÎöÊı¾İ
+		if( i )         //æå–æ•°æ®
+			Analysis_Data();        //è§£ææ•°æ®
 		DS18B20_TADelay_us(8000);
 		DS18B20_TADelay_us(8000);
 	}
@@ -88,30 +88,30 @@ void main(void)
 	unsigned char i;
 	unsigned char j;
 	WDT_OUT;
-	Port_Init();    		//Òı½Å³õÊ¼»¯
-	BCS_Init();     		//Ê±ÖÓ³õÊ¼»¯
-	             //OLED_I2C_Init();		//ÕâÀïÖ±½Óµ÷ÓÃI2C_Init()
-	             //OLED_Init();    		//OLED³õÊ¼»¯
+	Port_Init();    		//å¼•è„šåˆå§‹åŒ–
+	BCS_Init();     		//æ—¶é’Ÿåˆå§‹åŒ–
+	             //OLED_I2C_Init();		//è¿™é‡Œç›´æ¥è°ƒç”¨I2C_Init()
+	             //OLED_Init();    		//OLEDåˆå§‹åŒ–
 	TACTL |= TASSEL_2 + ID_3;
 	_EINT();
-	DS18B20_Init(); 		//18B20³õÊ¼»¯
-	LDR_Init();     		//¹âÃôµç×è³õÊ¼»¯
-	             //Electric_Monitor_Init();//Ö÷»úµçÁ¿³õÊ¼»¯
-	//UART_TXRX_OPEN();         //´®¿Ú½ÓÊÕ×´Ì¬
+	DS18B20_Init(); 		//18B20åˆå§‹åŒ–
+	LDR_Init();     		//å…‰æ•ç”µé˜»åˆå§‹åŒ–
+	             //Electric_Monitor_Init();//ä¸»æœºç”µé‡åˆå§‹åŒ–
+	//UART_TXRX_OPEN();         //ä¸²å£æ¥æ”¶çŠ¶æ€
 	//UART_TX_OPEN();
 	UART_RX_OPEN();
 	P1SEL |= BIT0;
 	while(1)
 	{
-		Packet_Data( NODE_2 , HOST_ADDRESS );//·¢ËÍÊı¾İ
+		Packet_Data( NODE_2 , HOST_ADDRESS );//å‘é€æ•°æ®
 		UART_TX_OPEN();
 		UART_SendString(Tx_Data_Packet);
 		UART_RX_OPEN();
 		for( j=10 ; j>0 ; j-- )
 		DS18B20_TADelay_us(5000);
 		i = Extract_Data();
-		if( i )         //ÌáÈ¡Êı¾İ
-			Analysis_Data();        //½âÎöÊı¾İ
+		if( i )         //æå–æ•°æ®
+			Analysis_Data();        //è§£ææ•°æ®
 		DS18B20_TADelay_us(8000);
 		DS18B20_TADelay_us(8000);
 	}

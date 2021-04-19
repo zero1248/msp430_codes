@@ -9,11 +9,11 @@
 #include"PLL_control.h"
 
 /********************************************************
-*��        �ƣ�ConReg_Emit()
-*��        �ܣ����ƼĴ���д��
-*��ڲ��� ����
-*���ڲ��� ����
-*˵        ����ENBΪ�� MSBΪ1,Ĭ�� Test Bit=0; Aux Data Select=1;
+*名        称：ConReg_Emit()
+*功        能：控制寄存器写入
+*入口参数 ：无
+*出口参数 ：无
+*说        明：ENB为高 MSB为1,默认 Test Bit=0; Aux Data Select=1;
 	 	   REFout=0; TxPD Enable=0;RxPD Enable=1; RefPD Enable=1
 ********************************************************/
 void ConReg_Emit(void)
@@ -21,15 +21,15 @@ void ConReg_Emit(void)
 	ENB_HIGH;
 	MSB_1;
 	CLK_ACTION;
-	Din_LOW;    //��λ��0
+	Din_LOW;    //此位置0
 	CLK_ACTION;
-	TEST_BIT;   //�ǲ���ģʽ
+	TEST_BIT;   //非测试模式
 	CLK_ACTION;
-	AUX_DATA_SELECT; //ADin��Din�ֱ�����16λ�������ݺ�16λ��������
+	AUX_DATA_SELECT; //ADin和Din分别输入16位发射数据和16位接收数据
 	CLK_ACTION;
 	REF_OUT;
 	CLK_ACTION;
-	TxPD_ENABLE;//�رշ���Ĵ������������������ص�·�ػ�
+	TxPD_ENABLE;//关闭发射寄存器、发射鉴相器及相关电路关机
 	CLK_ACTION;
 	RxPD_ENABLE;
 	CLK_ACTION;
@@ -39,11 +39,11 @@ void ConReg_Emit(void)
 }
 
 /********************************************************
-*��        �ƣ�RefFre_Emit()
-*��        �ܣ��ο�Ƶ�ʱ��д��
-*��ڲ��� ����
-*���ڲ��� ����
-*˵        ����ENBΪ�� MSBΪ0����32λ��AUX REF ENABLE=0,Tx-0 SELECT,
+*名        称：RefFre_Emit()
+*功        能：参考频率编程写入
+*入口参数 ：无
+*出口参数 ：无
+*说        明：ENB为高 MSB为0，共32位。AUX REF ENABLE=0,Tx-0 SELECT,
 		   Rx-0 SELECT,12-BITS FREQ DATA,fR1S1,fR1S2,
 		   14-BITS AUX REF FREQ DATA
 ********************************************************/

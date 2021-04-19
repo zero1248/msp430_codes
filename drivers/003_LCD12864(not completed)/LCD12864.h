@@ -4,8 +4,8 @@ File name:    12864.h
 Author:        Isaac
 Version:       1.0.0.2
 Date:            2015-03-24
-Description: LCD12864µÄ¸÷ÖÖÇı¶¯º¯Êı
-Others:        ÎŞ
+Description: LCD12864çš„å„ç§é©±åŠ¨å‡½æ•°
+Others:        æ— 
 ******************************************************************************/
 #ifndef __12864_H__
 #define __12864_H__
@@ -14,10 +14,10 @@ Others:        ÎŞ
 #define uchar unsigned char
 #define uint unsigned int
 
-void delayms(uint);   //ÑÓÊ±xms
-void write_cmd(uchar);   ////Ğ´Ö¸Áîµ½12864
-void write_dat(uchar);	   //Ğ´Êı¾İµ½12864
-void lcd_pos(uchar , uchar );	//ÏÔÊ¾µØÖ·
-//void lcd_printf(uchar , uchar , uchar *); //Ïò£¨x£¬y£©´¦´òÓ¡Êı¾İ
-void lcd_init(void);		 //LCD³õÊ¼»¯
+void delayms(uint);   //å»¶æ—¶xms
+void write_cmd(uchar);   ////å†™æŒ‡ä»¤åˆ°12864
+void write_dat(uchar);	   //å†™æ•°æ®åˆ°12864
+void lcd_pos(uchar , uchar );	//æ˜¾ç¤ºåœ°å€
+//void lcd_printf(uchar , uchar , uchar *); //å‘ï¼ˆxï¼Œyï¼‰å¤„æ‰“å°æ•°æ®
+void lcd_init(void);		 //LCDåˆå§‹åŒ–
 #endif

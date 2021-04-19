@@ -9,8 +9,8 @@
 #define __SYSTEM_CONTROL_H__
 
 extern unsigned char rec_foot;
-extern unsigned char intsec_flag;//Õû0¡¢20¡¢40Ãë±êÊ¶
-extern unsigned char Receive_Data[20]; //½ÓÊÕµ½Ê±ÖÓÊı¾İ
+extern unsigned char intsec_flag;//æ•´0ã€20ã€40ç§’æ ‡è¯†
+extern unsigned char Receive_Data[20]; //æ¥æ”¶åˆ°æ—¶é’Ÿæ•°æ®
 
 extern void TA_Capture0_Init(void);
 extern void Simu_Clock_Open(void);

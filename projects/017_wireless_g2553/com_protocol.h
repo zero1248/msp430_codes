@@ -7,15 +7,15 @@
 
 #ifndef __COM_PROTOCOL_H__
 #define __COM_PROTOCOL_H__
-//----------条件编译选择-----------
+//----------鏉′欢缂栬瘧閫夋嫨-----------
 //#define MONITOR_TERMINAL
 #define MONITOR_NODE1
 //#define MONITOR_NODE2
-//----------通信配置-----------
-#define MATCHING_CODE  0x55    //匹配码（起始码）
-#define HOST_ADDRESS   0x40    //主机地址
-#define NODE_1 0x41            //节点1地址
-#define NODE_2 0x42            //节点2地址
+//----------閫氫俊閰嶇疆-----------
+#define MATCHING_CODE  0x55    //鍖归厤鐮侊紙璧峰鐮侊級
+#define HOST_ADDRESS   0x40    //涓绘満鍦板潃
+#define NODE_1 0x41            //鑺傜偣1鍦板潃
+#define NODE_2 0x42            //鑺傜偣2鍦板潃
 
 extern unsigned char Tx_Data_Packet[];
 extern unsigned char Rx_Data_Packet[];

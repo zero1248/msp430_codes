@@ -16,39 +16,39 @@ char Frequency[6] = {0,0,0,0,0,0};
 char PPvalue[5] = {0,0,0,0,0};
 
 /********************************************************
-*Ãû        ³Æ£ºDisplay_FixedData()
-*¹¦        ÄÜ£ºÏÔÊ¾¹Ì¶¨ºº×ÖÍ¼Æ¬
-*Èë¿Ú²ÎÊı £ºÎŞ
-*³ö¿Ú²ÎÊı £ºÎŞ
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šDisplay_FixedData()
+*åŠŸ        èƒ½ï¼šæ˜¾ç¤ºå›ºå®šæ±‰å­—å›¾ç‰‡
+*å…¥å£å‚æ•° ï¼šæ— 
+*å‡ºå£å‚æ•° ï¼šæ— 
+*è¯´        æ˜ï¼š
 ********************************************************/
 void Display_FixedData(void)
 {
-	OLED_Reset();//ÇåÆÁ
-	OLED_Display_16x16(0,0,1);      /*"ĞÅ"*/
-	OLED_Display_16x16(16,0,2);     /*"ºÅ"*/
-	OLED_Display_16x16(32,0,3);     /*"·¢"*/
-	OLED_Display_16x16(48,0,4);		/*"Éú"*/
-	OLED_Display_16x16(64,0,5);		/*"Æ÷"*/
-	OLED_Display_16x16(112,0,20);    /*µçÁ¿*/
+	OLED_Reset();//æ¸…å±
+	OLED_Display_16x16(0,0,1);      /*"ä¿¡"*/
+	OLED_Display_16x16(16,0,2);     /*"å·"*/
+	OLED_Display_16x16(32,0,3);     /*"å‘"*/
+	OLED_Display_16x16(48,0,4);		/*"ç”Ÿ"*/
+	OLED_Display_16x16(64,0,5);		/*"å™¨"*/
+	OLED_Display_16x16(112,0,20);    /*ç”µé‡*/
 
-	OLED_Display_16x16(2,2,21);     /*ÎŞ²¨ĞÎ*/
+	OLED_Display_16x16(2,2,21);     /*æ— æ³¢å½¢*/
 	OLED_Display_8x16(24,2,"00000");   /*"Hz"*/
 	OLED_Display_8x16(64,2,"Hz");   /*"Hz"*/
 	OLED_Display_8x16(88,2,"0000");   /*"Vpp"*/
 	OLED_Display_8x16(120,2,"V");   /*"Vpp"*/
 
-	OLED_Display_16x16(0,4,16);    /*µç*/
-	OLED_Display_16x16(16,4,17);    /*Á÷*/
+	OLED_Display_16x16(0,4,16);    /*ç”µ*/
+	OLED_Display_16x16(16,4,17);    /*æµ*/
 	OLED_Display_8x16(56,4,"mA");
-	OLED_Display_16x16(0,6,18);    /*¹¦*/
-	OLED_Display_16x16(16,6,19);    /*ºÄ*/
+	OLED_Display_16x16(0,6,18);    /*åŠŸ*/
+	OLED_Display_16x16(16,6,19);    /*è€—*/
 	OLED_Display_8x16(56,6,"W");
 
 	//OLED_Display_8x16 (48,6,"XDU Lab423");
 }
 
-static void Process(unsigned int value,char *Frequency){     //´¦Àíº¯Êı
+static void Process(unsigned int value,char *Frequency){     //å¤„ç†å‡½æ•°
 	if(value >= 10000){
     	Frequency[0] = (unsigned char)( value / 10000) + '0';
     	Frequency[1] = (unsigned char)( (value % 10000) / 1000) + '0';
@@ -76,11 +76,11 @@ static void Process(unsigned int value,char *Frequency){     //´¦Àíº¯Êı
 }
 
 /********************************************************
-*Ãû       ³Æ£ºDisplay_Data()
-*¹¦       ÄÜ£ºÖ÷»úÏÔÊ¾ËùÓĞÊı¾İ
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£ºÎŞ
-*Ëµ       Ã÷£ºµ÷ÓÃ¸÷¸öÄ£¿é
+*å       ç§°ï¼šDisplay_Data()
+*åŠŸ       èƒ½ï¼šä¸»æœºæ˜¾ç¤ºæ‰€æœ‰æ•°æ®
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜ï¼šè°ƒç”¨å„ä¸ªæ¨¡å—
 ********************************************************/
 void Display_Data(void)
 {
@@ -100,19 +100,19 @@ void Display_Data(void)
 	PPvalue[2] = '.';
 	PPvalue[3] = (unsigned char)(PPvalue_temp % 10) + '0';
 	PPvalue[4] = '\0';
-	OLED_Display_16x16(2,2,waveform_temp);/*²¨ĞÎ*/
-	OLED_Display_8x16(24,2,Frequency);   /*ÆµÂÊ*/
-	OLED_Display_8x16(88,2,PPvalue);   /*·å·åÖµ*/
+	OLED_Display_16x16(2,2,waveform_temp);/*æ³¢å½¢*/
+	OLED_Display_8x16(24,2,Frequency);   /*é¢‘ç‡*/
+	OLED_Display_8x16(88,2,PPvalue);   /*å³°å³°å€¼*/
 	__delay_cycles(8000);
 }
 
 
 /********************************************************
-*Ãû        ³Æ£ºExtract_Data()
-*¹¦        ÄÜ£ºÌáÈ¡½ÓÊÕµ½µÄÊı¾İÖ¡
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£º1-³É¹¦£¬0-Ê§°Ü
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šExtract_Data()
+*åŠŸ        èƒ½ï¼šæå–æ¥æ”¶åˆ°çš„æ•°æ®å¸§
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸï¼Œ0-å¤±è´¥
+*è¯´        æ˜ï¼š
 ********************************************************/
 char Extract_Data(void)
 {
@@ -121,10 +121,10 @@ char Extract_Data(void)
 	if( temp == MATCHING_CODE )
 	{
 			Rx_Data_Packet[0] = temp;
-			Rx_Data_Packet[1] = Rx_FIFO_ReadChar(); //ÆµÂÊ
-			Rx_Data_Packet[2] = Rx_FIFO_ReadChar(); //ÆµÂÊ
-			Rx_Data_Packet[3] = Rx_FIFO_ReadChar(); //²¨ĞÎ
-			Rx_Data_Packet[4] = Rx_FIFO_ReadChar(); //·ùÖµ
+			Rx_Data_Packet[1] = Rx_FIFO_ReadChar(); //é¢‘ç‡
+			Rx_Data_Packet[2] = Rx_FIFO_ReadChar(); //é¢‘ç‡
+			Rx_Data_Packet[3] = Rx_FIFO_ReadChar(); //æ³¢å½¢
+			Rx_Data_Packet[4] = Rx_FIFO_ReadChar(); //å¹…å€¼
 			return 1;
 	}
 	else
@@ -134,11 +134,11 @@ char Extract_Data(void)
 }
 
 /********************************************************
-*Ãû        ³Æ£ºAnalysis_Data()
-*¹¦        ÄÜ£º½âÎö½ÓÊÕµ½µÄÊı¾İÖ¡£¬ÅĞ¶ÏÊı¾İÀ´Ô´¼°È¥Ïò
-*Èë¿Ú²ÎÊı£ºÎŞ
-*³ö¿Ú²ÎÊı£º1-³É¹¦£¬0-Ê§°Ü
-*Ëµ        Ã÷£º
+*å        ç§°ï¼šAnalysis_Data()
+*åŠŸ        èƒ½ï¼šè§£ææ¥æ”¶åˆ°çš„æ•°æ®å¸§ï¼Œåˆ¤æ–­æ•°æ®æ¥æºåŠå»å‘
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸï¼Œ0-å¤±è´¥
+*è¯´        æ˜ï¼š
 ********************************************************/
 void Analysis_Data(void)
 {

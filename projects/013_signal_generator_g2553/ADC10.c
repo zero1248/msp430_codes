@@ -11,18 +11,18 @@ unsigned int ADC_value = 0;
 unsigned int ADC_precise_value = 0;
 unsigned char sample_times = 0;
 /***********************************************************
-*Ãû       ³Æ£ºADC10_Init()
-*¹¦       ÄÜ£ºADC10³õÊ¼»¯
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£º¿ªÖÐ¶Ï|¿ªADC|¿ªÄÚ²¿²Î¿¼|2.5V|4±¶Ê±ÖÓ²ÉÑù|2.5VºÍGND×÷²Î¿¼
-		  µ¥Í¨µÀÖØ¸´×ª»»|SMCLK|²»·ÖÆµ|¿ªÊ¼ÐÅºÅADC10SC|A0Í¨µÀ
-		  ÐèÒªÔÚmainº¯ÊýÖÐÊ¹ÄÜ×ÜÖÐ¶Ï
+*å       ç§°ï¼šADC10_Init()
+*åŠŸ       èƒ½ï¼šADC10åˆå§‹åŒ–
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼šå¼€ä¸­æ–­|å¼€ADC|å¼€å†…éƒ¨å‚è€ƒ|2.5V|4å€æ—¶é’Ÿé‡‡æ ·|2.5Vå’ŒGNDä½œå‚è€ƒ
+		  å•é€šé“é‡å¤è½¬æ¢|SMCLK|ä¸åˆ†é¢‘|å¼€å§‹ä¿¡å·ADC10SC|A0é€šé“
+		  éœ€è¦åœ¨mainå‡½æ•°ä¸­ä½¿èƒ½æ€»ä¸­æ–­
 ***********************************************************/
 void ADC10_Init(void)
 {
     ADC10CTL0 &= ~ENC;
-    P1DIR &= ~BIT0; //A0Í¨µÀ(P1.0)
+    P1DIR &= ~BIT0; //A0é€šé“(P1.0)
     ADC10CTL0 = ADC10IE | ADC10ON | REFON | REF2_5V | ADC10SHT_0 | SREF_1;
     ADC10CTL1 = CONSEQ_2 | ADC10SSEL_3 | ADC10DIV_0 | SHS_0 | INCH_0;
     __delay_cycles(30000);//Software delay for REFON to settle
@@ -30,24 +30,24 @@ void ADC10_Init(void)
 }
 
 /***********************************************************
-*Ãû       ³Æ£ºStart_ADC10()
-*¹¦       ÄÜ£ºADC10¿ªÊ¼×ª»»
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£ºÊ¹ÄÜADC²¢·¢³ö¿ªÊ¼ÐÅºÅ
+*å       ç§°ï¼šStart_ADC10()
+*åŠŸ       èƒ½ï¼šADC10å¼€å§‹è½¬æ¢
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼šä½¿èƒ½ADCå¹¶å‘å‡ºå¼€å§‹ä¿¡å·
 ***********************************************************/
 void Start_ADC10(void)
 {
-	ADC10CTL0 |= ENC;                         // Ê¹ÄÜ×ª»»
-    ADC10CTL0 |= ADC10SC;                     // ¿ªÊ¼×ª»»
+	ADC10CTL0 |= ENC;                         // ä½¿èƒ½è½¬æ¢
+    ADC10CTL0 |= ADC10SC;                     // å¼€å§‹è½¬æ¢
 }
 
 /***********************************************************
-*Ãû       ³Æ£ºSop_ADC10()
-*¹¦       ÄÜ£ºADC10¿ªÊ¼×ª»»
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£º¸´Î»Ê¹ÄÜÐÅºÅ
+*å       ç§°ï¼šSop_ADC10()
+*åŠŸ       èƒ½ï¼šADC10å¼€å§‹è½¬æ¢
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼šå¤ä½ä½¿èƒ½ä¿¡å·
 ***********************************************************/
 void Stop_ADC10(void)
 {
@@ -55,11 +55,11 @@ void Stop_ADC10(void)
 }
 
 /***********************************************************
-*Ãû       ³Æ£ºADC10_Function()
-*¹¦       ÄÜ£ºADC10¹¦ÄÜº¯Êý£¬ÔÚADC10ÖÐ¶ÏÖÐµ÷ÓÃ
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£º
+*å       ç§°ï¼šADC10_Function()
+*åŠŸ       èƒ½ï¼šADC10åŠŸèƒ½å‡½æ•°ï¼Œåœ¨ADC10ä¸­æ–­ä¸­è°ƒç”¨
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼š
 ***********************************************************/
 static void ADC10_Function(void)
 {

@@ -6,8 +6,8 @@ unsigned char getdata_flag = 0;
 
 void Key_Init(void)
 {
-    P1IES |= BIT2+BIT3+BIT4+BIT5;               // P1.0Ñ¡ÔñÏÂ½µÑØÖĞ¶Ï
-    P1IE  |= BIT2+BIT3+BIT4+BIT5;               // ´ò¿ªP1.0ÖĞ¶ÏÊ¹ÄÜ
+    P1IES |= BIT2+BIT3+BIT4+BIT5;               // P1.0é€‰æ‹©ä¸‹é™æ²¿ä¸­æ–­
+    P1IE  |= BIT2+BIT3+BIT4+BIT5;               // æ‰“å¼€P1.0ä¸­æ–­ä½¿èƒ½
     P1IFG &= 0X00;
  }
 
@@ -15,7 +15,7 @@ void Key_Init(void)
 static void P1Interrupt_ISR(void)
 {
 
-	if(P1IFG & BIT3)     //½ÓÊÕĞÅºÅĞ£×¼
+	if(P1IFG & BIT3)     //æ¥æ”¶ä¿¡å·æ ¡å‡†
 	{
 		getdata_flag = 1;
 	}
@@ -31,16 +31,16 @@ static void P1Interrupt_ISR(void)
 
 
 /********************************************************
-*Ãû        ³Æ£ºP1_interrupt()
-*¹¦        ÄÜ£ºP1¿Ú°´¼üÖĞ¶ÏÖĞ¶Ï
-*Èë¿Ú²ÎÊı £ºÎŞ
-*³ö¿Ú²ÎÊı £ºÎŞ
-*Ëµ        Ã÷£ºÏÂ½µÑØÖĞ¶Ï
+*å        ç§°ï¼šP1_interrupt()
+*åŠŸ        èƒ½ï¼šP1å£æŒ‰é”®ä¸­æ–­ä¸­æ–­
+*å…¥å£å‚æ•° ï¼šæ— 
+*å‡ºå£å‚æ•° ï¼šæ— 
+*è¯´        æ˜ï¼šä¸‹é™æ²¿ä¸­æ–­
 ********************************************************/
 #pragma vector=PORT1_VECTOR
 __interrupt void P1_interrupt(void)
 {
-	if(P1IFG & BIT2)   //½ø³öµÍ¹¦ºÄÄ£Ê½
+	if(P1IFG & BIT2)   //è¿›å‡ºä½åŠŸè€—æ¨¡å¼
 	{
 		if(LPM_flag == 0)
 		{

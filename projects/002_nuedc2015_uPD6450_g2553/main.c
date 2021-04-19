@@ -19,14 +19,14 @@ void main(void)
 	{
 		for(j=0 ; j<24 ; j++)
 		{
-			uPD6450_Display_Address(i,j);//µÚ¶þÐÐ£¬µÚÈýÁÐ
-			uPD6450_Blink_Set(0);//²»ÉÁË¸
-			uPD6450_Display_Character(16);//¿Õ°××Ö·û
+			uPD6450_Display_Address(i,j);//ç¬¬äºŒè¡Œï¼Œç¬¬ä¸‰åˆ—
+			uPD6450_Blink_Set(0);//ä¸é—ªçƒ
+			uPD6450_Display_Character(16);//ç©ºç™½å­—ç¬¦
 		}
 	}
-	uPD6450_Display_Address(6,12);//µÚ¶þÐÐ£¬µÚÈýÁÐ
-	uPD6450_Blink_Set(0);//²»ÉÁË¸
-	uPD6450_Display_Character(CHARACTER_C);//ÏÔÊ¾B
+	uPD6450_Display_Address(6,12);//ç¬¬äºŒè¡Œï¼Œç¬¬ä¸‰åˆ—
+	uPD6450_Blink_Set(0);//ä¸é—ªçƒ
+	uPD6450_Display_Character(CHARACTER_C);//æ˜¾ç¤ºB
 	uPD6450_Display_Position(6,9);
 	LPM4;
 }

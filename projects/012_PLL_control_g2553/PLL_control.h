@@ -17,17 +17,17 @@
 #define ADin_LOW   P1OUT &=~BIT1
 #define Din_HIGH   P1OUT |= BIT2
 #define Din_LOW    P1OUT &=~BIT2
-//----¿ØÖÆ×Ö----
-#define MSB_1            Din_HIGH//Ğ´¿ØÖÆ×Ö
-#define MSB_0            Din_LOW //Ğ´²Î¿¼ÆµÂÊ
-#define TEST_BIT         Din_LOW //·Ç²âÊÔÄ£Ê½
-#define AUX_DATA_SELECT  Din_HIGH//ADinÊäÈë16Î»·¢ÉäÊı¾İ DinÊäÈë16Î»½ÓÊÕÊı¾İ
-#define REF_OUT          Din_LOW //REFoutÊä³öÆµÂÊ=OSCout/4
-#define TxPD_ENABLE      Din_HIGH//¹Ø±Õ·¢ËÍÊ¹ÄÜ
+//----æ§åˆ¶å­—----
+#define MSB_1            Din_HIGH//å†™æ§åˆ¶å­—
+#define MSB_0            Din_LOW //å†™å‚è€ƒé¢‘ç‡
+#define TEST_BIT         Din_LOW //éæµ‹è¯•æ¨¡å¼
+#define AUX_DATA_SELECT  Din_HIGH//ADinè¾“å…¥16ä½å‘å°„æ•°æ® Dinè¾“å…¥16ä½æ¥æ”¶æ•°æ®
+#define REF_OUT          Din_LOW //REFoutè¾“å‡ºé¢‘ç‡=OSCout/4
+#define TxPD_ENABLE      Din_HIGH//å…³é—­å‘é€ä½¿èƒ½
 #define RxPD_ENABLE      Din_LOW
 #define REFPD_ENABLE     Din_LOW
-//----²Î¿¼ÆµÂÊ----
-#define AUX_REF_ENABLE   Din_LOW //¹Ø±Õ¸¨Öú²Î¿¼ÆµÂÊ¼ÆÊıÆ÷
+//----å‚è€ƒé¢‘ç‡----
+#define AUX_REF_ENABLE   Din_LOW //å…³é—­è¾…åŠ©å‚è€ƒé¢‘ç‡è®¡æ•°å™¨
 #define Tx_0_SELECT      Din_HIGH
 #define Rx_0_SELECT      Din_HIGH
 #define REF_DATA_12      2400

@@ -9,46 +9,46 @@
 #include"com_protocol.h"
 #include"18B20.h"
 
-unsigned char Rx_FIFO[RX_FIFO_SIZE]={0}; //UART½ÓÊÕFIFOÊý×é
-static unsigned char Rx_FIFO_DataNum = 0;       //UART½ÓÊÕFIFO¡°¿ÕÂú¡±Ö¸Ê¾
-static unsigned char Rx_FIFO_IndexR = 0;        //UART½ÓÊÕFIFOµÄÄ£Äâ¡°¶ÁÖ¸Õë¡±
-static unsigned char Rx_FIFO_IndexW = 0;        //UART½ÓÊÕFIFOµÄÄ£Äâ¡°Ð´Ö¸Õë¡±
+unsigned char Rx_FIFO[RX_FIFO_SIZE]={0}; //UARTæŽ¥æ”¶FIFOæ•°ç»„
+static unsigned char Rx_FIFO_DataNum = 0;       //UARTæŽ¥æ”¶FIFOâ€œç©ºæ»¡â€æŒ‡ç¤º
+static unsigned char Rx_FIFO_IndexR = 0;        //UARTæŽ¥æ”¶FIFOçš„æ¨¡æ‹Ÿâ€œè¯»æŒ‡é’ˆâ€
+static unsigned char Rx_FIFO_IndexW = 0;        //UARTæŽ¥æ”¶FIFOçš„æ¨¡æ‹Ÿâ€œå†™æŒ‡é’ˆâ€
 
-unsigned char Tx_FIFO[TX_FIFO_SIZE]={0}; //UART·¢ËÍFIFOÊý×é
-static unsigned char Tx_FIFO_DataNum = 0;       //UART·¢ËÍFIFO¡°¿ÕÂú¡±Ö¸Ê¾
-static unsigned char Tx_FIFO_IndexR = 0;        //UART·¢ËÍFIFOµÄÄ£Äâ¡°¶ÁÖ¸Õë¡±
-static unsigned char Tx_FIFO_IndexW = 0;        //UART·¢ËÍFIFOµÄÄ£Äâ¡°Ð´Ö¸Õë¡±
+unsigned char Tx_FIFO[TX_FIFO_SIZE]={0}; //UARTå‘é€FIFOæ•°ç»„
+static unsigned char Tx_FIFO_DataNum = 0;       //UARTå‘é€FIFOâ€œç©ºæ»¡â€æŒ‡ç¤º
+static unsigned char Tx_FIFO_IndexR = 0;        //UARTå‘é€FIFOçš„æ¨¡æ‹Ÿâ€œè¯»æŒ‡é’ˆâ€
+static unsigned char Tx_FIFO_IndexW = 0;        //UARTå‘é€FIFOçš„æ¨¡æ‹Ÿâ€œå†™æŒ‡é’ˆâ€
 
 /********************************************************
-*Ãû        ³Æ£ºUART_TXRX_OPEN()
-*¹¦        ÄÜ£ºUART³õÊ¼»¯£¬²¢´ò¿ªTXD¡¢RXD
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ        Ã÷£ºP1.1-RXD P1.2-TXD  9600£¬8£¬n£¬1
+*å        ç§°ï¼šUART_TXRX_OPEN()
+*åŠŸ        èƒ½ï¼šUARTåˆå§‹åŒ–ï¼Œå¹¶æ‰“å¼€TXDã€RXD
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜Žï¼šP1.1-RXD P1.2-TXD  9600ï¼Œ8ï¼Œnï¼Œ1
 ********************************************************/
 void UART_TXRX_OPEN(void){
-	//-------¿ªÆôIO¿ÚµÄTXDºÍRXD¹¦ÄÜ-------
+	//-------å¼€å¯IOå£çš„TXDå’ŒRXDåŠŸèƒ½-------
 	P1DIR |= BIT2;
 	P1DIR &= ~BIT1;
 	P1SEL = BIT1 + BIT2;
 	P1SEL2 = BIT1 + BIT2;
-	UCA0CTL1 |= UCSWRST;  //ÔÝÊ±¹Ø±ÕUCA0
-	//-------ÉèÖÃUARTÊ±ÖÓÔ´--------
+	UCA0CTL1 |= UCSWRST;  //æš‚æ—¶å…³é—­UCA0
+	//-------è®¾ç½®UARTæ—¶é’Ÿæº--------
 	UCA0CTL1 = UCSSEL_1 | UCSWRST; //CLK=ACLK
-	//----------ÉèÖÃ²¨ÌØÂÊ---------
+	//----------è®¾ç½®æ³¢ç‰¹çŽ‡---------
 	UCA0BR0 = 0x03;    //32k/9600=3.41
 	UCA0BR1 = 0x00;
 	UCA0MCTL = UCBRF_0 | UCBRS_3;
 	UCA0CTL1 &= ~UCSWRST;
-	IE2 |= UCA0RXIE;//·¢ËÍÖÐ¶ÏÓÃÊ±ÔÙ¿ª
+	IE2 |= UCA0RXIE;//å‘é€ä¸­æ–­ç”¨æ—¶å†å¼€
 }
 
 /********************************************************
-*Ãû        ³Æ£ºUART_TXRX_CLOSE()
-*¹¦        ÄÜ£ºUART³õÊ¼»¯£¬²¢´ò¿ªTXD¡¢RXD
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ        Ã÷£ºP1.1-RXD P1.2-TXD  9600£¬8£¬n£¬1
+*å        ç§°ï¼šUART_TXRX_CLOSE()
+*åŠŸ        èƒ½ï¼šUARTåˆå§‹åŒ–ï¼Œå¹¶æ‰“å¼€TXDã€RXD
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜Žï¼šP1.1-RXD P1.2-TXD  9600ï¼Œ8ï¼Œnï¼Œ1
 ********************************************************/
 void UART_TXRX_CLOSE(void){
 	IE2 &= ~UCA0RXIE;
@@ -56,11 +56,11 @@ void UART_TXRX_CLOSE(void){
 }
 
 /********************************************************
-*Ãû        ³Æ£ºUART_TX_OPEN()
-*¹¦        ÄÜ£º´ò¿ªIOµÄTXD¹¦ÄÜ²¢¹Ø±ÕRXD¹¦ÄÜ£¬Í¬Ê±ÈÃRXDÊä³öµÍµçÆ½
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ        Ã÷£ºP1.1-RXD P1.2-TXD
+*å        ç§°ï¼šUART_TX_OPEN()
+*åŠŸ        èƒ½ï¼šæ‰“å¼€IOçš„TXDåŠŸèƒ½å¹¶å…³é—­RXDåŠŸèƒ½ï¼ŒåŒæ—¶è®©RXDè¾“å‡ºä½Žç”µå¹³
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜Žï¼šP1.1-RXD P1.2-TXD
 ********************************************************/
 void UART_TX_OPEN(void){
 	P1DIR |= BIT1;
@@ -70,10 +70,10 @@ void UART_TX_OPEN(void){
 	P1SEL &= ~BIT1;
 	P1SEL2 |= BIT2;
 	P1SEL2 &= ~BIT1;
-	UCA0CTL1 |= UCSWRST;  //ÔÝÊ±¹Ø±ÕUCA0
-	//-------ÉèÖÃUARTÊ±ÖÓÔ´--------
+	UCA0CTL1 |= UCSWRST;  //æš‚æ—¶å…³é—­UCA0
+	//-------è®¾ç½®UARTæ—¶é’Ÿæº--------
 	UCA0CTL1 = UCSSEL_1 | UCSWRST; //CLK=ACLK
-	//----------ÉèÖÃ²¨ÌØÂÊ---------
+	//----------è®¾ç½®æ³¢ç‰¹çŽ‡---------
 	UCA0BR0 = 0x03;    //32k/9600=3.41
 	UCA0BR1 = 0x00;
 	UCA0MCTL = UCBRF_0 | UCBRS_3;
@@ -83,11 +83,11 @@ void UART_TX_OPEN(void){
 }
 
 /********************************************************
-*Ãû        ³Æ£ºUART_RX_OPEN()
-*¹¦        ÄÜ£º´ò¿ªIOµÄRXD¹¦ÄÜ²¢¹Ø±ÕTXD¹¦ÄÜ£¬Í¬Ê±ÈÃTXDÊä³öµÍµçÆ½
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ        Ã÷£ºP1.1-RXD P1.2-TXD
+*å        ç§°ï¼šUART_RX_OPEN()
+*åŠŸ        èƒ½ï¼šæ‰“å¼€IOçš„RXDåŠŸèƒ½å¹¶å…³é—­TXDåŠŸèƒ½ï¼ŒåŒæ—¶è®©TXDè¾“å‡ºä½Žç”µå¹³
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜Žï¼šP1.1-RXD P1.2-TXD
 ********************************************************/
 void UART_RX_OPEN(void){
 	P1DIR &= ~BIT1;
@@ -97,10 +97,10 @@ void UART_RX_OPEN(void){
 	P1SEL &= ~BIT2;
 	P1SEL2 |= BIT1;
 	P1SEL2 &= ~BIT2;
-	UCA0CTL1 |= UCSWRST;  //ÔÝÊ±¹Ø±ÕUCA0
-	//-------ÉèÖÃUARTÊ±ÖÓÔ´--------
+	UCA0CTL1 |= UCSWRST;  //æš‚æ—¶å…³é—­UCA0
+	//-------è®¾ç½®UARTæ—¶é’Ÿæº--------
 	UCA0CTL1 = UCSSEL_1 | UCSWRST; //CLK=ACLK
-	//----------ÉèÖÃ²¨ÌØÂÊ---------
+	//----------è®¾ç½®æ³¢ç‰¹çŽ‡---------
 	UCA0BR0 = 0x03;    //32k/9600=3.41
 	UCA0BR1 = 0x00;
 	UCA0MCTL = UCBRF_0 | UCBRS_3;
@@ -110,48 +110,48 @@ void UART_RX_OPEN(void){
 }
 
 /********************************************************
-*Ãû        ³Æ£ºRx_FIFO_WriteChar()
-*¹¦        ÄÜ£ºÍùRx½ÓÊÕFIFOÖÐÐ´1×Ö½Ú
-*Èë¿Ú²ÎÊý£ºData-´ýÐ´ÈëFIFOµÄÊý¾Ý
-*³ö¿Ú²ÎÊý£º1-³É¹¦£¬0-Ê§°Ü
-*Ëµ        Ã÷£º²Ù×÷FIFOÒª¹Ø×ÜÖÐ¶Ï
+*å        ç§°ï¼šRx_FIFO_WriteChar()
+*åŠŸ        èƒ½ï¼šå¾€RxæŽ¥æ”¶FIFOä¸­å†™1å­—èŠ‚
+*å…¥å£å‚æ•°ï¼šData-å¾…å†™å…¥FIFOçš„æ•°æ®
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸï¼Œ0-å¤±è´¥
+*è¯´        æ˜Žï¼šæ“ä½œFIFOè¦å…³æ€»ä¸­æ–­
 ********************************************************/
 static unsigned char Rx_FIFO_WriteChar(unsigned char Data){
-	if( Rx_FIFO_DataNum >= RX_FIFO_SIZE ) return (0);//FIFO×°Âú·µ»Ø0
+	if( Rx_FIFO_DataNum >= RX_FIFO_SIZE ) return (0);//FIFOè£…æ»¡è¿”å›ž0
 	_DINT();
 	Rx_FIFO_DataNum++;
-	Rx_FIFO[Rx_FIFO_IndexW++] = Data;    //Êý¾ÝÐ´Èë£¬Î²Ö¸ÕëÒÆÎ»
-	if ( Rx_FIFO_IndexW >= RX_FIFO_SIZE )//ÅÐ¶ÏÎ²Ö¸ÕëÊÇ·ñÔ½½ç
-		Rx_FIFO_IndexW = 0;              //Ð´Ö¸Õë¹éÁã
+	Rx_FIFO[Rx_FIFO_IndexW++] = Data;    //æ•°æ®å†™å…¥ï¼Œå°¾æŒ‡é’ˆç§»ä½
+	if ( Rx_FIFO_IndexW >= RX_FIFO_SIZE )//åˆ¤æ–­å°¾æŒ‡é’ˆæ˜¯å¦è¶Šç•Œ
+		Rx_FIFO_IndexW = 0;              //å†™æŒ‡é’ˆå½’é›¶
 	_EINT();
 	return (1);
 }
 
 /********************************************************
-*Ãû        ³Æ£ºRx_FIFO_ReadChar()
-*¹¦        ÄÜ£º´ÓRx½ÓÊÕFIFOÖÐ¶Á1×Ö½Ú
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºtemp-´Ó¶ÓÁÐÖÐ¶ÁÈ¡µÄÊý¾Ý
-*Ëµ        Ã÷£º²Ù×÷FIFOÒª¹Ø×ÜÖÐ¶Ï
+*å        ç§°ï¼šRx_FIFO_ReadChar()
+*åŠŸ        èƒ½ï¼šä»ŽRxæŽ¥æ”¶FIFOä¸­è¯»1å­—èŠ‚
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼štemp-ä»Žé˜Ÿåˆ—ä¸­è¯»å–çš„æ•°æ®
+*è¯´        æ˜Žï¼šæ“ä½œFIFOè¦å…³æ€»ä¸­æ–­
 ********************************************************/
 unsigned char Rx_FIFO_ReadChar(void){
 	unsigned char temp = 0;
-	if( Rx_FIFO_DataNum == 0 ) return (0);//Ã»ÓÐÎ´¶ÁÊý¾Ý·µ»Ø0
+	if( Rx_FIFO_DataNum == 0 ) return (0);//æ²¡æœ‰æœªè¯»æ•°æ®è¿”å›ž0
 	_DINT();
-	Rx_FIFO_DataNum--;                   //´ý¶ÁÈ¡Êý¾Ý¸öÊý¼õÒ»
-	temp = Rx_FIFO[Rx_FIFO_IndexR++];     //¶ÁÈ¡Êý¾Ý£¬Í·Ö¸ÕëÒÆÎ»
-	if( Rx_FIFO_IndexR >= RX_FIFO_SIZE )  //ÅÐ¶ÏÍ·Ö¸ÕëÔ½½ç
+	Rx_FIFO_DataNum--;                   //å¾…è¯»å–æ•°æ®ä¸ªæ•°å‡ä¸€
+	temp = Rx_FIFO[Rx_FIFO_IndexR++];     //è¯»å–æ•°æ®ï¼Œå¤´æŒ‡é’ˆç§»ä½
+	if( Rx_FIFO_IndexR >= RX_FIFO_SIZE )  //åˆ¤æ–­å¤´æŒ‡é’ˆè¶Šç•Œ
 		Rx_FIFO_IndexR = 0;
 	_EINT();
 	return(temp);
 }
 
 /********************************************************
-*Ãû        ³Æ£ºRx_FIFO_Clear()
-*¹¦        ÄÜ£ºÇå¿ÕRx½ÓÊÕFIFOÇø
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ        Ã÷£ºÖ»ÐèÇåÁã¶ÁÐ´Ö¸ÕëºÍÂú¿Õ¼ÆÊýÖµ£¬²»ÐèÒªÃ¿Î»Ð´0
+*å        ç§°ï¼šRx_FIFO_Clear()
+*åŠŸ        èƒ½ï¼šæ¸…ç©ºRxæŽ¥æ”¶FIFOåŒº
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜Žï¼šåªéœ€æ¸…é›¶è¯»å†™æŒ‡é’ˆå’Œæ»¡ç©ºè®¡æ•°å€¼ï¼Œä¸éœ€è¦æ¯ä½å†™0
 ********************************************************/
 void Rx_FIFO_Clear(void){
 	_DINT();
@@ -162,52 +162,52 @@ void Rx_FIFO_Clear(void){
 }
 
 /********************************************************
-*Ãû        ³Æ£ºTx_FIFO_WriteChar()
-*¹¦        ÄÜ£ºÍùTx·¢ËÍFIFOÖÐÐ´1×Ö½Ú
-*Èë¿Ú²ÎÊý£ºData-´ýÐ´ÈëFIFOµÄÊý¾Ý
-*³ö¿Ú²ÎÊý£º1-³É¹¦£¬0-Ê§°Ü
-*Ëµ        Ã÷£º¡°È«ÐÂ¡±Ò»´Î·¢ËÍÊý¾Ý±ØÐëÊÖ¶¯´¥·¢TxÖÐ¶Ï£»¡°·ÇÈ«ÐÂ¡±´¥·¢
-		    Ò»¶¨²»ÄÜÊÖ¶¯´¥·¢TxÖÐ¶Ï£¬È«ÐÂ·¢ËÍµÄÅÐ¾Ý£ºÍ¬Ê±Âú×ãFIF
-		    OÎÞÊý¾ÝºÍTx²»BUSY
+*å        ç§°ï¼šTx_FIFO_WriteChar()
+*åŠŸ        èƒ½ï¼šå¾€Txå‘é€FIFOä¸­å†™1å­—èŠ‚
+*å…¥å£å‚æ•°ï¼šData-å¾…å†™å…¥FIFOçš„æ•°æ®
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸï¼Œ0-å¤±è´¥
+*è¯´        æ˜Žï¼šâ€œå…¨æ–°â€ä¸€æ¬¡å‘é€æ•°æ®å¿…é¡»æ‰‹åŠ¨è§¦å‘Txä¸­æ–­ï¼›â€œéžå…¨æ–°â€è§¦å‘
+		    ä¸€å®šä¸èƒ½æ‰‹åŠ¨è§¦å‘Txä¸­æ–­ï¼Œå…¨æ–°å‘é€çš„åˆ¤æ®ï¼šåŒæ—¶æ»¡è¶³FIF
+		    Oæ— æ•°æ®å’ŒTxä¸BUSY
 ********************************************************/
 unsigned char Tx_FIFO_WriteChar(unsigned char Data){
-	if( Tx_FIFO_DataNum >= TX_FIFO_SIZE ) return (0); //×°ÂúÎ´¶ÁÊý¾Ý·µ»Ø0
+	if( Tx_FIFO_DataNum >= TX_FIFO_SIZE ) return (0); //è£…æ»¡æœªè¯»æ•°æ®è¿”å›ž0
 	_DINT();
 	//---------------------------------
 	if( (Tx_FIFO_DataNum == 0) && (!(UCA0STAT & UCBUSY)))
-		IE2 |= UCA0TXIE;     //¡°È«ÐÂ¡±·¢ËÍÊÖ¶¯´¥·¢ÖÐ¶Ï
+		IE2 |= UCA0TXIE;     //â€œå…¨æ–°â€å‘é€æ‰‹åŠ¨è§¦å‘ä¸­æ–­
 	Tx_FIFO_DataNum++;
-	Tx_FIFO[Tx_FIFO_IndexW++] = Data;  //Ð´Êý¾Ý£¬Î²Ö¸ÕëÒÆÎ»
-	if( Tx_FIFO_IndexW >= TX_FIFO_SIZE)//Î²Ö¸ÕëÔ½½çÅÐ¶Ï
+	Tx_FIFO[Tx_FIFO_IndexW++] = Data;  //å†™æ•°æ®ï¼Œå°¾æŒ‡é’ˆç§»ä½
+	if( Tx_FIFO_IndexW >= TX_FIFO_SIZE)//å°¾æŒ‡é’ˆè¶Šç•Œåˆ¤æ–­
 		Tx_FIFO_IndexW = 0;
 	_EINT();
 	return(1);
 }
 
 /********************************************************
-*Ãû        ³Æ£ºTx_FIFO_ReadChar()
-*¹¦        ÄÜ£º´ÓTx·¢ËÍFIFOÖÐ¶Á1×Ö½Ú
-*Èë¿Ú²ÎÊý£º*Chr-´ý´æ·Å×Ö½Ú±äÁ¿µÄÖ¸Õë
-*³ö¿Ú²ÎÊý£º1-³É¹¦£¬0-Ê§°Ü
-*Ëµ        Ã÷£º²Ù×÷FIFOÐè¹Ø±Õ×ÜÖÐ¶Ï
+*å        ç§°ï¼šTx_FIFO_ReadChar()
+*åŠŸ        èƒ½ï¼šä»ŽTxå‘é€FIFOä¸­è¯»1å­—èŠ‚
+*å…¥å£å‚æ•°ï¼š*Chr-å¾…å­˜æ”¾å­—èŠ‚å˜é‡çš„æŒ‡é’ˆ
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸï¼Œ0-å¤±è´¥
+*è¯´        æ˜Žï¼šæ“ä½œFIFOéœ€å…³é—­æ€»ä¸­æ–­
 ********************************************************/
 static unsigned char Tx_FIFO_ReadChar(unsigned char *Chr){
-	if( Tx_FIFO_DataNum == 0 ) return (0); //Ã»ÓÐÎ´¶ÁÊý¾Ý·µ»Ø0
+	if( Tx_FIFO_DataNum == 0 ) return (0); //æ²¡æœ‰æœªè¯»æ•°æ®è¿”å›ž0
 	_DINT();
 	Tx_FIFO_DataNum--;
-	*Chr = Tx_FIFO[Tx_FIFO_IndexR++];//¶ÁÊý¾Ý£¬Í·Ö¸ÕëÒÆÎ»
-	if( Tx_FIFO_IndexR >= TX_FIFO_SIZE )//Í·Ö¸ÕëÔ½½çÅÐ¶Ï
+	*Chr = Tx_FIFO[Tx_FIFO_IndexR++];//è¯»æ•°æ®ï¼Œå¤´æŒ‡é’ˆç§»ä½
+	if( Tx_FIFO_IndexR >= TX_FIFO_SIZE )//å¤´æŒ‡é’ˆè¶Šç•Œåˆ¤æ–­
 		Tx_FIFO_IndexR = 0;
 	_EINT();
 	return (1);
 }
 
 /********************************************************
-*Ãû        ³Æ£ºTx_FIFO_Clear()
-*¹¦        ÄÜ£ºÇå¿ÕTx·¢ËÍFIFOÇø
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ        Ã÷£ºÖ»ÐèÇåÁã¶ÁÐ´Ö¸ÕëºÍÂú¿Õ¼ÆÊýÖµ£¬²»ÐèÒªÃ¿Î»Ð´0
+*å        ç§°ï¼šTx_FIFO_Clear()
+*åŠŸ        èƒ½ï¼šæ¸…ç©ºTxå‘é€FIFOåŒº
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜Žï¼šåªéœ€æ¸…é›¶è¯»å†™æŒ‡é’ˆå’Œæ»¡ç©ºè®¡æ•°å€¼ï¼Œä¸éœ€è¦æ¯ä½å†™0
 ********************************************************/
 void Tx_FIFO_Clear(void){
 	_DINT();
@@ -218,11 +218,11 @@ void Tx_FIFO_Clear(void){
 }
 
 /********************************************************
-*Ãû        ³Æ£ºUART_SendString()
-*¹¦        ÄÜ£º·¢ËÍÒ»Ö¡Êý¾Ý
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ        Ã÷£ºÁ¬Ðø·¢ËÍ
+*å        ç§°ï¼šUART_SendString()
+*åŠŸ        èƒ½ï¼šå‘é€ä¸€å¸§æ•°æ®
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜Žï¼šè¿žç»­å‘é€
 ********************************************************/
 void UART_SendString( unsigned char *Ptr){
 	while(*Ptr){
@@ -232,11 +232,11 @@ void UART_SendString( unsigned char *Ptr){
 
 
 /********************************************************
-*Ãû        ³Æ£ºUART_OnTx()
-*¹¦        ÄÜ£ºUARTµÄTxÊÂ¼þ´¦Àíº¯Êý
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ        Ã÷£ºTx_FIFOÀïÓÐÊý¾Ý¾Í½«Êý¾ÝÒÆµ½TxBuffer¼Ä´æÆ÷Àï
+*å        ç§°ï¼šUART_OnTx()
+*åŠŸ        èƒ½ï¼šUARTçš„Txäº‹ä»¶å¤„ç†å‡½æ•°
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜Žï¼šTx_FIFOé‡Œæœ‰æ•°æ®å°±å°†æ•°æ®ç§»åˆ°TxBufferå¯„å­˜å™¨é‡Œ
 ********************************************************/
 static void UART_OnTx(void){
 	unsigned char Temp = 0;
@@ -250,11 +250,11 @@ static void UART_OnTx(void){
 }
 
 /********************************************************
-*Ãû        ³Æ£ºUART_OnRx()
-*¹¦        ÄÜ£ºUARTµÄRxÊÂ¼þ´¦Àíº¯Êý
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ        Ã÷£º¶Ô½ÓÊÕµ½µÄÊý¾ÝÇø±ð¶Ô´ý½øÐÐ´¦Àí
+*å        ç§°ï¼šUART_OnRx()
+*åŠŸ        èƒ½ï¼šUARTçš„Rxäº‹ä»¶å¤„ç†å‡½æ•°
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜Žï¼šå¯¹æŽ¥æ”¶åˆ°çš„æ•°æ®åŒºåˆ«å¯¹å¾…è¿›è¡Œå¤„ç†
 ********************************************************/
 static void UART_OnRx(void){
 	unsigned char Temp = 0;
@@ -263,27 +263,27 @@ static void UART_OnRx(void){
 }
 
 /********************************************************
-*Ãû        ³Æ£ºUART_ISR()
-*¹¦        ÄÜ£ºÏìÓ¦TxÖÐ¶Ï·þÎñ
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ        Ã÷£º·²ÊÇÖÐ¶Ï±êÖ¾Î»ÓÐ¿ÉÄÜ²»±»×Ô¶¯Çå³ýµÄ£¬¾ùÊÖ¶¯Çå³ýÒ»´Î
+*å        ç§°ï¼šUART_ISR()
+*åŠŸ        èƒ½ï¼šå“åº”Txä¸­æ–­æœåŠ¡
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜Žï¼šå‡¡æ˜¯ä¸­æ–­æ ‡å¿—ä½æœ‰å¯èƒ½ä¸è¢«è‡ªåŠ¨æ¸…é™¤çš„ï¼Œå‡æ‰‹åŠ¨æ¸…é™¤ä¸€æ¬¡
 ********************************************************/
 #pragma vector=USCIAB0TX_VECTOR
 __interrupt void UART_Tx_ISR(void){
-	IFG2 &= ~UCA0TXIFG;//ÊÖ¶¯Çå³ý±êÖ¾Î»
-	UART_OnTx();       //µ÷ÓÃTxÊÂ¼þ´¦Àíº¯Êý
+	IFG2 &= ~UCA0TXIFG;//æ‰‹åŠ¨æ¸…é™¤æ ‡å¿—ä½
+	UART_OnTx();       //è°ƒç”¨Txäº‹ä»¶å¤„ç†å‡½æ•°
 }
 
 /********************************************************
-*Ãû        ³Æ£ºUART_ISR()
-*¹¦        ÄÜ£ºÏìÓ¦RxÖÐ¶Ï·þÎñ
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ        Ã÷£º·²ÊÇÖÐ¶Ï±êÖ¾Î»ÓÐ¿ÉÄÜ²»±»×Ô¶¯Çå³ýµÄ£¬¾ùÊÖ¶¯Çå³ýÒ»´Î
+*å        ç§°ï¼šUART_ISR()
+*åŠŸ        èƒ½ï¼šå“åº”Rxä¸­æ–­æœåŠ¡
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´        æ˜Žï¼šå‡¡æ˜¯ä¸­æ–­æ ‡å¿—ä½æœ‰å¯èƒ½ä¸è¢«è‡ªåŠ¨æ¸…é™¤çš„ï¼Œå‡æ‰‹åŠ¨æ¸…é™¤ä¸€æ¬¡
 ********************************************************/
 #pragma vector=USCIAB0RX_VECTOR
 __interrupt void UART_Rx_ISR(void){
-	IFG2 &= ~UCA0RXIFG;//ÊÖ¶¯Çå³ý±êÖ¾Î»
-	UART_OnRx();       //µ÷ÓÃTxÊÂ¼þ´¦Àíº¯Êý
+	IFG2 &= ~UCA0RXIFG;//æ‰‹åŠ¨æ¸…é™¤æ ‡å¿—ä½
+	UART_OnRx();       //è°ƒç”¨Txäº‹ä»¶å¤„ç†å‡½æ•°
 }

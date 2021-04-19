@@ -8,10 +8,10 @@
 #ifndef __DATA_TRANSFORM_H__
 #define __DATA_TRANSFORM_H__
 
-extern unsigned int  Simu_Data[7];  //ÄêÔÂÈÕÊ±·ÖÃë
-extern unsigned char Trans_Data[20];//ÕûÀíºóµÄÊı¾İ
-extern char Display_Data[11];   //´æ·ÅÄêÔÂÈÕÏÔÊ¾Êı¾İ
-extern char Display_Data2[9];   //´æ·ÅÊ±·ÖÃëÏÔÊ¾Êı¾İ
+extern unsigned int  Simu_Data[7];  //å¹´æœˆæ—¥æ—¶åˆ†ç§’
+extern unsigned char Trans_Data[20];//æ•´ç†åçš„æ•°æ®
+extern char Display_Data[11];   //å­˜æ”¾å¹´æœˆæ—¥æ˜¾ç¤ºæ•°æ®
+extern char Display_Data2[9];   //å­˜æ”¾æ—¶åˆ†ç§’æ˜¾ç¤ºæ•°æ®
 
 extern void Display_TransData(void);
 extern void Transform_Data(void);

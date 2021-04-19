@@ -11,27 +11,27 @@
 
 //---------------TA0---------------------
 /********************************************************
-*Ãû       ³Æ£ºTA0_PWM_Init()
-*¹¦       ÄÜ£ºTA0¶¨Ê±Æ÷×÷ÎªPWM·¢ÉúÆ÷µÄ³õÊ¼»¯º¯Êı
-*Èë¿Ú²ÎÊı£ºclk-Ê±ÖÓÔ´'S'=SMCLK;'A'=ACLK;'E'=TACLK;'e'='E'È¡·´
-          div-Ê±ÖÓ·ÖÆµÏµÊı:1/2/4/8
-          mode1-Í¨µÀ1µÄÊä³öÄ£Ê½£¬'F'ÉèÎª³¬Ç°PWM(Ä£Ê½7),'B'ÖÍºóPWM(Ä£Ê½3),
-          'D'´øËÀÇøÔöPWM(Ä£Ê½6),0=½ûÓÃ
-*³ö¿Ú²ÎÊı£º1-³É¹¦,2-Ê§°Ü
-*Ëµ       Ã÷£ºµ÷ÓÃPWMÏà¹Øº¯ÊıÖ®Ç°£¬Ğèµ÷ÓÃ´Ëº¯ÊıÉèÖÃTAµÄÄ£Ê½ºÍÊ±ÖÓÔ´
+*å       ç§°ï¼šTA0_PWM_Init()
+*åŠŸ       èƒ½ï¼šTA0å®šæ—¶å™¨ä½œä¸ºPWMå‘ç”Ÿå™¨çš„åˆå§‹åŒ–å‡½æ•°
+*å…¥å£å‚æ•°ï¼šclk-æ—¶é’Ÿæº'S'=SMCLK;'A'=ACLK;'E'=TACLK;'e'='E'å–å
+          div-æ—¶é’Ÿåˆ†é¢‘ç³»æ•°:1/2/4/8
+          mode1-é€šé“1çš„è¾“å‡ºæ¨¡å¼ï¼Œ'F'è®¾ä¸ºè¶…å‰PWM(æ¨¡å¼7),'B'æ»åPWM(æ¨¡å¼3),
+          'D'å¸¦æ­»åŒºå¢PWM(æ¨¡å¼6),0=ç¦ç”¨
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸ,2-å¤±è´¥
+*è¯´       æ˜ï¼šè°ƒç”¨PWMç›¸å…³å‡½æ•°ä¹‹å‰ï¼Œéœ€è°ƒç”¨æ­¤å‡½æ•°è®¾ç½®TAçš„æ¨¡å¼å’Œæ—¶é’Ÿæº
 ********************************************************/
 char TA0_PWM_Init( char clk , char div , char mode1 )
 {
-	TA0CTL = 0;                                //Çå³ıÒÔÇ°ÉèÖÃ
-	switch( clk )                              //Ñ¡Ôñ¶¨Ê±Æ÷Ê±ÖÓÔ´
+	TA0CTL = 0;                                //æ¸…é™¤ä»¥å‰è®¾ç½®
+	switch( clk )                              //é€‰æ‹©å®šæ—¶å™¨æ—¶é’Ÿæº
 	{
 	case'A':case'a': TA0CTL |= TASSEL_1;break; //ACLK
 	case'S':case's': TA0CTL |= TASSEL_2;break; //SMCLK
-	case'E':         TA0CTL |= TASSEL_0;break; //Íâ²¿ÊäÈë(TACLK)
-	case'e':         TA0CTL |= TASSEL_3;break; //Íâ²¿ÊäÈë(TACLKÈ¡·´)
+	case'E':         TA0CTL |= TASSEL_0;break; //å¤–éƒ¨è¾“å…¥(TACLK)
+	case'e':         TA0CTL |= TASSEL_3;break; //å¤–éƒ¨è¾“å…¥(TACLKå–å)
 	default: return(0);
 	}
-	switch( div )                              //Ñ¡Ôñ·ÖÆµÏµÊı
+	switch( div )                              //é€‰æ‹©åˆ†é¢‘ç³»æ•°
 	{
 		case 1: TA0CTL |= ID_0;break;          //1
 		case 2: TA0CTL |= ID_1;break;          //2
@@ -39,29 +39,29 @@ char TA0_PWM_Init( char clk , char div , char mode1 )
 		case 8: TA0CTL |= ID_3;break;          //8
 		default: return(0);
 	}
-	switch( mode1 )                             //Ñ¡Ôñ¼ÆÊıÄ£Ê½
+	switch( mode1 )                             //é€‰æ‹©è®¡æ•°æ¨¡å¼
 	{
-		case'F':case'f':case'B':case'b': TA0CTL|=MC_1;break; //ÆÕÍ¨PWM£¬Ôö¼ÆÊı
-		case'D':case'd':                 TA0CTL|=MC_3;break; //ËÀÇøPWM£¬Ôö¼õ¼ÆÊı
+		case'F':case'f':case'B':case'b': TA0CTL|=MC_1;break; //æ™®é€šPWMï¼Œå¢è®¡æ•°
+		case'D':case'd':                 TA0CTL|=MC_3;break; //æ­»åŒºPWMï¼Œå¢å‡è®¡æ•°
 		default:return(0);
 	}
-	switch( mode1 )                             //ÉèÖÃPWMÍ¨µÀ1µÄÊä³öÄ£Ê½
+	switch( mode1 )                             //è®¾ç½®PWMé€šé“1çš„è¾“å‡ºæ¨¡å¼
 	{
 		case'F':case'f': TA0CCTL1 = OUTMOD_7;TA01_SET;break;
 		case'B':case'b': TA0CCTL1 = OUTMOD_3;TA01_SET;break;
 		case'D':case'd': TA0CCTL1 = OUTMOD_6;TA01_SET;break;
-		case'0':case 0 : TA01_OFF;break;       //Èç¹ûÉèÖÃÎª½ûÓÃTA0.1»Ö¸´ÎªÆÕÍ¨IO
+		case'0':case 0 : TA01_OFF;break;       //å¦‚æœè®¾ç½®ä¸ºç¦ç”¨TA0.1æ¢å¤ä¸ºæ™®é€šIO
 		default: return(0);
 	}
 	return (1);
 }
 
 /********************************************************
-*Ãû       ³Æ£ºTA0_PWM_SetPeriod()
-*¹¦       ÄÜ£ºÉèÖÃPWM·¢ÉúÆ÷µÄÖÜÆÚ
-*Èë¿Ú²ÎÊı£ºperiod-(0~65535)Ê±ÖÓ¸öÊı
-*³ö¿Ú²ÎÊı£º1-³É¹¦,2-Ê§°Ü
-*Ëµ       Ã÷£ºÆÕÍ¨PWMÓë´øËÀÇøPWMÖÜÆÚÏà²îÒ»±¶
+*å       ç§°ï¼šTA0_PWM_SetPeriod()
+*åŠŸ       èƒ½ï¼šè®¾ç½®PWMå‘ç”Ÿå™¨çš„å‘¨æœŸ
+*å…¥å£å‚æ•°ï¼šperiod-(0~65535)æ—¶é’Ÿä¸ªæ•°
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸ,2-å¤±è´¥
+*è¯´       æ˜ï¼šæ™®é€šPWMä¸å¸¦æ­»åŒºPWMå‘¨æœŸç›¸å·®ä¸€å€
 ********************************************************/
 char TA0_PWM_SetPeriod(unsigned int period)
 {
@@ -71,12 +71,12 @@ char TA0_PWM_SetPeriod(unsigned int period)
 }
 
 /********************************************************
-*Ãû       ³Æ£ºTA0_PWM_SetPermill()
-*¹¦       ÄÜ£ºÉèÖÃPWMÊä³öµÄÕ¼¿Õ±È(Õ¼¿Õ±È)
-*Èë¿Ú²ÎÊı£ºchannel-µ±Ç°ÉèÖÃµÄÍ¨µÀºÅ,1/2
-		   duty-PWM¸ßµçÆ½ÓĞĞ§Ê±¼äµÄÇ§·Ö±È(0~1000)
-*³ö¿Ú²ÎÊı£º1-³É¹¦,0-Ê§°Ü
-*Ëµ       Ã÷£º1000=100%£¬500=50.0%¡£ËÀÈ¥Ä£Ê½Ê±£¬Á½channelÍ¬Ê±Éè¶¨
+*å       ç§°ï¼šTA0_PWM_SetPermill()
+*åŠŸ       èƒ½ï¼šè®¾ç½®PWMè¾“å‡ºçš„å ç©ºæ¯”(å ç©ºæ¯”)
+*å…¥å£å‚æ•°ï¼šchannel-å½“å‰è®¾ç½®çš„é€šé“å·,1/2
+		   duty-PWMé«˜ç”µå¹³æœ‰æ•ˆæ—¶é—´çš„åƒåˆ†æ¯”(0~1000)
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸ,0-å¤±è´¥
+*è¯´       æ˜ï¼š1000=100%ï¼Œ500=50.0%ã€‚æ­»å»æ¨¡å¼æ—¶ï¼Œä¸¤channelåŒæ—¶è®¾å®š
 ********************************************************/
 char TA0_PWM_SetPermill(char channel,unsigned int duty)
 {
@@ -124,27 +124,27 @@ char TA0_PWM_SetPermill(char channel,unsigned int duty)
 
 //---------------TA1---------------------
 /********************************************************
-*Ãû       ³Æ£ºTA1_PWM_Init()
-*¹¦       ÄÜ£ºTA1¶¨Ê±Æ÷×÷ÎªPWM·¢ÉúÆ÷µÄ³õÊ¼»¯º¯Êı
-*Èë¿Ú²ÎÊı£ºclk-Ê±ÖÓÔ´'S'=SMCLK;'A'=ACLK;'E'=TACLK;'e'='E'È¡·´
-          div-Ê±ÖÓ·ÖÆµÏµÊı:1/2/4/8
-          mode1-Í¨µÀ1µÄÊä³öÄ£Ê½£¬'F'ÉèÎª³¬Ç°PWM(Ä£Ê½7),'B'ÖÍºóPWM(Ä£Ê½3),
-          'D'´øËÀÇøÔöPWM(Ä£Ê½6),0=½ûÓÃ
-*³ö¿Ú²ÎÊı£º1-³É¹¦,2-Ê§°Ü
-*Ëµ       Ã÷£ºµ÷ÓÃPWMÏà¹Øº¯ÊıÖ®Ç°£¬Ğèµ÷ÓÃ´Ëº¯ÊıÉèÖÃTAµÄÄ£Ê½ºÍÊ±ÖÓÔ´
+*å       ç§°ï¼šTA1_PWM_Init()
+*åŠŸ       èƒ½ï¼šTA1å®šæ—¶å™¨ä½œä¸ºPWMå‘ç”Ÿå™¨çš„åˆå§‹åŒ–å‡½æ•°
+*å…¥å£å‚æ•°ï¼šclk-æ—¶é’Ÿæº'S'=SMCLK;'A'=ACLK;'E'=TACLK;'e'='E'å–å
+          div-æ—¶é’Ÿåˆ†é¢‘ç³»æ•°:1/2/4/8
+          mode1-é€šé“1çš„è¾“å‡ºæ¨¡å¼ï¼Œ'F'è®¾ä¸ºè¶…å‰PWM(æ¨¡å¼7),'B'æ»åPWM(æ¨¡å¼3),
+          'D'å¸¦æ­»åŒºå¢PWM(æ¨¡å¼6),0=ç¦ç”¨
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸ,2-å¤±è´¥
+*è¯´       æ˜ï¼šè°ƒç”¨PWMç›¸å…³å‡½æ•°ä¹‹å‰ï¼Œéœ€è°ƒç”¨æ­¤å‡½æ•°è®¾ç½®TAçš„æ¨¡å¼å’Œæ—¶é’Ÿæº
 ********************************************************/
 char TA1_PWM_Init( char clk , char div , char mode1 , char mode2 )
 {
-	TA1CTL = 0;                                //Çå³ıÒÔÇ°ÉèÖÃ
-	switch( clk )                              //Ñ¡Ôñ¶¨Ê±Æ÷Ê±ÖÓÔ´
+	TA1CTL = 0;                                //æ¸…é™¤ä»¥å‰è®¾ç½®
+	switch( clk )                              //é€‰æ‹©å®šæ—¶å™¨æ—¶é’Ÿæº
 	{
 	case'A':case'a': TA1CTL |= TASSEL_1;break; //ACLK
 	case'S':case's': TA1CTL |= TASSEL_2;break; //SMCLK
-	case'E':         TA1CTL |= TASSEL_0;break; //Íâ²¿ÊäÈë(TACLK)
-	case'e':         TA1CTL |= TASSEL_3;break; //Íâ²¿ÊäÈë(TACLKÈ¡·´)
+	case'E':         TA1CTL |= TASSEL_0;break; //å¤–éƒ¨è¾“å…¥(TACLK)
+	case'e':         TA1CTL |= TASSEL_3;break; //å¤–éƒ¨è¾“å…¥(TACLKå–å)
 	default: return(0);
 	}
-	switch( div )                              //Ñ¡Ôñ·ÖÆµÏµÊı
+	switch( div )                              //é€‰æ‹©åˆ†é¢‘ç³»æ•°
 	{
 		case 1: TA1CTL |= ID_0;break;          //1
 		case 2: TA1CTL |= ID_1;break;          //2
@@ -152,37 +152,37 @@ char TA1_PWM_Init( char clk , char div , char mode1 , char mode2 )
 		case 8: TA1CTL |= ID_3;break;          //8
 		default: return(0);
 	}
-	switch( mode1 )                             //Ñ¡Ôñ¼ÆÊıÄ£Ê½
+	switch( mode1 )                             //é€‰æ‹©è®¡æ•°æ¨¡å¼
 	{
-		case'F':case'f':case'B':case'b': TA1CTL|=MC_1;break; //ÆÕÍ¨PWM£¬Ôö¼ÆÊı
-		case'D':case'd':                 TA1CTL|=MC_3;break; //ËÀÇøPWM£¬Ôö¼õ¼ÆÊı
+		case'F':case'f':case'B':case'b': TA1CTL|=MC_1;break; //æ™®é€šPWMï¼Œå¢è®¡æ•°
+		case'D':case'd':                 TA1CTL|=MC_3;break; //æ­»åŒºPWMï¼Œå¢å‡è®¡æ•°
 		default:return(0);
 	}
-	switch( mode1 )                             //ÉèÖÃPWMÍ¨µÀ1µÄÊä³öÄ£Ê½
+	switch( mode1 )                             //è®¾ç½®PWMé€šé“1çš„è¾“å‡ºæ¨¡å¼
 	{
 		case'F':case'f': TA1CCTL1 = OUTMOD_7;TA11_SET;break;
 		case'B':case'b': TA1CCTL1 = OUTMOD_3;TA11_SET;break;
 		case'D':case'd': TA1CCTL1 = OUTMOD_6;TA11_SET;break;
-		case'0':case 0 : TA11_OFF;break;       //Èç¹ûÉèÖÃÎª½ûÓÃTA0.1»Ö¸´ÎªÆÕÍ¨IO
+		case'0':case 0 : TA11_OFF;break;       //å¦‚æœè®¾ç½®ä¸ºç¦ç”¨TA0.1æ¢å¤ä¸ºæ™®é€šIO
 		default: return(0);
 	}
-	switch( mode2 )                             //ÉèÖÃPWMÍ¨µÀ2µÄÊä³öÄ£Ê½
+	switch( mode2 )                             //è®¾ç½®PWMé€šé“2çš„è¾“å‡ºæ¨¡å¼
 	{
 		case'F':case'f': TA1CCTL2 = OUTMOD_7;TA12_SET;break;
 		case'B':case'b': TA1CCTL2 = OUTMOD_3;TA12_SET;break;
 		case'D':case'd': TA1CCTL2 = OUTMOD_2;TA12_SET;break;
-		case'0':case 0 : TA12_OFF;break;       //Èç¹ûÉèÖÃÎª½ûÓÃTA0.1»Ö¸´ÎªÆÕÍ¨IO
+		case'0':case 0 : TA12_OFF;break;       //å¦‚æœè®¾ç½®ä¸ºç¦ç”¨TA0.1æ¢å¤ä¸ºæ™®é€šIO
 		default: return(0);
 	}
 	return (1);
 }
 
 /********************************************************
-*Ãû       ³Æ£ºTA1_PWM_SetPeriod()
-*¹¦       ÄÜ£ºÉèÖÃPWM·¢ÉúÆ÷µÄÖÜÆÚ
-*Èë¿Ú²ÎÊı£ºperiod-(0~65535)Ê±ÖÓ¸öÊı
-*³ö¿Ú²ÎÊı£º1-³É¹¦,2-Ê§°Ü
-*Ëµ       Ã÷£ºÆÕÍ¨PWMÓë´øËÀÇøPWMÖÜÆÚÏà²îÒ»±¶
+*å       ç§°ï¼šTA1_PWM_SetPeriod()
+*åŠŸ       èƒ½ï¼šè®¾ç½®PWMå‘ç”Ÿå™¨çš„å‘¨æœŸ
+*å…¥å£å‚æ•°ï¼šperiod-(0~65535)æ—¶é’Ÿä¸ªæ•°
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸ,2-å¤±è´¥
+*è¯´       æ˜ï¼šæ™®é€šPWMä¸å¸¦æ­»åŒºPWMå‘¨æœŸç›¸å·®ä¸€å€
 ********************************************************/
 char TA1_PWM_SetPeriod(unsigned int period)
 {
@@ -192,12 +192,12 @@ char TA1_PWM_SetPeriod(unsigned int period)
 }
 
 /********************************************************
-*Ãû       ³Æ£ºTA1_PWM_SetPermill()
-*¹¦       ÄÜ£ºÉèÖÃPWMÊä³öµÄÕ¼¿Õ±È(Õ¼¿Õ±È)
-*Èë¿Ú²ÎÊı£ºchannel-µ±Ç°ÉèÖÃµÄÍ¨µÀºÅ,1/2
-		   duty-PWM¸ßµçÆ½ÓĞĞ§Ê±¼äµÄÇ§·Ö±È(0~1000)
-*³ö¿Ú²ÎÊı£º1-³É¹¦,0-Ê§°Ü
-*Ëµ       Ã÷£º1000=100%£¬500=50.0%¡£ËÀÈ¥Ä£Ê½Ê±£¬Á½channelÍ¬Ê±Éè¶¨
+*å       ç§°ï¼šTA1_PWM_SetPermill()
+*åŠŸ       èƒ½ï¼šè®¾ç½®PWMè¾“å‡ºçš„å ç©ºæ¯”(å ç©ºæ¯”)
+*å…¥å£å‚æ•°ï¼šchannel-å½“å‰è®¾ç½®çš„é€šé“å·,1/2
+		   duty-PWMé«˜ç”µå¹³æœ‰æ•ˆæ—¶é—´çš„åƒåˆ†æ¯”(0~1000)
+*å‡ºå£å‚æ•°ï¼š1-æˆåŠŸ,0-å¤±è´¥
+*è¯´       æ˜ï¼š1000=100%ï¼Œ500=50.0%ã€‚æ­»å»æ¨¡å¼æ—¶ï¼Œä¸¤channelåŒæ—¶è®¾å®š
 ********************************************************/
 char TA1_PWM_SetPermill(char channel,unsigned int duty)
 {

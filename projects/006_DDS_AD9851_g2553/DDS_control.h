@@ -9,13 +9,13 @@
 #define __DDS_CONTROL_H__
 
 
-#define AD9851_W_CLK_HIGH    P2OUT |= BIT2  //P2.2¿Ú½Óad9850µÄw_clk½Å/PIN7
+#define AD9851_W_CLK_HIGH    P2OUT |= BIT2  //P2.2å£æ¥ad9850çš„w_clkè„š/PIN7
 #define AD9851_W_CLK_LOW    P2OUT &= ~BIT2
-#define AD9851_FQ_UD_HIGH    P2OUT |= BIT1  //P2.1¿Ú½Óad9850µÄfq_ud½Å/PIN8
+#define AD9851_FQ_UD_HIGH    P2OUT |= BIT1  //P2.1å£æ¥ad9850çš„fq_udè„š/PIN8
 #define AD9851_FQ_UD_LOW    P2OUT &= ~BIT1
-#define AD9851_RESET_HIGH    P2OUT |= BIT0  //P2.0¿Ú½Óad9850µÄreset½Å/PIN22
+#define AD9851_RESET_HIGH    P2OUT |= BIT0  //P2.0å£æ¥ad9850çš„resetè„š/PIN22
 #define AD9851_RESET_LOW    P2OUT &= ~BIT0
-#define AD9851_DATA    P1OUT  //P1¿Ú½Óad9850µÄ8¸öÊı¾İ½Å
+#define AD9851_DATA    P1OUT  //P1å£æ¥ad9850çš„8ä¸ªæ•°æ®è„š
 
 extern void AD9851_Reset_Parrel(void);
 extern void AD9851_Write_Parrel(unsigned char w0,double frequence);

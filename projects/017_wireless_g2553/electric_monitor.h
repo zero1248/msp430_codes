@@ -1,6 +1,6 @@
 /*
  *  electric_monitor.h
- *        Port£ºP1.3
+ *        Port: P1.3
  *  Created on: 2015-5-1
  *      Author: Isaac
  */

@@ -10,16 +10,16 @@
 #include"Timer_A3.h"
 #include"ComparatorA.h"
 
-unsigned char slope_measure_flag = 0; //ÓÃÓÚÊ¶±ðµ±Ç°Ëù²âµç×è
-unsigned int r_REF = 0;               //²Î¿¼µç×èÏà¶Ôµç×èÖµ
-unsigned int r_SENS = 0;              //´«¸ÐÆ÷µç×èÏà¶Ôµç×èÖµ
+unsigned char slope_measure_flag = 0; //ç”¨äºŽè¯†åˆ«å½“å‰æ‰€æµ‹ç”µé˜»
+unsigned int r_REF = 0;               //å‚è€ƒç”µé˜»ç›¸å¯¹ç”µé˜»å€¼
+unsigned int r_SENS = 0;              //ä¼ æ„Ÿå™¨ç”µé˜»ç›¸å¯¹ç”µé˜»å€¼
 
 /***********************************************************
-*Ãû       ³Æ£ºSlope_Port_Charge()
-*¹¦       ÄÜ£º¿ªÆô³äµçµçÔ´£¬Ò»Ö±½«»ý·ÖµçÈÝÉÏµÄµç³äÂú
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£º³äÂúµçºóµÈ´ý·ÅµçÐÅºÅ
+*å       ç§°ï¼šSlope_Port_Charge()
+*åŠŸ       èƒ½ï¼šå¼€å¯å……ç”µç”µæºï¼Œä¸€ç›´å°†ç§¯åˆ†ç”µå®¹ä¸Šçš„ç”µå……æ»¡
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼šå……æ»¡ç”µåŽç­‰å¾…æ”¾ç”µä¿¡å·
 ***********************************************************/
 void Slope_Port_Charge(void)
 {
@@ -28,11 +28,11 @@ void Slope_Port_Charge(void)
 }
 
 /***********************************************************
-*Ãû       ³Æ£ºSlope_Measure_Init()
-*¹¦       ÄÜ£º³õÊ¼»¯¸÷Ó²¼þÄ£¿é£¬¸øµçÈÝ³äÂúµçµÈ´ýµÚÒ»´Î·Åµç²âÁ¿
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£º
+*å       ç§°ï¼šSlope_Measure_Init()
+*åŠŸ       èƒ½ï¼šåˆå§‹åŒ–å„ç¡¬ä»¶æ¨¡å—ï¼Œç»™ç”µå®¹å……æ»¡ç”µç­‰å¾…ç¬¬ä¸€æ¬¡æ”¾ç”µæµ‹é‡
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼š
 ***********************************************************/
 void Slope_Measure_Init(void)
 {
@@ -42,41 +42,41 @@ void Slope_Measure_Init(void)
 }
 
 /***********************************************************
-*Ãû       ³Æ£ºSlope_Measure_REF()
-*¹¦       ÄÜ£ºÆô¶¯²Î¿¼µç×è²âÁ¿
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£º
+*å       ç§°ï¼šSlope_Measure_REF()
+*åŠŸ       èƒ½ï¼šå¯åŠ¨å‚è€ƒç”µé˜»æµ‹é‡
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼š
 ***********************************************************/
 void Slope_Measure_REF(void)
 {
-	slope_measure_flag = 0;//±íÃ÷´Ë´Î²âÁ¿²Î¿¼µç×è
-	PORT_SENS_HZ;          //´«¸ÐÆ÷µç×è¸ß×èÌ¬£¬·ÀÖ¹¸ÉÈÅ
-	TAR_CLEAR;             //TAÖ÷Ê±ÖÓÇåÁã
-	PORT_REF_LOW;          //¿ªÆô²Î¿¼µç×è·ÅµçÍ¨µÀ£¬¿ªÊ¼¼ÆÊý²âÁ¿·ÅµçÊ±¼ä
+	slope_measure_flag = 0;//è¡¨æ˜Žæ­¤æ¬¡æµ‹é‡å‚è€ƒç”µé˜»
+	PORT_SENS_HZ;          //ä¼ æ„Ÿå™¨ç”µé˜»é«˜é˜»æ€ï¼Œé˜²æ­¢å¹²æ‰°
+	TAR_CLEAR;             //TAä¸»æ—¶é’Ÿæ¸…é›¶
+	PORT_REF_LOW;          //å¼€å¯å‚è€ƒç”µé˜»æ”¾ç”µé€šé“ï¼Œå¼€å§‹è®¡æ•°æµ‹é‡æ”¾ç”µæ—¶é—´
 }
 
 /***********************************************************
-*Ãû       ³Æ£ºSlope_Measure_SENS()
-*¹¦       ÄÜ£ºÆô¶¯´«¸ÐÆ÷µç×è²âÁ¿
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£º
+*å       ç§°ï¼šSlope_Measure_SENS()
+*åŠŸ       èƒ½ï¼šå¯åŠ¨ä¼ æ„Ÿå™¨ç”µé˜»æµ‹é‡
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼š
 ***********************************************************/
 void Slope_Measure_SENS(void)
 {
-	slope_measure_flag = 1;//±íÃ÷´Ë´Î²âÁ¿´«¸ÐÆ÷µç×è
-	PORT_REF_HZ;          //²Î¿¼µç×è¸ß×èÌ¬£¬·ÀÖ¹¸ÉÈÅ
-	TAR_CLEAR;             //TAÖ÷Ê±ÖÓÇåÁã
-	PORT_SENS_LOW;          //¿ªÆô´«¸ÐÆ÷µç×è·ÅµçÍ¨µÀ£¬¿ªÊ¼¼ÆÊý²âÁ¿·ÅµçÊ±¼ä
+	slope_measure_flag = 1;//è¡¨æ˜Žæ­¤æ¬¡æµ‹é‡ä¼ æ„Ÿå™¨ç”µé˜»
+	PORT_REF_HZ;          //å‚è€ƒç”µé˜»é«˜é˜»æ€ï¼Œé˜²æ­¢å¹²æ‰°
+	TAR_CLEAR;             //TAä¸»æ—¶é’Ÿæ¸…é›¶
+	PORT_SENS_LOW;          //å¼€å¯ä¼ æ„Ÿå™¨ç”µé˜»æ”¾ç”µé€šé“ï¼Œå¼€å§‹è®¡æ•°æµ‹é‡æ”¾ç”µæ—¶é—´
 }
 
 /***********************************************************
-*Ãû       ³Æ£ºSlope_TA_CCI1B()
-*¹¦       ÄÜ£ºÕë¶ÔSlopeÓ¦ÓÃµÄ²¶»ñÖÐ¶ÏÊÂ¼þ´¦Àíº¯Êý£¬²âµÃµç×èÖµ
-*Èë¿Ú²ÎÊý£ºÎÞ
-*³ö¿Ú²ÎÊý£ºÎÞ
-*Ëµ       Ã÷£º¸ù¾Ý±êÊ¶Î»£¬ÅÐ¶Ï±¾´Î²âÁ¿µÄÊÇ²Î¿¼µç×è»¹ÊÇ´«¸ÐÆ÷µç×è
+*å       ç§°ï¼šSlope_TA_CCI1B()
+*åŠŸ       èƒ½ï¼šé’ˆå¯¹Slopeåº”ç”¨çš„æ•èŽ·ä¸­æ–­äº‹ä»¶å¤„ç†å‡½æ•°ï¼Œæµ‹å¾—ç”µé˜»å€¼
+*å…¥å£å‚æ•°ï¼šæ— 
+*å‡ºå£å‚æ•°ï¼šæ— 
+*è¯´       æ˜Žï¼šæ ¹æ®æ ‡è¯†ä½ï¼Œåˆ¤æ–­æœ¬æ¬¡æµ‹é‡çš„æ˜¯å‚è€ƒç”µé˜»è¿˜æ˜¯ä¼ æ„Ÿå™¨ç”µé˜»
 ***********************************************************/
 void Slope_TA_CCI1B(void)
 {

@@ -2,11 +2,11 @@
 #define __MATRIXKEY_H__
 
 #define MAT_SCAN_IO P2DIR
-#define MAT_SCAN_OUT P2OUT	 //4¡Á4¼üÅÌÉ¨Ãè¶Ë¿Ú£¬µÍ4Î»ÊÇÐÐÏß£¬¸ß4Î»ÊÇÁÐÏß¡£
-			 //²ÉÓÃÖðÁÐÉ¨ÃèµÄ·½·¨£¬ÎÞ°´¼üÊ±£¬µÍ4Î»Êä³ö1£¬¸ß4Î»Êä³ö0¡£
-			 //µ±ÓÐ°´¼üÊ±£¬¸ß4Î»Êä³öÉ¨ÃèµçÎ»£¬µÍ4Î»ÊäÈëÉ¨Ãè½á¹û¡£
+#define MAT_SCAN_OUT P2OUT	 //4Ã—4é”®ç›˜æ‰«æç«¯å£ï¼Œä½Ž4ä½æ˜¯è¡Œçº¿ï¼Œé«˜4ä½æ˜¯åˆ—çº¿ã€‚
+			 //é‡‡ç”¨é€åˆ—æ‰«æçš„æ–¹æ³•ï¼Œæ— æŒ‰é”®æ—¶ï¼Œä½Ž4ä½è¾“å‡º1ï¼Œé«˜4ä½è¾“å‡º0ã€‚
+			 //å½“æœ‰æŒ‰é”®æ—¶ï¼Œé«˜4ä½è¾“å‡ºæ‰«æç”µä½ï¼Œä½Ž4ä½è¾“å…¥æ‰«æç»“æžœã€‚
 #define MAT_SCAN_IN  P2IN
-#define MAT_KEYBUFF_SIZE   50    /*¼üÅÌ»º³åÇø´óÐ¡,¸ù¾Ý³ÌÐòÐèÒª×ÔÐÐµ÷Õû*/
+#define MAT_KEYBUFF_SIZE   50    /*é”®ç›˜ç¼“å†²åŒºå¤§å°,æ ¹æ®ç¨‹åºéœ€è¦è‡ªè¡Œè°ƒæ•´*/
 
 void Mat_Scan_Delay(unsigned int);
 void P1_For_Scan_Init(void);
